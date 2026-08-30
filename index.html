@@ -1,0 +1,1491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Florida Friday Night Lights Fantasy — High School Football</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,100..125,400..900;1,100..125,400..900&family=Barlow+Semi+Condensed:wght@400;500;600;700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!--
+  ============================================================
+  EDIT BEFORE YOU PUBLISH
+  ============================================================
+  Everything you need to change lives in the CONFIG block at the
+  top of the JavaScript near the bottom of this file, plus:
+
+    - <title> above
+    - the wordmark text in the hero (search: WORDMARK)
+    - contact email and social handle (search: CONTACT)
+    - sponsor names (search: SPONSORS)
+
+  Nothing else needs touching. No image files, no assets folder.
+  ============================================================
+-->
+
+<style>
+:root{
+  --ink:#06070A;
+  --granite:#11151B;
+  --slab:#171C24;
+  --turf:#153A22;
+  --turf-lit:#3E8C4F;
+  --line:#242B35;
+  --bone:#F0F2F5;
+  --chalk:#D8DEE6;
+  --ash:#79828F;
+  --dim:#525B67;
+  --lights:#E8A93B;
+
+  --g-draft:#3E8C4F;
+  --g-pickem:#4A7FC1;
+  --g-survivor:#C1553F;
+
+  --display:"Archivo",system-ui,sans-serif;
+  --body:"Barlow",system-ui,sans-serif;
+  --data:"Barlow Semi Condensed",system-ui,sans-serif;
+
+  --wrap:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ink);
+  color:var(--bone);
+  font-family:var(--body);
+  font-size:17px;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 26px}
+
+/* ---------- type ---------- */
+.display{
+  font-family:var(--display);
+  font-variation-settings:"wdth" 118;
+  font-weight:900;
+  font-style:italic;
+  text-transform:uppercase;
+  letter-spacing:-0.012em;
+  line-height:0.92;
+}
+.eyebrow{
+  font-family:var(--data);
+  font-size:12px;font-weight:600;letter-spacing:0.22em;
+  text-transform:uppercase;color:var(--ash);
+}
+h2.display{font-size:clamp(30px,5vw,52px)}
+h3{
+  font-family:var(--display);
+  font-variation-settings:"wdth" 112;
+  font-weight:800;font-style:italic;text-transform:uppercase;
+  font-size:20px;letter-spacing:0.01em;line-height:1.1;
+}
+p{color:#C3CAD3}
+strong{color:var(--bone);font-weight:600}
+a{color:inherit}
+
+/* ---------- nav ---------- */
+.nav{
+  position:sticky;top:0;z-index:60;
+  background:rgba(6,7,10,.86);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.nav-in{display:flex;align-items:center;gap:26px;height:60px;max-width:var(--wrap);margin:0 auto;padding:0 26px}
+.nav-mark{font-family:var(--display);font-variation-settings:"wdth" 120;font-weight:900;font-style:italic;font-size:15px;text-transform:uppercase;letter-spacing:.02em;white-space:nowrap}
+.nav-links{margin-left:auto;display:flex;gap:22px;align-items:center}
+.nav-links a+a{margin-left:22px}
+@supports (gap:1px){.nav-links a+a{margin-left:0}}
+.nav-links a{
+  font-family:var(--data);font-size:13px;font-weight:600;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ash);text-decoration:none;transition:color .18s;
+}
+.nav-links a:hover,.nav-links a:focus-visible{color:var(--bone)}
+.nav-cta{
+  padding:8px 15px;border:1px solid var(--turf-lit);border-radius:2px;
+  color:var(--bone)!important;background:rgba(62,140,79,.16);
+}
+.nav-cta:hover{background:var(--turf-lit)}
+@media(max-width:820px){.nav-links a:not(.nav-cta){display:none}}
+
+/* ---------- beta band ---------- */
+.beta{background:rgba(232,169,59,.12);border-bottom:1px solid rgba(232,169,59,.35);
+  font-family:var(--data);font-size:13.5px;letter-spacing:.05em;color:#EDDCB4;padding:10px 0;text-align:center}
+.beta b{font-family:var(--display);font-variation-settings:"wdth" 112;font-weight:800;font-style:italic;
+  text-transform:uppercase;color:var(--lights);letter-spacing:.02em;margin-right:4px}
+
+/* ---------- hero ---------- */
+.hero{position:relative;padding:56px 0 0;background:#000;border-bottom:1px solid var(--line)}
+.hero-mark{display:block;width:min(680px,90vw);margin:0 auto;height:auto}
+.hero-line{
+  text-align:center;max-width:1000px;margin:18px auto 0;
+  font-size:clamp(16px,1.85vw,20px);line-height:1.5;color:#B9C1CB;
+  text-wrap:balance;
+}
+.hero-meta{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:0;margin:34px auto 0;
+  border-top:1px solid var(--line);max-width:var(--wrap);
+}
+.hero-stat{flex:1 1 160px;padding:18px 14px;text-align:center;border-right:1px solid var(--line)}
+.hero-stat:last-child{border-right:0}
+.hero-stat b{display:block;font-family:var(--display);font-variation-settings:"wdth" 115;font-weight:900;font-style:italic;font-size:26px;color:var(--bone)}
+.hero-stat span{font-family:var(--data);font-size:11.5px;letter-spacing:.17em;text-transform:uppercase;color:var(--ash)}
+
+/* ---------- section frame ---------- */
+.sec{padding:78px 0;border-bottom:1px solid var(--line)}
+.sec-head{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+.sec-num{
+  font-family:var(--data);font-size:13px;font-weight:700;letter-spacing:.2em;
+  color:var(--turf-lit);padding:4px 9px;border:1px solid var(--turf);border-radius:2px;
+}
+.sec-sub{max-width:680px;margin-top:14px;font-size:18px}
+.sec-tag{
+  display:block;margin-top:20px;font-family:var(--display);
+  font-variation-settings:"wdth" 114;font-weight:900;font-style:italic;
+  font-size:clamp(21px,3vw,32px);line-height:1.12;letter-spacing:-0.005em;
+  text-transform:uppercase;color:var(--bone);
+}
+.sec-tag em{font-style:italic;color:var(--turf-lit)}
+
+#draft{background:linear-gradient(180deg,#070C09 0%,var(--ink) 100%)}
+#pickem{background:linear-gradient(180deg,#080A0E 0%,var(--ink) 100%)}
+#survivor{background:linear-gradient(180deg,#0C0807 0%,var(--ink) 100%)}
+#national{background:linear-gradient(180deg,#0A090D 0%,var(--ink) 100%)}
+
+/* ---------- generic card ---------- */
+.card{background:var(--granite);border:1px solid var(--line);border-radius:3px;padding:22px}
+.grid{display:grid;gap:16px}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g2{grid-template-columns:repeat(2,1fr)}
+@media(max-width:860px){.g3,.g2{grid-template-columns:1fr}}
+
+.rulelist{list-style:none;margin-top:14px}
+.rulelist li{position:relative;padding-left:22px;margin-bottom:9px;color:#C3CAD3}
+.rulelist li::before{content:"";position:absolute;left:0;top:11px;width:9px;height:2px;background:var(--turf-lit)}
+
+ul.bul{list-style:none;margin:0}
+ul.bul li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;line-height:1.55;color:#AEB6C1}
+ul.bul li::before{content:"";position:absolute;left:0;top:10px;width:10px;height:2px;background:var(--turf-lit)}
+ul.bul b{color:var(--chalk)}
+
+/* ---------- tables ---------- */
+table{width:100%;border-collapse:collapse;margin-top:18px;font-family:var(--data)}
+th{
+  text-align:left;font-size:11.5px;font-weight:700;letter-spacing:.17em;text-transform:uppercase;
+  color:var(--ash);padding:9px 12px;border-bottom:1px solid var(--line);
+}
+td{padding:11px 12px;border-bottom:1px solid #1B212A;font-size:16px;color:#C7CED7}
+td.money{font-family:var(--display);font-variation-settings:"wdth" 112;font-style:italic;font-weight:800;color:var(--bone);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+
+.ptable{width:100%;border-collapse:collapse;margin:12px 0}
+.ptable td{padding:9px 12px;border:1px solid var(--line);background:var(--granite);font-size:14.5px;color:#C7CED7}
+.ptable td.pts{width:74px;text-align:center;font-family:var(--display);font-variation-settings:"wdth" 112;
+  font-weight:900;font-style:italic;font-size:20px;color:var(--turf-lit);background:var(--slab)}
+
+.callout{margin-top:22px;padding:18px 22px;background:var(--granite);
+  border:1px solid var(--line);border-left:2px solid var(--lights);border-radius:3px}
+.callout h4{font-family:var(--display);font-variation-settings:"wdth" 112;font-weight:800;font-style:italic;
+  text-transform:uppercase;font-size:15px;color:var(--lights);margin-bottom:8px}
+.callout p{font-size:14.5px;color:#AEB6C1;margin-bottom:8px}
+.callout p:last-child{margin-bottom:0}
+
+/* ---------- SIGNATURE: bracket board ---------- */
+.board{
+  margin-top:26px;background:#080D0A;
+  border:1px solid var(--turf);border-radius:3px;overflow:hidden;
+}
+.board-bar{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  padding:14px 18px;background:rgba(21,58,34,.46);border-bottom:1px solid var(--turf);
+}
+.board-when{font-family:var(--data);font-size:13px;letter-spacing:.15em;text-transform:uppercase;color:var(--chalk)}
+.board-when b{color:var(--bone);font-weight:700}
+.board-ctrl{margin-left:auto;display:flex;gap:8px}
+.board-btn{
+  font-family:var(--data);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  background:transparent;color:var(--chalk);border:1px solid var(--turf-lit);
+  padding:7px 13px;border-radius:2px;cursor:pointer;transition:background .16s,color .16s;
+}
+.board-btn:hover:not(:disabled){background:var(--turf-lit);color:#04120A}
+.board-btn:disabled{opacity:.32;cursor:default}
+.board-foot{
+  padding:12px 18px;border-top:1px solid var(--turf);
+  font-family:var(--data);font-size:12.5px;letter-spacing:.08em;color:var(--ash);
+}
+
+.rounds{display:grid;grid-template-columns:repeat(5,1fr)}
+.rnd{
+  border-right:1px solid #14211A;padding:18px 8px 16px;text-align:center;
+  display:flex;flex-direction:column;align-items:center;gap:8px;min-width:0;
+  transition:background .3s;
+}
+.rnd:last-child{border-right:0}
+.rnd.now{background:rgba(62,140,79,.14)}
+.rnd.past{opacity:.42}
+.rnd-no{font-family:var(--data);font-size:10.5px;font-weight:700;letter-spacing:.19em;color:var(--dim)}
+.rnd-name{font-family:var(--display);font-variation-settings:"wdth" 110;font-weight:800;font-style:italic;
+  text-transform:uppercase;font-size:13px;color:var(--chalk);line-height:1.15}
+.rnd-alive{font-family:var(--display);font-variation-settings:"wdth" 114;font-weight:900;font-style:italic;
+  font-size:26px;color:var(--turf-lit);line-height:1;transition:color .3s}
+.rnd.past .rnd-alive{color:var(--dim)}
+.rnd-lab{font-family:var(--data);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ash)}
+@media(max-width:820px){
+  .rounds{grid-template-columns:repeat(3,1fr)}
+  .rnd:nth-child(3n){border-right:0}
+  .rnd:nth-child(-n+3){border-bottom:1px solid #14211A}
+}
+@media(max-width:420px){.rounds{grid-template-columns:repeat(2,1fr)}.rnd:nth-child(2n){border-right:0}}
+
+.used{display:flex;flex-wrap:wrap;gap:7px;padding:14px 18px;border-top:1px solid #14211A;min-height:54px;align-items:center}
+.used-lab{font-family:var(--data);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ash);margin-right:4px}
+.chip{
+  font-family:var(--data);font-size:12.5px;font-weight:600;letter-spacing:.05em;
+  padding:4px 10px;border-radius:2px;background:var(--slab);
+  border:1px solid var(--line);color:var(--dim);text-decoration:line-through;
+}
+.chip.live{color:var(--bone);border-color:var(--turf-lit);background:rgba(62,140,79,.18);text-decoration:none}
+
+/* ---------- tier grid (Game 2) ---------- */
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px}
+@media(max-width:900px){.tiers{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.tiers{grid-template-columns:1fr}}
+.tier{
+  position:relative;background:var(--granite);border:1px solid var(--line);
+  border-radius:3px;padding:18px 18px 16px;overflow:hidden;
+  transition:border-color .2s,transform .2s;
+}
+.tier::before{content:"";position:absolute;inset:0 0 auto 0;height:2px;background:var(--k)}
+.tier:hover{border-color:var(--k);transform:translateY(-2px)}
+.tier-cls{
+  font-family:var(--display);font-variation-settings:"wdth" 114;font-weight:900;font-style:italic;
+  text-transform:uppercase;font-size:22px;color:var(--bone);line-height:1;
+}
+.tier-meta{margin-top:8px;font-family:var(--data);font-size:12.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ash)}
+.tier-note{margin-top:10px;font-size:14px;line-height:1.5;color:#A9B2BD}
+
+/* ---------- ballot (Game 4) ---------- */
+.ballot{margin-top:26px;border:1px solid var(--line);border-radius:3px;overflow:hidden;background:var(--granite)}
+.slot{display:flex;align-items:center;gap:14px;padding:12px 18px;border-bottom:1px solid #1B212A}
+.slot:last-child{border-bottom:0}
+.slot.one{background:rgba(232,169,59,.09);border-left:2px solid var(--lights)}
+.slot-no{font-family:var(--display);font-variation-settings:"wdth" 112;font-weight:900;font-style:italic;
+  font-size:22px;color:var(--dim);width:34px;flex:0 0 34px}
+.slot.one .slot-no{color:var(--lights)}
+.slot-line{flex:1;height:9px;border-radius:1px;background:#232A33}
+.slot.one .slot-line{background:rgba(232,169,59,.3)}
+.slot-tag{font-family:var(--data);font-size:11px;font-weight:700;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--ash);white-space:nowrap}
+.slot.one .slot-tag{color:var(--lights)}
+
+/* ---------- leaderboard ---------- */
+.lb{margin-top:26px;border:1px solid var(--line);border-radius:3px;overflow:hidden;background:var(--granite)}
+.lb-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  padding:14px 18px;border-bottom:1px solid var(--line);background:var(--slab)}
+.lb-title{font-family:var(--display);font-variation-settings:"wdth" 112;font-weight:800;font-style:italic;text-transform:uppercase;font-size:15px}
+.pill{
+  margin-left:auto;font-family:var(--data);font-size:11px;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;padding:5px 11px;border-radius:2px;
+  color:#9FE0AE;background:rgba(62,140,79,.2);border:1px solid var(--turf);
+}
+.lb table{margin:0}
+.lb th{padding-left:18px}
+.lb td{padding-left:18px}
+.ghost td{color:var(--dim)}
+.ghost .bar{display:inline-block;height:8px;border-radius:1px;background:#232A33;vertical-align:middle}
+.lb-empty{
+  padding:22px 18px;font-family:var(--data);font-size:13.5px;letter-spacing:.06em;
+  color:var(--ash);border-top:1px solid var(--line);background:#0D1116;
+}
+.lb-empty b{color:var(--chalk);font-weight:700}
+.rank{font-family:var(--display);font-variation-settings:"wdth" 110;font-style:italic;font-weight:800;color:var(--dim)}
+
+/* ---------- dates strip ---------- */
+.dates{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:24px;border:1px solid var(--line);border-radius:3px;overflow:hidden}
+@media(max-width:820px){.dates{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:460px){.dates{grid-template-columns:1fr}}
+.date{padding:16px;border-right:1px solid var(--line);background:var(--granite)}
+.date:last-child{border-right:0}
+.date b{display:block;font-family:var(--display);font-variation-settings:"wdth" 112;font-weight:900;font-style:italic;font-size:17px;text-transform:uppercase}
+.date span{font-family:var(--data);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ash)}
+.date i{display:block;margin-top:6px;font-style:normal;font-size:14px;color:#A9B2BD;font-family:var(--body)}
+
+/* ---------- volunteer ---------- */
+#volunteer{background:linear-gradient(180deg,#070A0C 0%,var(--ink) 100%)}
+.roles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:28px}
+@media(max-width:1000px){.roles{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.roles{grid-template-columns:1fr}}
+.role{background:var(--granite);border:1px solid var(--line);border-top:2px solid var(--lights);
+  border-radius:3px;padding:20px 18px}
+.role b{display:block;font-family:var(--display);font-variation-settings:"wdth" 112;font-weight:900;
+  font-style:italic;text-transform:uppercase;font-size:16px;color:var(--bone);line-height:1.1}
+.role .hrs{margin-top:6px;font-family:var(--display);font-variation-settings:"wdth" 112;font-weight:800;
+  font-style:italic;font-size:24px;color:var(--lights)}
+.role .hrs span{font-family:var(--data);font-size:11px;font-weight:700;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--ash);display:block;margin-top:2px}
+.role p{margin-top:10px;font-size:14px;line-height:1.5;color:#A9B2BD}
+
+/* ---------- sponsors ---------- */
+#sponsors{background:linear-gradient(180deg,#0B0A07 0%,var(--ink) 100%)}
+.spon{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+@media(max-width:860px){.spon{grid-template-columns:1fr}}
+.spon-card{background:var(--granite);border:1px solid var(--line);border-top:2px solid var(--lights);border-radius:3px;padding:22px}
+.spon-tier{font-family:var(--display);font-variation-settings:"wdth" 114;font-weight:900;font-style:italic;
+  text-transform:uppercase;font-size:19px;color:var(--bone)}
+.spon-amt{margin-top:4px;font-family:var(--display);font-variation-settings:"wdth" 112;font-weight:800;font-style:italic;
+  font-size:28px;color:var(--lights)}
+.spon-list{list-style:none;margin-top:14px}
+.spon-list li{position:relative;padding-left:20px;margin-bottom:8px;font-size:14.5px;color:#AEB6C1;line-height:1.5}
+.spon-list li::before{content:"";position:absolute;left:0;top:10px;width:10px;height:2px;background:var(--lights)}
+.split{display:grid;grid-template-columns:repeat(2,1fr);gap:0;margin-top:26px;border:1px solid var(--line);border-radius:3px;overflow:hidden}
+@media(max-width:660px){.split{grid-template-columns:1fr}}
+.split div{padding:22px;background:var(--granite);border-right:1px solid var(--line)}
+.split div:last-child{border-right:0}
+.split b{display:block;font-family:var(--display);font-variation-settings:"wdth" 114;font-weight:900;font-style:italic;
+  font-size:36px;color:var(--turf-lit)}
+.split span{font-family:var(--data);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ash)}
+.split i{display:block;margin-top:8px;font-style:normal;font-size:14.5px;color:#AEB6C1;font-family:var(--body);line-height:1.5}
+
+/* ---------- entry cards ---------- */
+#signup{background:linear-gradient(180deg,var(--ink) 0%,#0A0F0B 100%)}
+.entry{margin-top:26px;border:1px solid var(--line);border-radius:3px;background:var(--granite);padding:24px 24px 26px}
+.entry+.entry{margin-top:20px}
+.entry-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:12px}
+.entry-title{
+  font-family:var(--display);font-variation-settings:"wdth" 116;font-weight:900;font-style:italic;
+  text-transform:uppercase;font-size:24px;letter-spacing:-0.01em;
+}
+.entry-price{
+  margin-left:auto;font-family:var(--data);font-size:13px;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;padding:6px 13px;border-radius:2px;
+  color:#9FE0AE;background:rgba(62,140,79,.22);border:1px solid var(--turf);
+}
+.entry-note{margin-top:14px;font-size:15.5px;color:#B3BBC6}
+
+/* ---------- forms ---------- */
+.form{margin-top:22px;display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+@media(max-width:760px){.form{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:7px}
+.field.full{grid-column:1/-1}
+label{
+  font-family:var(--data);font-size:12px;font-weight:600;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--ash);
+}
+input[type=text],input[type=email],input[type=tel],input[type=number],select{
+  background:var(--slab);border:1px solid var(--line);border-radius:2px;
+  padding:12px 13px;color:var(--bone);font-family:var(--body);font-size:16px;width:100%;
+}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--turf-lit);outline-offset:1px;border-color:transparent}
+.hint{font-family:var(--data);font-size:12.5px;color:var(--dim);letter-spacing:.03em}
+.opt{
+  position:relative;border:1px solid var(--line);border-radius:3px;padding:15px 16px;
+  background:var(--slab);cursor:pointer;transition:border-color .18s,background .18s;display:block;
+}
+.opt input{position:absolute;opacity:0;width:0;height:0}
+.opt:hover{border-color:var(--dim)}
+.opt:has(input:checked),.opt.on{border-color:var(--turf-lit);background:rgba(21,58,34,.34)}
+.opt:has(input:focus-visible){outline:2px solid var(--turf-lit);outline-offset:2px}
+.opt b{display:block;font-family:var(--display);font-variation-settings:"wdth" 112;font-weight:800;font-style:italic;text-transform:uppercase;font-size:16px}
+.opt span{font-family:var(--data);font-size:13px;letter-spacing:.06em;color:var(--ash)}
+.opt.locked{opacity:.45;pointer-events:none}
+.submit{
+  grid-column:1/-1;margin-top:4px;
+  font-family:var(--display);font-variation-settings:"wdth" 116;font-weight:900;font-style:italic;
+  text-transform:uppercase;font-size:19px;letter-spacing:.01em;
+  background:var(--turf-lit);color:#04120A;border:0;border-radius:2px;
+  padding:16px 22px;cursor:pointer;transition:filter .18s,transform .12s;
+}
+.submit:hover:not(:disabled){filter:brightness(1.12)}
+.submit:active{transform:translateY(1px)}
+.submit:disabled{opacity:.35;cursor:not-allowed;filter:none}
+.note{grid-column:1/-1;font-family:var(--data);font-size:12.5px;color:var(--dim);letter-spacing:.04em}
+.confirm{
+  grid-column:1/-1;margin-top:8px;border:1px solid var(--turf-lit);border-radius:3px;
+  padding:20px;background:rgba(21,58,34,.3);
+}
+.confirm h4{font-family:var(--display);font-variation-settings:"wdth" 112;font-weight:800;font-style:italic;text-transform:uppercase;font-size:17px;margin-bottom:8px}
+.confirm dl{display:grid;grid-template-columns:auto 1fr;gap:5px 16px;margin-top:12px;font-family:var(--data);font-size:14px}
+.confirm dt{color:var(--ash);letter-spacing:.1em;text-transform:uppercase;font-size:12px;align-self:center}
+.confirm dd{color:var(--bone)}
+.hidden{display:none!important}
+.picks{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:860px){.picks{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.picks{grid-template-columns:1fr}}
+
+/* ---------- scroll-to-accept ---------- */
+.acceptwrap{grid-column:1/-1;margin-top:6px}
+.acceptlabel{
+  font-family:var(--data);font-size:12px;font-weight:600;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--ash);display:block;margin-bottom:7px;
+}
+.rulesbox{
+  max-height:190px;overflow-y:auto;padding:16px 18px;
+  background:var(--slab);border:1px solid var(--line);border-radius:2px;
+  font-size:14px;line-height:1.6;color:#B3BBC6;
+}
+.rulesbox h5{
+  font-family:var(--display);font-variation-settings:"wdth" 110;font-weight:800;font-style:italic;
+  text-transform:uppercase;font-size:13px;color:var(--turf-lit);margin:14px 0 5px;
+}
+.rulesbox h5:first-child{margin-top:0}
+.rulesbox p{margin:0 0 8px;font-size:13.5px;color:#AAB2BD}
+.rulesbox strong{color:var(--chalk)}
+.rulesbox a{color:var(--turf-lit)}
+.scrollhint{
+  display:flex;align-items:center;gap:7px;margin-top:8px;
+  font-family:var(--data);font-size:12.5px;letter-spacing:.04em;color:var(--lights);
+}
+.scrollhint.done{color:var(--turf-lit)}
+
+.ruleslink{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  margin-top:24px;padding:14px 18px;
+  border:1px solid var(--line);border-left:2px solid var(--turf-lit);
+  background:var(--granite);
+}
+.ruleslink a{
+  font-family:var(--display);font-variation-settings:"wdth" 110;font-weight:800;font-style:italic;
+  text-transform:uppercase;font-size:14px;color:var(--bone);text-decoration:none;
+  border-bottom:1px solid var(--turf-lit);padding-bottom:1px;
+}
+.ruleslink a:hover{color:var(--turf-lit)}
+.ruleslink span{font-family:var(--data);font-size:13px;letter-spacing:.04em;color:var(--ash)}
+
+/* ---------- contact ---------- */
+#follow{background:linear-gradient(180deg,#070C09 0%,var(--ink) 100%);border-bottom:0}
+.contact{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+@media(max-width:760px){.contact{grid-template-columns:1fr}}
+.contact-block{
+  background:var(--granite);border:1px solid var(--line);border-radius:3px;
+  padding:18px 20px;display:flex;flex-direction:column;gap:9px;
+}
+.contact-label{font-family:var(--data);font-size:11.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ash)}
+.ig{display:flex;align-items:center;gap:10px;color:var(--bone);text-decoration:none;transition:color .18s}
+.ig span{font-family:var(--display);font-variation-settings:"wdth" 110;font-weight:800;font-style:italic;font-size:16px}
+.ig:hover,.mail:hover{color:var(--turf-lit)}
+.mail{color:var(--bone);text-decoration:none;font-family:var(--display);
+  font-variation-settings:"wdth" 110;font-weight:800;font-style:italic;font-size:16px;transition:color .18s}
+
+footer{padding:44px 0 60px;color:var(--dim);font-family:var(--data);font-size:13px;letter-spacing:.05em}
+footer a{color:var(--ash)}
+
+.anim .reveal{opacity:0;transform:translateY(14px)}
+.anim .reveal.in{opacity:1;transform:none;transition:opacity .6s ease,transform .6s cubic-bezier(.22,.9,.3,1)}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .anim .reveal{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-in">
+    <div class="nav-mark">FL Friday Night Lights Fantasy</div>
+    <div class="nav-links">
+      <a href="#draft">The Draft</a>
+      <a href="#pickem">Pick 'Em</a>
+      <a href="#survivor">Survivor</a>
+      <a href="#national">National</a>
+      <a href="#volunteer">Volunteer</a>
+      <a href="#sponsors">Sponsors</a>
+      <a href="rules.html">Rules</a>
+      <a href="#signup" class="nav-cta">Play free</a>
+    </div>
+  </div>
+</nav>
+
+<!-- WORDMARK — edit the two text lines below -->
+<div class="beta"><div class="wrap"><b>Beta season</b> &mdash; year one runs in Florida only. Open to Florida residents. Other states follow once this one works.</div></div>
+
+<header class="hero">
+  <div class="wrap">
+    <svg class="hero-mark" viewBox="0 0 900 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Florida Friday Night Lights Fantasy">
+      <defs>
+        <linearGradient id="turfGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#F0F2F5"/>
+          <stop offset="100%" stop-color="#9DB0A3"/>
+        </linearGradient>
+      </defs>
+      <text x="450" y="34" text-anchor="middle"
+            font-family="Barlow Semi Condensed, system-ui, sans-serif" font-size="17"
+            font-weight="700" fill="#E8A93B" letter-spacing="9">FLORIDA &#183; BETA SEASON</text>
+      <text x="450" y="112" text-anchor="middle"
+            font-family="Archivo, system-ui, sans-serif" font-size="66" font-weight="900"
+            font-style="italic" fill="url(#turfGrad)" letter-spacing="-1">FRIDAY NIGHT LIGHTS</text>
+      <text x="450" y="186" text-anchor="middle"
+            font-family="Archivo, system-ui, sans-serif" font-size="66" font-weight="900"
+            font-style="italic" fill="#3E8C4F" letter-spacing="-1">FANTASY</text>
+      <line x1="150" y1="212" x2="750" y2="212" stroke="#242B35" stroke-width="2"/>
+      <text x="450" y="230" text-anchor="middle"
+            font-family="Barlow Semi Condensed, system-ui, sans-serif" font-size="15"
+            font-weight="600" fill="#79828F" letter-spacing="7">FHSAA PLAYOFF BRACKETS &#183; SEVEN CLASSIFICATIONS</text>
+    </svg>
+    <p class="hero-line">Four free games on the FHSAA playoff brackets. The Draft runs in clubs across Florida, each with its own sponsor &mdash; and every club keeps half of what it raises. Pick 'Em and Survivor split $5,000 between a winner and their school. The National Championship puts $20,000 in play. Nobody pays a cent to enter. Run by a registered 501(c)(3), staffed by student volunteers who log certified service hours for the work.</p>
+  </div>
+  <div class="hero-meta">
+    <div class="hero-stat"><b>4</b><span>Games</span></div>
+    <div class="hero-stat"><b>7</b><span>Classifications</span></div>
+    <div class="hero-stat"><b>$30K+</b><span>In prizes</span></div>
+    <div class="hero-stat"><b>$0</b><span>To enter</span></div>
+    <div class="hero-stat"><b>501(c)(3)</b><span>Nonprofit run</span></div>
+  </div>
+</header>
+
+<!-- ============ GAME 1 — THE DRAFT ============ -->
+<section class="sec" id="draft">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">GAME 1</span>
+      <h2 class="display">The Draft</h2>
+    </div>
+    <p class="sec-tag">Free to enter <em>&middot;</em> Groups of 8&ndash;16 <em>&middot;</em> Win your room, then the country</p>
+    <p class="sec-sub"><strong>Draft teams, not students.</strong> Your club gathers before the playoffs, takes turns picking whole schools off the bracket, and rides them as far as they go. No individual player is drafted, priced or scored anywhere in this league.<br><br>A draft caps out around sixteen people &mdash; so this game runs as <strong>many drafts at once</strong>. Every club brings its own sponsor and its own room. Win your room and you're a Group Champion; then every Group Champion in Florida contests one <strong>Grand Title</strong>.</p>
+
+    <div class="grid g2 reveal" style="margin-top:30px">
+      <div class="card">
+        <h3>How the Grand Title works</h3>
+        <p>Points don't compare across rooms. In a room of eight only 48 teams get drafted and everybody's score runs high. In a room of sixteen, 96 teams go and the talent is spread twice as thin.</p>
+        <p style="margin-top:10px">So the Grand Title runs on the <strong>Group Index</strong> &mdash; your points divided by your room's average. An index of 1.000 is a typical entrant. <strong>2.400 means you scored 2.4&times; your room</strong>, and that means the same thing in a room of eight or sixteen.</p>
+        <p class="hint" style="margin-top:10px;line-height:1.5">Highest index across every Group Champion in Florida takes it.</p>
+      </div>
+      <div class="card">
+        <h3>How the draft runs</h3>
+        <ul class="rulelist">
+          <li><strong>Snake order.</strong> Pick 1 through 12, then 12 back through 1. The last pick of round one gets the first pick of round two.</li>
+          <li><strong>Six teams each.</strong> Any school in any of the seven classifications, first come first served. Once a team is taken it is off your Group's board.</li>
+          <li><strong>A Group never drafts more than half the FHSAA playoff field.</strong> Sixteen people at six teams each uses 96 of roughly 184 &mdash; so the back half of every bracket stays undrafted and late picks still mean something.</li>
+          <li><strong>No trades after the brackets are released.</strong> Rosters lock at the first kickoff of round one.</li>
+        </ul>
+        <p style="margin-top:14px">The draft is the event. Run it in a classroom, a cafeteria, or on a call &mdash; it takes about forty minutes for twelve people.</p>
+        <p class="hint" style="margin-top:10px;line-height:1.5">Your club brings its own sponsor and <strong>keeps half of what it raises</strong>, whatever happens in the draft. Run more rooms, raise more.</p>
+      </div>
+      <div class="card">
+        <h3>How your teams score</h3>
+        <table class="ptable">
+          <tr><td>Your team <b>wins a playoff game</b></td><td class="pts">10</td></tr>
+          <tr><td>Your team wins a <b>regional title</b></td><td class="pts">25</td></tr>
+          <tr><td>Your team wins the <b>state championship</b></td><td class="pts">50</td></tr>
+        </table>
+        <p class="hint" style="line-height:1.5">Every one of these is readable straight off a published bracket. Nothing here needs a stat line, a box score, or anyone entering yardage by hand.</p>
+      </div>
+    </div>
+
+    <div class="callout reveal">
+      <h4>Why a team scores 85 for a title run, not 50</h4>
+      <p>A champion in a five-round bracket wins five games (50), takes a regional title (25) and the state title (50). Round wins compound, so a deep run in a smaller classification can beat one favourite in the biggest. That's deliberate &mdash; it keeps every classification worth drafting.</p>
+    </div>
+
+    <div class="grid g2 reveal" style="margin-top:20px">
+      <div class="card">
+        <h3>Group tiebreaks, in order</h3>
+        <ul class="bul">
+          <li><b>Most state championships</b> on your roster.</li>
+          <li><b>Most total playoff wins.</b></li>
+          <li><b>Most teams still alive</b> entering the final round.</li>
+          <li>Then the <b>earliest confirmed entry</b>, so every room produces one champion.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Where a Group's sponsorship goes</h3>
+        <table>
+          <tr><th>Award</th><th style="text-align:right">Share</th></tr>
+          <tr><td>The club that ran the Group<br><span class="hint">Straight off the top. Win or lose, every year.</span></td><td class="money" style="text-align:right">&frac12;<br><span class="hint">of what you raise</span></td></tr>
+          <tr><td>Group Champion<br><span class="hint">Most points in your own room. One per Group.</span></td><td class="money" style="text-align:right">&frac34;<br><span class="hint">of the prize half</span></td></tr>
+          <tr><td>Grand Champion<br><span class="hint">Highest Group Index of every Group Champion.</span></td><td class="money" style="text-align:right">&frac14;<br><span class="hint">from every Group, pooled</span></td></tr>
+        </table>
+        <p class="hint" style="margin-top:12px;line-height:1.5">A $1,000 sponsor sends <strong>$500 to your club</strong>, $375 to your Group Champion and $125 to the Grand Pool. Run three Groups and your club keeps half of three sponsorships.</p>
+        <p class="hint" style="margin-top:12px;line-height:1.5">One winner per game. A winner must supply tax information before payment — see the note under Sponsors.</p>
+      </div>
+    </div>
+
+    <div class="callout reveal">
+      <h4>Groups close 10 days before the season</h4>
+      <p>A club registers its Group by naming its sponsor and the exact amount committed. <strong>After that deadline no Group can join and no sponsorship can change.</strong></p>
+      <p>That is what lets every figure on this page be a real number rather than an estimate. When Group registration closes we publish each Group's sponsor, its prize, and the exact Grand Pool &mdash; before a single entry is taken. <strong>Those figures are then fixed, and we stand behind them even if a sponsor doesn't pay.</strong></p>
+    </div>
+
+    <div class="lb reveal">
+      <div class="lb-head">
+        <span class="lb-title">Grand Title standings</span>
+        <span class="pill" id="pillDraft">Opens round one</span>
+      </div>
+      <table>
+        <tr><th style="width:60px">#</th><th>Group Champion</th><th>Group</th><th style="text-align:right">Index</th></tr>
+        <tr class="ghost"><td class="rank">1</td><td><span class="bar" style="width:150px"></span></td><td><span class="bar" style="width:40px"></span></td><td style="text-align:right"><span class="bar" style="width:52px"></span></td></tr>
+        <tr class="ghost"><td class="rank">2</td><td><span class="bar" style="width:126px"></span></td><td><span class="bar" style="width:40px"></span></td><td style="text-align:right"><span class="bar" style="width:52px"></span></td></tr>
+        <tr class="ghost"><td class="rank">3</td><td><span class="bar" style="width:164px"></span></td><td><span class="bar" style="width:40px"></span></td><td style="text-align:right"><span class="bar" style="width:52px"></span></td></tr>
+        <tr class="ghost"><td class="rank">4</td><td><span class="bar" style="width:138px"></span></td><td><span class="bar" style="width:40px"></span></td><td style="text-align:right"><span class="bar" style="width:52px"></span></td></tr>
+        <tr class="ghost"><td class="rank">5</td><td><span class="bar" style="width:112px"></span></td><td><span class="bar" style="width:40px"></span></td><td style="text-align:right"><span class="bar" style="width:52px"></span></td></tr>
+      </table>
+      <div class="lb-empty">Nothing to show until the brackets are out. <b>Group standings post the morning after each round finishes</b>; the Grand Title settles once every Group has closed.</div>
+    </div>
+
+    <p class="ruleslink"><a href="rules.html">Read the rules</a><span>Free to enter. Florida residents only. Run by a 501(c)(3) &mdash; student organisers earn certified service hours.</span></p>
+  </div>
+</section>
+
+<!-- ============ GAME 2 — TIERED PICK 'EM ============ -->
+<section class="sec" id="pickem">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">GAME 2</span>
+      <h2 class="display">Tiered Pick 'Em</h2>
+    </div>
+    <p class="sec-tag">Free to enter <em>&middot;</em> Unlimited entries <em>&middot;</em> Two minutes to play</p>
+    <p class="sec-sub"><strong>One sheet, one shot, everyone at once.</strong> A draft caps out around sixteen people. This doesn't. Name a state champion in every classification before round one kicks off, then sit on it for six weeks.</p>
+
+    <div class="tiers reveal" id="tierGrid"></div>
+
+    <div class="grid g2 reveal" style="margin-top:32px">
+      <div class="card">
+        <h3>How it scores</h3>
+        <table class="ptable">
+          <tr><td>Your pick <b>wins the state title</b></td><td class="pts">100</td></tr>
+          <tr><td>Your pick <b>loses the final</b></td><td class="pts">40</td></tr>
+          <tr><td>Your pick <b>reaches the semifinal</b></td><td class="pts">15</td></tr>
+        </table>
+        <p class="hint" style="line-height:1.5">Only the furthest round counts &mdash; a champion scores 100, not 155. Getting one title right is worth more than getting every semifinalist right, which is what makes the sheet worth arguing over.</p>
+      </div>
+      <div class="card">
+        <h3>Where the game is won</h3>
+        <p>Everyone picks the same two or three obvious favourites in the big classifications. Those picks cancel out across the whole field and decide nothing.</p>
+        <p style="margin-top:10px"><strong>The small classifications decide it.</strong> They are the ones nobody follows, the ones where a two-loss team can be the best team, and the ones where being right is genuinely worth something.</p>
+        <p style="margin-top:10px">If you only do your homework in one place, do it at the bottom of the sheet.</p>
+      </div>
+    </div>
+
+    <div class="callout reveal">
+      <h4>The tiebreak, and why it isn't a coin flip</h4>
+      <p>With a hundred entrants and six classifications, ties are not an edge case &mdash; they are the likely outcome. So every sheet carries one more question: <strong>total combined points scored in the largest classification's state final.</strong></p>
+      <p>Closest without going over takes it. If that's still level, the earliest verified entry wins.</p>
+    </div>
+
+    <div class="lb reveal">
+      <div class="lb-head">
+        <span class="lb-title">Pick 'Em standings</span>
+        <span class="pill">Opens round one</span>
+      </div>
+      <table>
+        <tr><th style="width:60px">#</th><th>Entrant</th><th>Titles hit</th><th style="text-align:right">Points</th></tr>
+        <tr class="ghost"><td class="rank">1</td><td><span class="bar" style="width:150px"></span></td><td><span class="bar" style="width:34px"></span></td><td style="text-align:right"><span class="bar" style="width:52px"></span></td></tr>
+        <tr class="ghost"><td class="rank">2</td><td><span class="bar" style="width:126px"></span></td><td><span class="bar" style="width:34px"></span></td><td style="text-align:right"><span class="bar" style="width:52px"></span></td></tr>
+        <tr class="ghost"><td class="rank">3</td><td><span class="bar" style="width:164px"></span></td><td><span class="bar" style="width:34px"></span></td><td style="text-align:right"><span class="bar" style="width:52px"></span></td></tr>
+        <tr class="ghost"><td class="rank">4</td><td><span class="bar" style="width:110px"></span></td><td><span class="bar" style="width:34px"></span></td><td style="text-align:right"><span class="bar" style="width:52px"></span></td></tr>
+        <tr class="ghost"><td class="rank">5</td><td><span class="bar" style="width:142px"></span></td><td><span class="bar" style="width:34px"></span></td><td style="text-align:right"><span class="bar" style="width:52px"></span></td></tr>
+      </table>
+      <div class="lb-empty">Sheets lock at the first kickoff of round one. <b>Nothing scores until the semifinals</b>, so this board sits empty for the first three weeks by design.</div>
+    </div>
+
+    <p class="ruleslink"><a href="rules.html">Read the rules</a><span>Free to enter. One sheet per person. Florida residents only. A 501(c)(3) contest &mdash; volunteers earn service hours.</span></p>
+  </div>
+</section>
+
+<!-- ============ GAME 3 — SURVIVOR ============ -->
+<section class="sec" id="survivor">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">GAME 3</span>
+      <h2 class="display">Survivor</h2>
+    </div>
+    <p class="sec-tag">Free to enter <em>&middot;</em> One pick a week <em>&middot;</em> One loss and you're out</p>
+    <p class="sec-sub"><strong>Road to the championship.</strong> Pick one team to win its playoff game. If it wins you advance. If it loses you are done for the year. And you can never pick that team again.</p>
+
+    <!-- SIGNATURE: bracket board -->
+    <div class="board reveal">
+      <div class="board-bar">
+        <span class="board-when">Round <b id="rIdx">1</b> of <b id="rTot">5</b> &nbsp;·&nbsp; <b id="rName">First round</b></span>
+        <span class="board-ctrl">
+          <button class="board-btn" id="rPrev" aria-label="Previous round">Prev</button>
+          <button class="board-btn" id="rNext" aria-label="Next round">Next round</button>
+        </span>
+      </div>
+      <div class="rounds" id="rounds"></div>
+      <div class="used" id="usedRow"></div>
+      <div class="board-foot">A typical field loses roughly half its entrants every round. The squeeze is not the losing &mdash; it's the burn. By the semifinals your five best teams are all spent, and you are picking from what's left.</div>
+    </div>
+
+    <div class="grid g3 reveal" style="margin-top:32px">
+      <div class="card">
+        <h3>The rules, all four of them</h3>
+        <ul class="rulelist">
+          <li>One team per round. It has to win.</li>
+          <li>A team you have used is gone for good.</li>
+          <li>Your team loses, you are eliminated.</li>
+          <li>Miss the deadline and you are eliminated. There is no auto-pick.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>The deadline</h3>
+        <p style="margin-top:12px">Picks lock at the <strong>first kickoff of the round</strong>, not at your own team's kickoff. Everybody is locked in at the same moment, so nobody gets to watch a Thursday result before choosing.</p>
+        <p class="hint" style="margin-top:10px;line-height:1.5">You'll get a reminder the evening before. Set your own too &mdash; forgetting is the most common way people go out.</p>
+      </div>
+      <div class="card">
+        <h3>When everyone goes out at once</h3>
+        <p style="margin-top:12px">It happens. If every remaining entrant is eliminated in the same round, <strong>they all share the title</strong> and the pool does not roll over.</p>
+        <p style="margin-top:10px">If somebody survives all the way to the finals, they win outright. Two survivors, split.</p>
+      </div>
+    </div>
+
+    <div class="dates reveal" id="roundDates"></div>
+
+    <div class="lb reveal">
+      <div class="lb-head">
+        <span class="lb-title">Survivor board</span>
+        <span class="pill">Opens round one</span>
+      </div>
+      <table>
+        <tr><th style="width:60px">#</th><th>Entrant</th><th>This round</th><th style="text-align:right">Teams burned</th></tr>
+        <tr class="ghost"><td class="rank">&mdash;</td><td><span class="bar" style="width:150px"></span></td><td><span class="bar" style="width:96px"></span></td><td style="text-align:right"><span class="bar" style="width:30px"></span></td></tr>
+        <tr class="ghost"><td class="rank">&mdash;</td><td><span class="bar" style="width:126px"></span></td><td><span class="bar" style="width:84px"></span></td><td style="text-align:right"><span class="bar" style="width:30px"></span></td></tr>
+        <tr class="ghost"><td class="rank">&mdash;</td><td><span class="bar" style="width:164px"></span></td><td><span class="bar" style="width:74px"></span></td><td style="text-align:right"><span class="bar" style="width:30px"></span></td></tr>
+      </table>
+      <div class="lb-empty">Survivors are listed without ranking &mdash; everyone still in is level. <b>The board updates the morning after each round.</b></div>
+    </div>
+
+    <p class="ruleslink"><a href="rules.html">Read the rules</a><span>Free to enter. One entry per person. Florida residents only. A 501(c)(3) contest &mdash; volunteers earn service hours.</span></p>
+  </div>
+</section>
+
+
+<!-- ============ GAME 4 — NATIONAL ============ -->
+<section class="sec" id="national">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">GAME 4</span>
+      <h2 class="display">National Championship</h2>
+    </div>
+    <p class="sec-tag">Free to enter <em>&middot;</em> $20,000 in play <em>&middot;</em> One ballot</p>
+    <p class="sec-sub"><strong>Who is the best team in the country?</strong> Name them, then the next nine &mdash; the full national top ten, in order. The other three games live inside the FHSAA brackets. This one doesn't &mdash; you're ranking the whole country, and it carries the biggest prize on the site: <strong>$20,000</strong>, half to you and half to two schools. <strong>Entrants must still be Florida residents;</strong> the teams you rank can be anywhere.</p>
+
+    <div class="ballot reveal">
+      <div class="slot one"><span class="slot-no">1</span><span class="slot-line"></span><span class="slot-tag">The champion</span></div>
+      <div class="slot"><span class="slot-no">2</span><span class="slot-line" style="width:70%"></span><span class="slot-tag">Tiebreak</span></div>
+      <div class="slot"><span class="slot-no">3</span><span class="slot-line" style="width:70%"></span><span class="slot-tag">Tiebreak</span></div>
+      <div class="slot"><span class="slot-no">4</span><span class="slot-line" style="width:70%"></span><span class="slot-tag">Tiebreak</span></div>
+      <div class="slot"><span class="slot-no">5</span><span class="slot-line" style="width:70%"></span><span class="slot-tag">Tiebreak</span></div>
+      <div class="slot"><span class="slot-no">6</span><span class="slot-line" style="width:70%"></span><span class="slot-tag">Tiebreak</span></div>
+      <div class="slot"><span class="slot-no">7</span><span class="slot-line" style="width:70%"></span><span class="slot-tag">Tiebreak</span></div>
+      <div class="slot"><span class="slot-no">8</span><span class="slot-line" style="width:70%"></span><span class="slot-tag">Tiebreak</span></div>
+      <div class="slot"><span class="slot-no">9</span><span class="slot-line" style="width:70%"></span><span class="slot-tag">Tiebreak</span></div>
+      <div class="slot"><span class="slot-no">10</span><span class="slot-line" style="width:70%"></span><span class="slot-tag">Tiebreak</span></div>
+    </div>
+
+    <div class="grid g2 reveal" style="margin-top:32px">
+      <div class="card">
+        <h3>Why ten and not one</h3>
+        <p>In most seasons a few hundred people will name the same team at the top, and a lot of them will be right. If position 1 were the whole contest, it would settle on a timestamp.</p>
+        <p style="margin-top:10px">So positions 2 through 10 are the real game. <strong>Everyone who gets the champion right advances</strong>, and then the ballot decides it.</p>
+      </div>
+      <div class="card">
+        <h3>How it settles</h3>
+        <ul class="bul">
+          <li><b>Right at 1?</b> You advance. Nobody right &mdash; whoever's pick finished highest advances instead.</li>
+          <li><b>Most exact slots</b> in 2 through 10.</li>
+          <li><b>Then most right teams</b>, wrong slot included.</li>
+          <li><b>Then closest overall</b> &mdash; total places away from the truth, across all ten.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="split reveal" style="grid-template-columns:repeat(3,1fr)">
+      <div>
+        <span>To you</span>
+        <b>$10,000</b>
+        <i>Half the prize, paid in cash to the single winner.</i>
+      </div>
+      <div>
+        <span>To the No. 1 school</span>
+        <b>$5,000</b>
+        <i>Donated to the school that finishes number one in the country, whoever wins this contest.</i>
+      </div>
+      <div>
+        <span>To your school</span>
+        <b>$5,000</b>
+        <i>If a student wins, it goes to their school. If an adult wins, it goes to the No. 1 school too.</i>
+      </div>
+    </div>
+
+    <div class="callout reveal">
+      <h4>Read this before you enter</h4>
+      <p><strong>A national ranking is somebody's opinion, not a result.</strong> No game decides it. It gets revised, publishers disagree, and you may well think it's wrong.</p>
+      <p>This contest is settled against one published final national ranking, captured and posted on a stated date. Entering means you accept that number as final and agree not to dispute it &mdash; even against a head-to-head result. If that isn't a bet you want, the other three games settle on brackets, where a scoreboard decides everything.</p>
+    </div>
+
+    <div class="lb reveal">
+      <div class="lb-head">
+        <span class="lb-title">National ballots</span>
+        <span class="pill">Settles in December</span>
+      </div>
+      <table>
+        <tr><th style="width:60px">#</th><th>Entrant</th><th>Their No. 1</th><th style="text-align:right">Exact slots</th></tr>
+        <tr class="ghost"><td class="rank">1</td><td><span class="bar" style="width:150px"></span></td><td><span class="bar" style="width:96px"></span></td><td style="text-align:right"><span class="bar" style="width:30px"></span></td></tr>
+        <tr class="ghost"><td class="rank">2</td><td><span class="bar" style="width:126px"></span></td><td><span class="bar" style="width:84px"></span></td><td style="text-align:right"><span class="bar" style="width:30px"></span></td></tr>
+        <tr class="ghost"><td class="rank">3</td><td><span class="bar" style="width:164px"></span></td><td><span class="bar" style="width:74px"></span></td><td style="text-align:right"><span class="bar" style="width:30px"></span></td></tr>
+      </table>
+      <div class="lb-empty">Ballots stay sealed all season. <b>Nothing shows here until the final ranking publishes</b> &mdash; there is no week-by-week scoring in this game.</div>
+    </div>
+
+    <p class="ruleslink"><a href="rules.html">Read the rules</a><span>Free to enter. Florida residents only. $20,000 in play. Settled on a published ranking &mdash; see Part Six.</span></p>
+  </div>
+</section>
+
+
+<!-- ============ VOLUNTEER ============ -->
+<section class="sec" id="volunteer">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">VOLUNTEER</span>
+      <h2 class="display">Service hours for running it</h2>
+    </div>
+    <p class="sec-tag">A registered 501(c)(3) <em>&middot;</em> Documented hours <em>&middot;</em> Certified in writing</p>
+    <p class="sec-sub">Somebody has to run the drafts, read the brackets every Sunday, update the boards and go ask local businesses for sponsorship. <strong>Students do all of it</strong> &mdash; and because this league is a registered 501(c)(3), every hour of that work is documented and certified.</p>
+
+    <div class="roles reveal">
+      <div class="role">
+        <b>Draft night</b>
+        <div class="hrs">3&ndash;5<span>hours per Group</span></div>
+        <p>Set the room, run the board, keep the snake order straight, handle the entrants who don't show.</p>
+      </div>
+      <div class="role">
+        <b>Results</b>
+        <div class="hrs">2&ndash;3<span>hours per round</span></div>
+        <p>Read the official brackets, enter every result, post the standings the morning after. Six weekends running.</p>
+      </div>
+      <div class="role">
+        <b>Sponsorship</b>
+        <div class="hrs">10&ndash;20<span>hours a season</span></div>
+        <p>Build the list, write the ask, walk into local businesses and make the case. The hardest job and the one that funds everything.</p>
+      </div>
+      <div class="role">
+        <b>Coordination</b>
+        <div class="hrs">15&ndash;30<span>hours a season</span></div>
+        <p>Recruit entrants, chase consent forms, answer questions, keep four contests and every Group moving.</p>
+      </div>
+    </div>
+
+    <div class="callout reveal">
+      <h4>How hours are certified</h4>
+      <p>Volunteers log hours as they go and a named officer of the organisation signs them off. <strong>You get a letter on 501(c)(3) letterhead</strong> stating the dates, the work and the total &mdash; the documentation a school or scholarship programme asks for.</p>
+      <p>In Florida, Bright Futures requires <strong>100 service hours</strong> for Academic Scholars and <strong>75</strong> for Medallion, completed through a nonprofit, government entity or school-sponsored programme. National Honor Society and most graduation requirements work the same way.</p>
+      <p><strong>Check with your own school before you count on it.</strong> Districts differ on what they accept and some distinguish community service from general volunteering. We certify the hours accurately; whether they satisfy a particular requirement is between you and your school.</p>
+    </div>
+
+    <div class="callout reveal">
+      <h4>One rule for volunteers</h4>
+      <p>You can volunteer and still play &mdash; but <strong>not in a contest you help administer</strong>. If you handle entries, results or standings for a Group, you cannot be entered in that Group. Volunteer for the Draft and play Survivor; run the results for one Group and draft in another.</p>
+      <p>Nobody who can see a result before it is published should have anything riding on it. That rule protects your hours as much as it protects the contest.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SPONSORS ============ -->
+<section class="sec" id="sponsors">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">SPONSORS</span>
+      <h2 class="display">Where the money goes</h2>
+    </div>
+    <p class="sec-sub">Nobody pays to play. Local businesses fund the whole thing, and the club keeps what's left after prizes. That's the fundraiser &mdash; sponsorship, not entry fees.</p>
+
+    <div class="split reveal">
+      <div>
+        <span>Straight to school clubs</span>
+        <b>$17,500</b>
+        <i>The three bracket games each send $2,500 to the winner’s school club. The National Championship sends $10,000 more &mdash; half to the school ranked number one, half to the winner’s school. All paid direct, all published to the dollar.</i>
+      </div>
+      <div>
+        <span>Paid by players</span>
+        <b>$0</b>
+        <i>No entry fee, no buy-in, no &ldquo;suggested donation&rdquo; at signup. This is what keeps the whole thing simple and lawful.</i>
+      </div>
+    </div>
+
+    <!-- SPONSORS — edit tier names, amounts and benefits below -->
+    <div class="spon reveal">
+      <div class="spon-card">
+        <div class="spon-tier">Field Sponsor</div>
+        <div class="spon-amt">$1,000</div>
+        <ul class="spon-list">
+          <li>Name on the site header and every leaderboard</li>
+          <li>Named prize for one of the three games</li>
+          <li>Banner at the draft night</li>
+          <li>Mention in every weekly results email</li>
+        </ul>
+      </div>
+      <div class="spon-card">
+        <div class="spon-tier">End Zone</div>
+        <div class="spon-amt">$500</div>
+        <ul class="spon-list">
+          <li>Logo on the sponsors page</li>
+          <li>Named weekly prize</li>
+          <li>Mention in two results emails</li>
+        </ul>
+      </div>
+      <div class="spon-card">
+        <div class="spon-tier">Yard Line</div>
+        <div class="spon-amt">$100</div>
+        <ul class="spon-list">
+          <li>Listed on the sponsors page</li>
+          <li>Thanked at the season wrap</li>
+          <li>Open to families and alumni, not just businesses</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout reveal">
+      <h4>How winners get paid</h4>
+      <p>Pick ’Em and Survivor each pay <strong>$2,500 to one winner and $2,500 to that winner’s school club</strong>. The Draft is funded per Group: <strong>half of every Group’s sponsorship goes straight to the club that ran it</strong>, and the rest splits &frac34; to that Group’s champion and &frac14; to a national Grand Pool. The National Championship puts <strong>$20,000</strong> in play: $10,000 to one person, $5,000 to the school ranked number one, and $5,000 to the winner’s school if a student wins &mdash; otherwise to the number one school as well. Because the prize is over $600, a winner supplies a Form W-9 before we release payment &mdash; that is the only point anyone is asked for a tax ID, and it is asked of one person per game. Nobody provides it to enter.</p>
+      <p>A winner under 18 is paid through the parent or guardian on their consent record, who completes the W-9. If their school district restricts cash awards to students, that winner instead chooses a prize of <strong>equivalent value</strong> from a published list.</p>
+      <p>No student on a roster in these brackets can enter at all, so no prize reaches a competing athlete. That exclusion is what keeps this clear of state athletic association award rules &mdash; not the form the prize takes.</p>
+    </div>
+
+    <p class="ruleslink"><a href="rules.html">Read the rules</a><span>Sponsor enquiries: see contact below.</span></p>
+  </div>
+</section>
+
+<!-- ============ SIGN UP ============ -->
+<section class="sec" id="signup">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">PLAY</span>
+      <h2 class="display">Play free</h2>
+    </div>
+    <p class="sec-sub">Four separate entries, scored separately. Enter one or enter all four &mdash; you can win all four.</p>
+
+    <!-- ---------- DRAFT ---------- -->
+    <div class="entry" id="draftEntry">
+      <div class="entry-head">
+        <span class="entry-title">The Draft</span>
+        <span class="entry-price">Free</span>
+      </div>
+      <p class="entry-note">Reserve a seat in your Group's draft. You don't pick teams here &mdash; we'll email you the time, the order and the board. No Group yet? Name your school and we'll place you or help you start one.</p>
+
+      <form class="form" id="draftForm" novalidate>
+        <div class="field"><label for="dName">Full name</label><input type="text" id="dName" autocomplete="name" required></div>
+        <div class="field"><label for="dEmail">Email</label><input type="email" id="dEmail" autocomplete="email" required>
+          <span class="hint">We send a confirmation link. Your seat isn't held until you click it.</span></div>
+        <div class="field"><label for="dWho">You are</label>
+          <select id="dWho" class="who" required>
+            <option value="">Choose…</option>
+            <option value="student-u18">Student, under 18</option>
+            <option value="student-18">Student, 18 or over</option>
+            <option value="adult">Parent, staff or community</option>
+          </select></div>
+        <div class="field"><label for="dSchool">School you're playing for</label><input type="text" id="dSchool" required>
+          <span class="hint">Decides which Group you draft with.</span></div>
+        <div class="field guardian hidden"><label for="dGName">Parent or guardian name</label><input type="text" id="dGName"></div>
+        <div class="field guardian hidden"><label for="dGEmail">Parent or guardian email</label><input type="email" id="dGEmail">
+          <span class="hint">They get a consent link and must approve before the entry is active.</span></div>
+
+        <div class="acceptwrap">
+          <span class="acceptlabel">Rules — please read</span>
+          <div class="rulesbox" id="rulesD" tabindex="0"><h5>Free to enter</h5>
+<p><strong>No purchase or payment of any kind is necessary to enter or to win.</strong> There is no entry fee and no donation is required or requested at signup.</p>
+<h5>Who can enter</h5>
+<p>Open to <strong>legal residents of the State of Florida only</strong> for this beta season. Entrants under 18 must give a parent or guardian's email, and the entry is not active until that guardian approves it. <strong>Students who appear on any roster in these brackets may not enter</strong>, nor may their coaches, nor may anyone administering the contest.</p>
+<h5>What you draft</h5>
+<p>Whole schools, from the published state brackets. <strong>No individual student is drafted, named, priced or scored.</strong> Six teams each, snake order, first come first served, within a <strong>Group of 8 to 16 entrants</strong>. Groups draft separately and do not share a board. Rosters lock at the first kickoff of round one and cannot be traded after that.</p>
+<h5>Scoring</h5>
+<p>Ten points for each playoff win, twenty-five for a regional title, fifty for a state championship &mdash; all read directly from the official bracket. Most points in your Group wins that Group. The <strong>Grand Title</strong> then goes to the highest <strong>Group Index</strong> &mdash; your points divided by your Group's average &mdash; so rooms of different sizes compare fairly.</p>
+<h5>Prizes</h5>
+<p><strong>Each Group's sponsorship splits in half first:</strong> half to the club that ran the Group, half into prizes. The prize half then goes <strong>three quarters</strong> to that Group's Champion and <strong>one quarter</strong> to the Grand Pool, which is paid in full to the single Grand Champion, who also keeps their own Group's three quarters. <strong>Group registration closes [10 DAYS] before the season</strong>, and every figure &mdash; each Group prize and the exact Grand Pool &mdash; is fixed and published at that point, before entries open. A winner under 18 is paid through their parent or guardian, and where a school district restricts cash awards to students, that winner chooses a prize of equivalent value instead. <strong>Where a prize reaches $600, the winner must supply a completed Form W-9 before payment; no tax information is collected from anyone else.</strong> Prizes are not transferable.</p>
+<h5>Results</h5>
+<p>Standings post the morning after each round completes. Where our standings and the state association's official bracket conflict, <strong>the official bracket governs</strong>. Corrections may be made up to 72 hours after a round closes.</p>
+<h5>Independence</h5>
+<p>This contest is run by the student club named on this site. It is <strong>not operated, sponsored or endorsed by any school, school district, or state athletic association</strong>, and is not associated with any social platform.</p>
+<p style="margin-top:12px"><a href="rules.html">Read the full rules &rarr;</a></p></div>
+          <p class="scrollhint" id="hintD">Scroll to the end of the rules to continue</p>
+          <label class="opt locked" id="optwrapD" style="margin-top:8px">
+            <input type="checkbox" id="acceptD" disabled>
+            <b>I have read and accept the rules</b>
+            <span>Including eligibility and the prize terms above.</span>
+          </label>
+        </div>
+        <button class="submit" type="submit" id="subD" disabled>Join a draft Group — free</button>
+        <div class="confirm hidden" id="draftConfirm" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+
+    <!-- ---------- PICK 'EM ---------- -->
+    <div class="entry" id="pickEntry">
+      <div class="entry-head">
+        <span class="entry-title">Tiered Pick 'Em</span>
+        <span class="entry-price">Free</span>
+      </div>
+      <p class="entry-note">One champion in every classification, plus the tiebreak. Locks at the first kickoff of round one.</p>
+
+      <form class="form" id="pickForm" novalidate>
+        <div class="field"><label for="pName">Full name</label><input type="text" id="pName" autocomplete="name" required></div>
+        <div class="field"><label for="pEmail">Email</label><input type="email" id="pEmail" autocomplete="email" required></div>
+        <div class="field"><label for="pWho">You are</label>
+          <select id="pWho" class="who" required>
+            <option value="">Choose…</option>
+            <option value="student-u18">Student, under 18</option>
+            <option value="student-18">Student, 18 or over</option>
+            <option value="adult">Parent, staff or community</option>
+          </select></div>
+        <div class="field"><label for="pSchool">School you're playing for</label><input type="text" id="pSchool" required></div>
+        <div class="field guardian hidden"><label for="pGName">Parent or guardian name</label><input type="text" id="pGName"></div>
+        <div class="field guardian hidden"><label for="pGEmail">Parent or guardian email</label><input type="email" id="pGEmail">
+          <span class="hint">They get a consent link and must approve before the entry is active.</span></div>
+
+        <div class="picks" id="pickFields"></div>
+
+        <div class="field full"><label for="pTie">Tiebreak &mdash; combined points in the <span id="tieCls">largest</span> state final</label>
+          <input type="number" id="pTie" min="0" max="200" placeholder="e.g. 45" required>
+          <span class="hint">Both teams added together. Closest without going over wins.</span></div>
+
+        <div class="acceptwrap">
+          <span class="acceptlabel">Rules — please read</span>
+          <div class="rulesbox" id="rulesP" tabindex="0"><h5>Free to enter</h5>
+<p><strong>No purchase or payment of any kind is necessary to enter or to win.</strong> One sheet per person.</p>
+<h5>Who can enter</h5>
+<p>Open to <strong>legal residents of the State of Florida only</strong> for this beta season. Entrants under 18 must give a parent or guardian's email, and the entry is not active until that guardian approves it. <strong>Students on any roster in these brackets may not enter</strong>, nor may their coaches or contest administrators.</p>
+<h5>Your sheet</h5>
+<p>Name one projected state champion in <strong>every classification</strong>. Sheets lock at the first kickoff of round one and cannot be changed afterwards for any reason, including a team being withdrawn or disqualified.</p>
+<h5>Scoring</h5>
+<p><strong>100</strong> if your pick wins the title, <strong>40</strong> if it loses the final, <strong>15</strong> if it reaches the semifinal. Only the furthest round reached counts &mdash; the scores do not add together.</p>
+<h5>Tiebreak</h5>
+<p>Combined points scored by both teams in the largest classification's state final. <strong>Closest without going over</strong> takes it, then the earliest verified entry. <strong>The cascade always produces one winner; there is no shared prize.</strong></p>
+<h5>Prizes</h5>
+<p><strong>$5,000, funded by sponsors: $2,500 to the winner and $2,500 to the winner's school club.</strong> One winner per contest, no runner-up prizes. A winner under 18 is paid through their parent or guardian, and where a school district restricts cash awards to students, that winner chooses a prize of equivalent value instead. <strong>Because the prize exceeds $600, a winner must supply a completed Form W-9 before payment; no tax information is collected from anyone else.</strong> Not transferable.</p>
+<h5>Results and independence</h5>
+<p>Where our standings and the state association's official bracket conflict, <strong>the official bracket governs</strong>. This contest is run by the student club named on this site and is <strong>not operated, sponsored or endorsed by any school, district or state athletic association</strong>.</p>
+<p style="margin-top:12px"><a href="rules.html">Read the full rules &rarr;</a></p></div>
+          <p class="scrollhint" id="hintP">Scroll to the end of the rules to continue</p>
+          <label class="opt locked" id="optwrapP" style="margin-top:8px">
+            <input type="checkbox" id="acceptP" disabled>
+            <b>I have read and accept the rules</b>
+            <span>Including eligibility and the prize terms above.</span>
+          </label>
+        </div>
+        <button class="submit" type="submit" id="subP" disabled>Lock in my sheet — free</button>
+        <div class="confirm hidden" id="pickConfirm" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+
+    <!-- ---------- SURVIVOR ---------- -->
+    <div class="entry" id="survEntry">
+      <div class="entry-head">
+        <span class="entry-title">Survivor</span>
+        <span class="entry-price">Free</span>
+      </div>
+      <p class="entry-note">Sign up once. You'll get a pick link before every round, closing at the first kickoff.</p>
+
+      <form class="form" id="survForm" novalidate>
+        <div class="field"><label for="sName">Full name</label><input type="text" id="sName" autocomplete="name" required></div>
+        <div class="field"><label for="sEmail">Email</label><input type="email" id="sEmail" autocomplete="email" required>
+          <span class="hint">This is how you get your pick link. A missed pick is an elimination.</span></div>
+        <div class="field"><label for="sWho">You are</label>
+          <select id="sWho" class="who" required>
+            <option value="">Choose…</option>
+            <option value="student-u18">Student, under 18</option>
+            <option value="student-18">Student, 18 or over</option>
+            <option value="adult">Parent, staff or community</option>
+          </select></div>
+        <div class="field"><label for="sSchool">School you're playing for</label><input type="text" id="sSchool" required></div>
+        <div class="field guardian hidden"><label for="sGName">Parent or guardian name</label><input type="text" id="sGName"></div>
+        <div class="field guardian hidden"><label for="sGEmail">Parent or guardian email</label><input type="email" id="sGEmail">
+          <span class="hint">They get a consent link and must approve before the entry is active.</span></div>
+
+        <div class="acceptwrap">
+          <span class="acceptlabel">Rules — please read</span>
+          <div class="rulesbox" id="rulesS" tabindex="0"><h5>Free to enter</h5>
+<p><strong>No purchase or payment of any kind is necessary to enter or to win.</strong> One entry per person.</p>
+<h5>Who can enter</h5>
+<p>Open to <strong>legal residents of the State of Florida only</strong> for this beta season. Entrants under 18 must give a parent or guardian's email, and the entry is not active until that guardian approves it. <strong>Students on any roster in these brackets may not enter</strong>, nor may their coaches or contest administrators.</p>
+<h5>How you play</h5>
+<p>Each round, pick <strong>one team to win its playoff game</strong>. A team you have already used cannot be picked again. If your team wins you advance; if it loses you are eliminated.</p>
+<h5>The deadline</h5>
+<p>Picks lock at the <strong>first kickoff of the round</strong>, not your own team's kickoff. <strong>A missed pick is an elimination.</strong> There is no auto-pick and no late entry. A reminder goes out the evening before, but the deadline stands whether or not you received it.</p>
+<h5>Cancelled and forfeited games</h5>
+<p>If your team advances by forfeit or walkover, that counts as a win and the team is still burned. If a game is cancelled with no advancing team named, all entrants on that game advance and the team is <strong>not</strong> burned.</p>
+<h5>Winning</h5>
+<p>The last entrant standing wins. If every remaining entrant is eliminated in the same round, <strong>they share the title equally</strong>. If more than one survives to the finals, they share.</p>
+<h5>Prizes and independence</h5>
+<p><strong>$5,000, funded by sponsors: $2,500 to the winner and $2,500 to the winner's school club.</strong> One winner per contest, no runner-up prizes. A winner under 18 is paid through their parent or guardian, and where a school district restricts cash awards to students, that winner chooses a prize of equivalent value instead. <strong>Because the prize exceeds $600, a winner must supply a completed Form W-9 before payment; no tax information is collected from anyone else.</strong> Where our board and the state association's official bracket conflict, <strong>the official bracket governs</strong>. This contest is <strong>not operated, sponsored or endorsed by any school, district or state athletic association</strong>.</p>
+<p style="margin-top:12px"><a href="rules.html">Read the full rules &rarr;</a></p></div>
+          <p class="scrollhint" id="hintS">Scroll to the end of the rules to continue</p>
+          <label class="opt locked" id="optwrapS" style="margin-top:8px">
+            <input type="checkbox" id="acceptS" disabled>
+            <b>I have read and accept the rules</b>
+            <span>Including the missed-pick rule above.</span>
+          </label>
+        </div>
+        <button class="submit" type="submit" id="subS" disabled>Join the survivor pool — free</button>
+        <p class="note">A missed pick eliminates you. Add the round deadlines to your calendar when the confirmation email arrives.</p>
+        <div class="confirm hidden" id="survConfirm" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+
+    <!-- ---------- NATIONAL ---------- -->
+    <div class="entry" id="natEntry">
+      <div class="entry-head">
+        <span class="entry-title">National Championship</span>
+        <span class="entry-price">Free</span>
+      </div>
+      <p class="entry-note">Ten schools, in order. Position 1 is your champion; 2 through 10 decide it when others pick the same champion. <strong>$20,000 in play &mdash; $10,000 to you, $10,000 to schools.</strong></p>
+
+      <form class="form" id="natForm" novalidate>
+        <div class="field"><label for="nName">Full name</label><input type="text" id="nName" autocomplete="name" required></div>
+        <div class="field"><label for="nEmail">Email</label><input type="email" id="nEmail" autocomplete="email" required></div>
+        <div class="field"><label for="nWho">You are</label>
+          <select id="nWho" class="who" required>
+            <option value="">Choose…</option>
+            <option value="student-u18">Student, under 18</option>
+            <option value="student-18">Student, 18 or over</option>
+            <option value="adult">Parent, staff or community</option>
+          </select></div>
+        <div class="field"><label for="nSchool">School you're playing for</label><input type="text" id="nSchool" required>
+          <span class="hint">Receives $5,000 if you win and you’re a student.</span></div>
+        <div class="field guardian hidden"><label for="nGName">Parent or guardian name</label><input type="text" id="nGName"></div>
+        <div class="field guardian hidden"><label for="nGEmail">Parent or guardian email</label><input type="email" id="nGEmail">
+          <span class="hint">They get a consent link and must approve before the entry is active.</span></div>
+
+        <div class="picks" id="natFields"></div>
+
+        <div class="acceptwrap">
+          <span class="acceptlabel">Rules — please read</span>
+          <div class="rulesbox" id="rulesN" tabindex="0"><h5>Free to enter</h5>
+<p><strong>No purchase or payment of any kind is necessary to enter or to win.</strong> One ballot per person.</p>
+<h5>Who can enter</h5>
+<p>Open to <strong>legal residents of the State of Florida only</strong> for this beta season. Entrants under 18 must give a parent or guardian's email, and the entry is not active until that guardian approves it. <strong>Students on any roster in these brackets may not enter</strong>, nor may their coaches or contest administrators.</p>
+<h5>Your ballot</h5>
+<p>Ten different schools, in order &mdash; the final national top ten. Position 1 is your pick for the number one team in the country; positions 2 through 10 are the next nine in order. Ballots lock at the first kickoff of the regular season and cannot be changed for any reason.</p>
+<h5>The ranking is an opinion, and you accept it</h5>
+<p>This contest settles against <strong>one published final national ranking, captured on a stated date</strong>. National rankings are editorial judgement, not a result &mdash; no game decides them, publishers disagree, and they get revised. <strong>By entering you accept that ranking as final and agree not to dispute it</strong>, including where it conflicts with a head-to-head result or another publisher. Revisions published after the settlement date do not reopen the outcome.</p>
+<p>The publisher of that ranking is <strong>not affiliated with, does not sponsor and does not endorse this contest</strong>. If no final national ranking is published, this contest is void and its full $20,000 is donated to the participating school clubs in equal shares.</p>
+<h5>How the winner is found</h5>
+<p>Everyone who names the actual number one advances — or, if nobody does, everyone whose pick finished highest. Then: most exact slots in 2 through 10, then most right teams in any slot, then smallest total displacement across all ten, then earliest ballot. <strong>The cascade always ends in one winner; there is no shared prize.</strong></p>
+<h5>Prize</h5>
+<p><strong>$20,000 in total.</strong> Half &mdash; <strong>$10,000</strong> &mdash; is paid in cash to a single winner. A quarter goes to the school ranked number one in the country. The last quarter goes to the winner's school if the winner is a student, and otherwise to the number one school as well. <strong>Only the $10,000 is a prize;</strong> the school shares are sponsor donations paid direct to the schools, which the entrant cannot claim, redirect or take in cash. A school may decline &mdash; see Part Six. One winner, no runner-up prizes, no share. A winner under 18 is paid through their parent or guardian. <strong>A winner must supply a completed Form W-9 before payment; no tax information is collected from anyone else.</strong></p>
+<p style="margin-top:12px"><a href="rules.html">Read the full rules &rarr;</a></p></div>
+          <p class="scrollhint" id="hintN">Scroll to the end of the rules to continue</p>
+          <label class="opt locked" id="optwrapN" style="margin-top:8px">
+            <input type="checkbox" id="acceptN" disabled>
+            <b>I have read and accept the rules</b>
+            <span>Including that the final ranking is an editorial opinion I agree not to dispute.</span>
+          </label>
+        </div>
+        <button class="submit" type="submit" id="subN" disabled>Submit my ballot — free</button>
+        <div class="confirm hidden" id="natConfirm" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="sec" id="follow">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">CONTACT</span>
+      <h2 class="display">Get in touch</h2>
+    </div>
+    <!-- CONTACT — edit the three blocks below -->
+    <div class="contact">
+      <div class="contact-block">
+        <span class="contact-label">Follow the league</span>
+        <a class="ig" href="#" aria-label="Follow on Instagram">
+          <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
+            <rect x="2.5" y="2.5" width="19" height="19" rx="5.4" fill="none" stroke="currentColor" stroke-width="1.7"/>
+            <circle cx="12" cy="12" r="4.7" fill="none" stroke="currentColor" stroke-width="1.7"/>
+            <circle cx="17.6" cy="6.4" r="1.35" fill="currentColor"/>
+          </svg>
+          <span>@YourClubHandle</span>
+        </a>
+      </div>
+      <div class="contact-block">
+        <span class="contact-label">Questions</span>
+        <a class="mail" href="mailto:you@yourschool.org">you@yourschool.org</a>
+      </div>
+      <div class="contact-block">
+        <span class="contact-label">Sponsor us</span>
+        <a class="mail" href="mailto:sponsors@yourschool.org">sponsors@yourschool.org</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Florida Friday Night Lights Fantasy · A registered 501(c)(3) · Beta season, Florida only · Run by student volunteers, funded by local sponsors<br>
+    <span style="color:var(--dim)">Free to enter. Open to Florida residents only. Not affiliated with any school, district, or with the FHSAA. <a href="rules.html">Rules</a></span>
+  </div>
+</footer>
+
+<script>
+/* ====================================================================
+   CONFIG — this is the only block most clubs need to edit
+   ==================================================================== */
+const CONFIG = {
+
+  // Playoff rounds, in order. Add or remove to match your state.
+  // "alive" is the illustrative survivor field size shown on the board.
+  ROUNDS: [
+    {name:"Regional quarter", dates:"[Nov 6 – Nov 7]",   alive:100, note:"Everyone still in."},
+    {name:"Regional semi",    dates:"[Nov 13 – Nov 14]", alive:58,  note:"First real cull."},
+    {name:"Regional final",   dates:"[Nov 20 – Nov 21]", alive:31,  note:"Regional titles decided \u2014 25 points."},
+    {name:"State semifinal",  dates:"[Nov 28 – Nov 29]", alive:14,  note:"Your best teams are burned."},
+    {name:"State final",      dates:"[Dec 5 – Dec 6]",   alive:5,   note:"Last one standing."}
+  ],
+
+  // Your state's classifications, biggest first.
+  // The first one listed is used for the Pick 'Em tiebreak.
+  TIERS: [
+    {cls:"Class 7A", teams:"32 teams", k:"#4A7FC1", note:"The biggest schools and the one everyone picks. Worth the same as every other class."},
+    {cls:"Class 6A", teams:"32 teams", k:"#5588BB", note:"Deep and unpredictable most years."},
+    {cls:"Class 5A", teams:"32 teams", k:"#6091B4", note:"Traditionally the most top-heavy bracket."},
+    {cls:"Class 4A", teams:"32 teams", k:"#6E9AA8", note:"Where a good draw matters most."},
+    {cls:"Class 3A", teams:"24 teams", k:"#7FA694", note:"Small enough to actually study."},
+    {cls:"Class 2A", teams:"16 teams", k:"#8FAF80", note:"Nobody covers it. That's the opportunity."},
+    {cls:"Class 1A", teams:"16 teams", k:"#A0B96C", note:"Rural football. The locals know exactly who wins."}
+  ],
+
+  // Roster size for the draft
+  DRAFT_TEAMS: 6,
+
+  // Paste your Apps Script Web App /exec URL here when the back office
+  // is deployed. Until then forms validate and confirm but store nothing.
+  ENDPOINT: ""
+};
+/* ==================== end of CONFIG ==================== */
+
+const $ = id => document.getElementById(id);
+
+/* Write to an element only if it exists. Labels like these live in copy that
+   gets rewritten often; a removed element must never take the page down. */
+const setText = (id, val) => { const e = $(id); if(e) e.textContent = val; };
+
+/* ---- dynamic labels ---- */
+setText('rTot',   CONFIG.ROUNDS.length);
+setText('tieCls', CONFIG.TIERS[0].cls);
+
+/* ---- tier grid ---- */
+$('tierGrid').innerHTML = CONFIG.TIERS.map(t => `
+  <article class="tier" style="--k:${t.k}">
+    <div class="tier-cls">${t.cls}</div>
+    <div class="tier-meta">${t.teams}</div>
+    <p class="tier-note">${t.note}</p>
+  </article>`).join('');
+
+/* ---- round dates strip ---- */
+$('roundDates').innerHTML = CONFIG.ROUNDS.map(r => `
+  <div class="date"><span>${r.dates}</span><b>${r.name}</b><i>${r.note}</i></div>`).join('');
+
+/* ---- SIGNATURE: bracket board ---- */
+const BURN = ["Northview","Crestline","Ridgemont","Bayside","Fort Hill"];
+let rIdx = 0;
+
+$('rounds').innerHTML = CONFIG.ROUNDS.map((r,i) => `
+  <div class="rnd" data-i="${i}">
+    <span class="rnd-no">ROUND ${i+1}</span>
+    <span class="rnd-name">${r.name}</span>
+    <span class="rnd-alive">${r.alive}</span>
+    <span class="rnd-lab">Still alive</span>
+  </div>`).join('');
+
+const rndEls = [...$('rounds').children];
+
+function paintRound(){
+  const r = CONFIG.ROUNDS[rIdx];
+  $('rIdx').textContent  = rIdx + 1;
+  $('rName').textContent = r.name;
+  rndEls.forEach((el,i) => {
+    el.classList.toggle('now',  i === rIdx);
+    el.classList.toggle('past', i <  rIdx);
+  });
+  const burned = BURN.slice(0, rIdx);
+  $('usedRow').innerHTML =
+    '<span class="used-lab">Teams burned</span>' +
+    (burned.length
+      ? burned.map(t => `<span class="chip">${t}</span>`).join('') +
+        `<span class="chip live">${BURN[rIdx] || 'your pick'}</span>`
+      : `<span class="chip live">${BURN[0]}</span><span class="hint" style="margin-left:6px">— your first pick. You can never use them again.</span>`);
+  $('rPrev').disabled = rIdx === 0;
+  $('rNext').disabled = rIdx === CONFIG.ROUNDS.length - 1;
+}
+$('rNext').onclick = () => { if(rIdx < CONFIG.ROUNDS.length-1){ rIdx++; paintRound(); } };
+$('rPrev').onclick = () => { if(rIdx > 0){ rIdx--; paintRound(); } };
+paintRound();
+
+/* ---- pick 'em fields ---- */
+$('pickFields').innerHTML = CONFIG.TIERS.map((t,i) => `
+  <div class="field">
+    <label for="pick${i}">${t.cls} champion</label>
+    <input type="text" id="pick${i}" placeholder="School name" required>
+  </div>`).join('');
+
+/* ---- guardian fields show/hide ---- */
+document.querySelectorAll('select.who').forEach(sel => {
+  sel.addEventListener('change', () => {
+    const form = sel.closest('form');
+    const show = sel.value === 'student-u18';
+    form.querySelectorAll('.guardian').forEach(f => f.classList.toggle('hidden', !show));
+  });
+});
+
+/* ---- validation helpers ---- */
+const v = id => ($(id).value || '').trim();
+const emailOk = e => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e);
+const dl = rows => `<dl>${rows.map(r => `<dt>${r[0]}</dt><dd>${r[1]}</dd>`).join('')}</dl>`;
+function show(el, html){
+  el.innerHTML = html;
+  el.classList.remove('hidden');
+  el.scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+/* Shared checks for the name / email / who / school / guardian block.
+   Returns the collected values, or null if something failed. */
+function baseFields(p){
+  const name = v(p+'Name'), email = v(p+'Email'), who = v(p+'Who'), school = v(p+'School');
+  if(!name){ alert('Add your name.'); return null; }
+  if(!emailOk(email)){ alert('That email address does not look right.'); return null; }
+  if(!who){ alert('Tell us whether you are a student or an adult.'); return null; }
+  if(!school){ alert('Add the school you are playing for.'); return null; }
+  let guardian = null;
+  if(who === 'student-u18'){
+    const gn = v(p+'GName'), ge = v(p+'GEmail');
+    if(!gn || !emailOk(ge)){
+      alert('Under 18 entries need a parent or guardian name and a valid email.');
+      return null;
+    }
+    guardian = {name:gn, email:ge};
+  }
+  return {name, email, who, school, guardian};
+}
+
+/* ---- endpoint ---- */
+function submitEntry(game, payload){
+  if(!CONFIG.ENDPOINT) return;
+  fetch(CONFIG.ENDPOINT, {
+    method:'POST',
+    headers:{'Content-Type':'text/plain;charset=utf-8'},
+    body: JSON.stringify(Object.assign({game}, payload))
+  })
+  .then(r => r.json())
+  .then(res => { if(!res.ok) alert(res.message || 'We could not save that entry.'); })
+  .catch(() => alert('Could not reach the server. Your entry was not saved — please try again.'));
+}
+
+/* ---- draft ---- */
+$('draftForm').addEventListener('submit', e => {
+  e.preventDefault();
+  if(!$('acceptD').checked) return alert('Please read and accept the rules first.');
+  const f = baseFields('d');
+  if(!f) return;
+  submitEntry('draft', f);
+  show($('draftConfirm'), `<h4>Seat requested — check your email</h4>
+    <p style="font-size:15px"><strong>Your seat isn't held yet.</strong> We've sent a confirmation link to ${f.email}.${
+      f.guardian ? ` A consent request has also gone to ${f.guardian.email} — the entry stays inactive until they approve it.` : ''
+    } Draft night details follow once the brackets are released.</p>
+    ${dl([['Playing for', f.school], ['Roster size', CONFIG.DRAFT_TEAMS + ' teams']])}`);
+});
+
+/* ---- pick 'em ---- */
+$('pickForm').addEventListener('submit', e => {
+  e.preventDefault();
+  if(!$('acceptP').checked) return alert('Please read and accept the rules first.');
+  const f = baseFields('p');
+  if(!f) return;
+  const picks = CONFIG.TIERS.map((t,i) => v('pick'+i));
+  if(picks.some(x => !x)) return alert('Name a champion in every classification.');
+  const tie = v('pTie');
+  if(tie === '' || isNaN(Number(tie))) return alert('Add your tiebreak number.');
+  submitEntry('pickem', Object.assign({}, f, {picks, tiebreak:Number(tie)}));
+  show($('pickConfirm'), `<h4>Sheet locked — check your email</h4>
+    <p style="font-size:15px"><strong>Your sheet isn't active yet.</strong> We've sent a confirmation link to ${f.email}.${
+      f.guardian ? ` A consent request has gone to ${f.guardian.email} too.` : ''
+    } Nothing scores until the semifinals.</p>
+    ${dl(CONFIG.TIERS.map((t,i) => [t.cls, picks[i]]).concat([['Tiebreak', tie + ' points']]))}`);
+});
+
+/* ---- survivor ---- */
+$('survForm').addEventListener('submit', e => {
+  e.preventDefault();
+  if(!$('acceptS').checked) return alert('Please read and accept the rules first.');
+  const f = baseFields('s');
+  if(!f) return;
+  submitEntry('survivor', f);
+  show($('survConfirm'), `<h4>You're in — check your email</h4>
+    <p style="font-size:15px"><strong>Your entry isn't active yet.</strong> We've sent a confirmation link to ${f.email}.${
+      f.guardian ? ` A consent request has gone to ${f.guardian.email} too.` : ''
+    } Your first pick link arrives when the brackets drop.</p>
+    <p style="margin-top:10px" class="hint">Picks lock at the first kickoff of every round. A missed pick is an elimination.</p>
+    ${dl([['Playing for', f.school], ['Rounds to survive', CONFIG.ROUNDS.length]])}`);
+});
+
+
+/* ---- national ballot fields ---- */
+$('natFields').innerHTML = Array.from({length:10}, (_,i) => `
+  <div class="field">
+    <label for="nat${i}">${i===0 ? 'No. 1 &mdash; your champion' : 'No. '+(i+1)}</label>
+    <input type="text" id="nat${i}" placeholder="School name" required>
+  </div>`).join('');
+
+/* ---- national ---- */
+$('natForm').addEventListener('submit', e => {
+  e.preventDefault();
+  if(!$('acceptN').checked) return alert('Please read and accept the rules first.');
+  const f = baseFields('n');
+  if(!f) return;
+  const ballot = Array.from({length:10}, (_,i) => v('nat'+i));
+  if(ballot.some(x => !x)) return alert('Name a school in all ten positions.');
+  const norm = ballot.map(x => x.toLowerCase().replace(/\s+/g,' ').trim());
+  if(new Set(norm).size !== 10) return alert('Ten different schools \u2014 no repeats.');
+  submitEntry('national', Object.assign({}, f, {ballot}));
+  show($('natConfirm'), `<h4>Ballot sealed \u2014 check your email</h4>
+    <p style="font-size:15px"><strong>Your ballot isn't active yet.</strong> We've sent a confirmation link to ${f.email}.${
+      f.guardian ? ` A consent request has gone to ${f.guardian.email} too.` : ''
+    } Nothing shows until the final ranking publishes in December.</p>
+    ${dl([['Your No. 1', ballot[0]], ['Then', ballot.slice(1).join(', ')]])}`);
+});
+
+/* ---- scroll-to-accept gate ---- */
+function wireGate(id, subBtnId){
+  const box  = $('rules'+id),
+        hint = $('hint'+id),
+        wrap = $('optwrap'+id),
+        cb   = $('accept'+id),
+        btn  = $(subBtnId);
+  if(!box || !cb || !btn) return;
+  let unlocked = false;
+  function unlock(){
+    if(unlocked) return;
+    unlocked = true;
+    cb.disabled = false;
+    wrap.classList.remove('locked');
+    hint.textContent = 'Rules read — tick the box to continue';
+    hint.classList.add('done');
+  }
+  const atEnd = () => box.scrollTop + box.clientHeight >= box.scrollHeight - 6;
+  const sync  = () => { btn.disabled = !cb.checked; };
+  if(box.scrollHeight <= box.clientHeight + 6) unlock();
+  box.addEventListener('scroll', () => { if(atEnd()) unlock(); });
+  cb.addEventListener('change', sync);
+  sync();
+}
+wireGate('D','subD');
+wireGate('P','subP');
+wireGate('S','subS');
+wireGate('N','subN');
+
+/* ---- reveal ---- */
+try{
+  if('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion:reduce)').matches){
+    document.documentElement.classList.add('anim');
+    const io = new IntersectionObserver(es => es.forEach(en => {
+      if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+    }), {threshold:.08});
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    setTimeout(() => document.querySelectorAll('.reveal:not(.in)').forEach(el => el.classList.add('in')), 2200);
+  }
+}catch(e){ document.documentElement.classList.remove('anim'); }
+</script>
+</body>
+</html>
