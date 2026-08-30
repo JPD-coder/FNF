@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Florida Friday Night Lights Fantasy — High School Football</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,100..125,400..900;1,100..125,400..900&family=Barlow+Semi+Condensed:wght@400;500;600;700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!--
+  ============================================================
+  EDIT BEFORE YOU PUBLISH
+  ============================================================
+  CONFIG block at the top of the JavaScript near the bottom.
+  School data is in the SCHOOLS object just above it, taken from
+  the FHSAA 2026-27 & 2027-28 classification release.
+  Also search for: WORDMARK and CONTACT.
+  ============================================================
+-->
+
+<style>
+:root{
+  --ink:#06070A;
+  --granite:#11151B;
+  --slab:#171C24;
+  --turf:#153A22;
+  --turf-lit:#3E8C4F;
+  --line:#242B35;
+  --bone:#F0F2F5;
+  --chalk:#D8DEE6;
+  --ash:#79828F;
+  --dim:#525B67;
+  --lights:#E8A93B;
+
+  --g-draft:#3E8C4F;
+  --g-pickem:#4A7FC1;
+  --g-survivor:#C1553F;
+
+  --display:"Archivo",system-ui,sans-serif;
+  --body:"Barlow",system-ui,sans-serif;
+  --data:"Barlow Semi Condensed",system-ui,sans-serif;
+
+  --wrap:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ink);
+  color:var(--bone);
+  font-family:var(--body);
+  font-size:17px;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 26px}
+
+/* ---------- type ---------- */
+.display{
+  font-family:var(--display);
+  font-variation-settings:"wdth" 118;
+  font-weight:900;
+  font-style:italic;
+  text-transform:uppercase;
+  letter-spacing:-0.012em;
+  line-height:0.92;
+}
+.eyebrow{
+  font-family:var(--data);
+  font-size:12px;font-weight:600;letter-spacing:0.22em;
+  text-transform:uppercase;color:var(--ash);
+}
+h2.display{font-size:clamp(30px,5vw,52px);white-space:nowrap}
+@media(max-width:1080px){h2.display{font-size:clamp(22px,4vw,44px)}}
+@media(max-width:560px){h2.display{white-space:normal}}
+h3{
+  font-family:var(--display);
+  font-variation-settings:"wdth" 112;
+  font-weight:800;font-style:italic;text-transform:uppercase;
+  font-size:20px;letter-spacing:0.01em;line-height:1.1;
+}
+p{color:#C3CAD3}
+strong{color:var(--bone);font-weight:600}
+a{color:inherit}
+
+/* ---------- nav ---------- */
+.nav{
+  position:sticky;top:0;z-index:60;
+  background:rgba(6,7,10,.86);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.nav-in{display:flex;align-items:center;gap:26px;height:60px;max-width:var(--wrap);margin:0 auto;padding:0 26px}
+.nav-links{margin:0 auto;display:flex;gap:22px;align-items:center;flex-wrap:wrap;justify-content:center}
+.nav-links a+a{margin-left:22px}
+@supports (gap:1px){.nav-links a+a{margin-left:0}}
+.nav-links a{
+  font-family:var(--data);font-size:13px;font-weight:600;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ash);text-decoration:none;transition:color .18s;
+}
+.nav-links a:hover,.nav-links a:focus-visible{color:var(--bone)}
+@media(max-width:820px){.nav-in{height:auto;padding:10px 26px}.nav-links{gap:14px}.nav-links a{font-size:12px}}
+
+/* ---------- beta band ---------- */
+.beta{background:rgba(232,169,59,.12);border-bottom:1px solid rgba(232,169,59,.35);
+  font-family:var(--data);font-size:13.5px;letter-spacing:.05em;color:#EDDCB4;padding:10px 0;text-align:center}
+.beta b{font-family:var(--display);font-variation-settings:"wdth" 112;font-weight:800;font-style:italic;
+  text-transform:uppercase;color:var(--lights);letter-spacing:.02em;margin-right:4px}
+
+/* ---------- hero ---------- */
+.hero{position:relative;padding:56px 0 0;background:#000;border-bottom:1px solid var(--line)}
+.hero-mark{display:block;width:min(680px,90vw);margin:0 auto;height:auto}
+.hero-line{
+  text-align:center;max-width:1000px;margin:18px auto 0;
+  font-size:clamp(16px,1.85vw,20px);line-height:1.5;color:#B9C1CB;
+  text-wrap:balance;
+}
+.hero-meta{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:0;margin:34px auto 0;
+  border-top:1px solid var(--line);max-width:var(--wrap);
+}
+.hero-stat{flex:1 1 160px;padding:18px 14px;text-align:center;border-right:1px solid var(--line)}
+.hero-stat:last-child{border-right:0}
+.hero-stat b{display:block;font-family:var(--display);font-variation-settings:"wdth" 115;font-weight:900;font-style:italic;font-size:26px;color:var(--bone)}
+.hero-stat span{font-family:var(--data);font-size:11.5px;letter-spacing:.17em;text-transform:uppercase;color:var(--ash)}
+
+/* ---------- section frame ---------- */
+.sec{padding:78px 0;border-bottom:1px solid var(--line)}
+.sec-head{display:flex;flex-direction:column;align-items:flex-start;gap:8px;margin-bottom:8px}
+.sec-num{
+  font-family:var(--data);font-size:13px;font-weight:700;letter-spacing:.2em;
+  color:var(--turf-lit);padding:4px 9px;border:1px solid var(--turf);border-radius:2px;
+}
+.sec-sub{max-width:680px;margin-top:14px;font-size:18px}
+.sec-tag{
+  display:block;margin-top:20px;font-family:var(--display);
+  font-variation-settings:"wdth" 114;font-weight:900;font-style:italic;
+  font-size:clamp(21px,3vw,32px);line-height:1.12;letter-spacing:-0.005em;
+  text-transform:uppercase;color:var(--bone);
+}
+.sec-tag em{font-style:italic;color:var(--turf-lit)}
+
+#draft{background:linear-gradient(180deg,#070C09 0%,var(--ink) 100%)}
+#pickem{background:linear-gradient(180deg,#080A0E 0%,var(--ink) 100%)}
+#survivor{background:linear-gradient(180deg,#0C0807 0%,var(--ink) 100%)}
+#national{background:linear-gradient(180deg,#0A090D 0%,var(--ink) 100%)}
+
+/* ---------- generic card ---------- */
+.card{background:var(--granite);border:1px solid var(--line);border-radius:3px;padding:22px}
+.grid{display:grid;gap:16px}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g2{grid-template-columns:repeat(2,1fr)}
+@media(max-width:860px){.g3,.g2{grid-template-columns:1fr}}
+
+.rulelist{list-style:none;margin-top:14px}
+.rulelist li{position:relative;padding-left:22px;margin-bottom:9px;color:#C3CAD3}
+.rulelist li::before{content:"";position:absolute;left:0;top:11px;width:9px;height:2px;background:var(--turf-lit)}
+
+ul.bul{list-style:none;margin:0}
+ul.bul li{position:relative;padding-left:20px;margin-bottom:9px;font-size:14.5px;line-height:1.55;color:#AEB6C1}
+ul.bul li::before{content:"";position:absolute;left:0;top:10px;width:10px;height:2px;background:var(--turf-lit)}
+ul.bul b{color:var(--chalk)}
+
+/* ---------- tables ---------- */
+table{width:100%;border-collapse:collapse;margin-top:18px;font-family:var(--data)}
+th{
+  text-align:left;font-size:11.5px;font-weight:700;letter-spacing:.17em;text-transform:uppercase;
+  color:var(--ash);padding:9px 12px;border-bottom:1px solid var(--line);
+}
+td{padding:11px 12px;border-bottom:1px solid #1B212A;font-size:16px;color:#C7CED7}
+td.money{font-family:var(--display);font-variation-settings:"wdth" 112;font-style:italic;font-weight:800;color:var(--bone);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+
+.ptable{width:100%;border-collapse:collapse;margin:12px 0}
+.ptable td{padding:9px 12px;border:1px solid var(--line);background:var(--granite);font-size:14.5px;color:#C7CED7}
+.ptable td.pts{width:74px;text-align:center;font-family:var(--display);font-variation-settings:"wdth" 112;
+  font-weight:900;font-style:italic;font-size:20px;color:var(--turf-lit);background:var(--slab)}
+
+.callout{margin-top:22px;padding:18px 22px;background:var(--granite);
+  border:1px solid var(--line);border-left:2px solid var(--lights);border-radius:3px}
+.callout h4{font-family:var(--display);font-variation-settings:"wdth" 112;font-weight:800;font-style:italic;
+  text-transform:uppercase;font-size:15px;color:var(--lights);margin-bottom:8px}
+.callout p{font-size:14.5px;color:#AEB6C1;margin-bottom:8px}
+.callout p:last-child{margin-bottom:0}
+
+/* ---------- SIGNATURE: bracket board ---------- */
+.board{
+  margin-top:26px;background:#080D0A;
+  border:1px solid var(--turf);border-radius:3px;overflow:hidden;
+}
+.board-bar{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  padding:14px 18px;background:rgba(21,58,34,.46);border-bottom:1px solid var(--turf);
+}
+.board-when{font-family:var(--data);font-size:13px;letter-spacing:.15em;text-transform:uppercase;color:var(--chalk)}
+.board-when b{color:var(--bone);font-weight:700}
+.board-ctrl{margin-left:auto;display:flex;gap:8px}
+.board-btn{
+  font-family:var(--data);font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  background:transparent;color:var(--chalk);border:1px solid var(--turf-lit);
+  padding:7px 13px;border-radius:2px;cursor:pointer;transition:background .16s,color .16s;
+}
+.board-btn:hover:not(:disabled){background:var(--turf-lit);color:#04120A}
+.board-btn:disabled{opacity:.32;cursor:default}
+.board-foot{
+  padding:12px 18px;border-top:1px solid var(--turf);
+  font-family:var(--data);font-size:12.5px;letter-spacing:.08em;color:var(--ash);
+}
+
+.rounds{display:grid;grid-template-columns:repeat(5,1fr)}
+.rnd{
+  border-right:1px solid #14211A;padding:18px 8px 16px;text-align:center;
+  display:flex;flex-direction:column;align-items:center;gap:8px;min-width:0;
+  transition:background .3s;
+}
+.rnd:last-child{border-right:0}
+.rnd.now{background:rgba(62,140,79,.14)}
+.rnd.past{opacity:.42}
+.rnd-no{font-family:var(--data);font-size:10.5px;font-weight:700;letter-spacing:.19em;color:var(--dim)}
+.rnd-name{font-family:var(--display);font-variation-settings:"wdth" 110;font-weight:800;font-style:italic;
+  text-transform:uppercase;font-size:13px;color:var(--chalk);line-height:1.15}
+.rnd-alive{font-family:var(--display);font-variation-settings:"wdth" 114;font-weight:900;font-style:italic;
+  font-size:26px;color:var(--turf-lit);line-height:1;transition:color .3s}
+.rnd.past .rnd-alive{color:var(--dim)}
+.rnd-lab{font-family:var(--data);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ash)}
+@media(max-width:820px){
+  .rounds{grid-template-columns:repeat(3,1fr)}
+  .rnd:nth-child(3n){border-right:0}
+  .rnd:nth-child(-n+3){border-bottom:1px solid #14211A}
+}
+@media(max-width:420px){.rounds{grid-template-columns:repeat(2,1fr)}.rnd:nth-child(2n){border-right:0}}
+
+.used{display:flex;flex-wrap:wrap;gap:7px;padding:14px 18px;border-top:1px solid #14211A;min-height:54px;align-items:center}
+.used-lab{font-family:var(--data);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ash);margin-right:4px}
+.chip{
+  font-family:var(--data);font-size:12.5px;font-weight:600;letter-spacing:.05em;
+  padding:4px 10px;border-radius:2px;background:var(--slab);
+  border:1px solid var(--line);color:var(--dim);text-decoration:line-through;
+}
+.chip.live{color:var(--bone);border-color:var(--turf-lit);background:rgba(62,140,79,.18);text-decoration:none}
+
+/* ---------- tier grid (Game 2) ---------- */
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:30px}
+@media(max-width:900px){.tiers{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.tiers{grid-template-columns:1fr}}
+.tier{
+  position:relative;background:var(--granite);border:1px solid var(--line);
+  border-radius:3px;padding:18px 18px 16px;overflow:hidden;
+  transition:border-color .2s,transform .2s;
+}
+.tier::before{content:"";position:absolute;inset:0 0 auto 0;height:2px;background:var(--k)}
+.tier:hover{border-color:var(--k);transform:translateY(-2px)}
+.tier-cls{
+  font-family:var(--display);font-variation-settings:"wdth" 114;font-weight:900;font-style:italic;
+  text-transform:uppercase;font-size:22px;color:var(--bone);line-height:1;
+}
+.tier-meta{margin-top:8px;font-family:var(--data);font-size:12.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ash)}
+.tier-note{margin-top:10px;font-size:14px;line-height:1.5;color:#A9B2BD}
+
+/* ---------- ballot (Game 4) ---------- */
+.ballot{margin-top:26px;border:1px solid var(--line);border-radius:3px;overflow:hidden;background:var(--granite)}
+.slot{display:flex;align-items:center;gap:14px;padding:12px 18px;border-bottom:1px solid #1B212A}
+.slot:last-child{border-bottom:0}
+.slot.one{background:rgba(232,169,59,.09);border-left:2px solid var(--lights)}
+.slot-no{font-family:var(--display);font-variation-settings:"wdth" 112;font-weight:900;font-style:italic;
+  font-size:22px;color:var(--dim);width:34px;flex:0 0 34px}
+.slot.one .slot-no{color:var(--lights)}
+.slot-line{flex:1;height:9px;border-radius:1px;background:#232A33}
+.slot.one .slot-line{background:rgba(232,169,59,.3)}
+.slot-tag{font-family:var(--data);font-size:11px;font-weight:700;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--ash);white-space:nowrap}
+.slot.one .slot-tag{color:var(--lights)}
+
+/* ---------- leaderboard ---------- */
+.lb{margin-top:26px;border:1px solid var(--line);border-radius:3px;overflow:hidden;background:var(--granite)}
+.lb-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  padding:14px 18px;border-bottom:1px solid var(--line);background:var(--slab)}
+.lb-title{font-family:var(--display);font-variation-settings:"wdth" 112;font-weight:800;font-style:italic;text-transform:uppercase;font-size:15px}
+.pill{
+  margin-left:auto;font-family:var(--data);font-size:11px;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;padding:5px 11px;border-radius:2px;
+  color:#9FE0AE;background:rgba(62,140,79,.2);border:1px solid var(--turf);
+}
+.lb table{margin:0}
+.lb th{padding-left:18px}
+.lb td{padding-left:18px}
+.ghost td{color:var(--dim)}
+.ghost .bar{display:inline-block;height:8px;border-radius:1px;background:#232A33;vertical-align:middle}
+.lb-empty{
+  padding:22px 18px;font-family:var(--data);font-size:13.5px;letter-spacing:.06em;
+  color:var(--ash);border-top:1px solid var(--line);background:#0D1116;
+}
+.lb-empty b{color:var(--chalk);font-weight:700}
+.rank{font-family:var(--display);font-variation-settings:"wdth" 110;font-style:italic;font-weight:800;color:var(--dim)}
+
+/* ---------- dates strip ---------- */
+.dates{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:24px;border:1px solid var(--line);border-radius:3px;overflow:hidden}
+@media(max-width:820px){.dates{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:460px){.dates{grid-template-columns:1fr}}
+.date{padding:16px;border-right:1px solid var(--line);background:var(--granite)}
+.date:last-child{border-right:0}
+.date b{display:block;font-family:var(--display);font-variation-settings:"wdth" 112;font-weight:900;font-style:italic;font-size:17px;text-transform:uppercase}
+.date span{font-family:var(--data);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ash)}
+.date i{display:block;margin-top:6px;font-style:normal;font-size:14px;color:#A9B2BD;font-family:var(--body)}
+
+/* ---------- volunteer ---------- */
+#volunteer{background:linear-gradient(180deg,#070A0C 0%,var(--ink) 100%)}
+.roles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:28px}
+@media(max-width:1000px){.roles{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.roles{grid-template-columns:1fr}}
+.role{background:var(--granite);border:1px solid var(--line);border-top:2px solid var(--lights);
+  border-radius:3px;padding:20px 18px}
+.role b{display:block;font-family:var(--display);font-variation-settings:"wdth" 112;font-weight:900;
+  font-style:italic;text-transform:uppercase;font-size:16px;color:var(--bone);line-height:1.1}
+.role .hrs{margin-top:6px;font-family:var(--display);font-variation-settings:"wdth" 112;font-weight:800;
+  font-style:italic;font-size:24px;color:var(--lights)}
+.role .hrs span{font-family:var(--data);font-size:11px;font-weight:700;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--ash);display:block;margin-top:2px}
+.role p{margin-top:10px;font-size:14px;line-height:1.5;color:#A9B2BD}
+
+/* ---------- split panel ---------- */
+.split{display:grid;grid-template-columns:repeat(2,1fr);gap:0;margin-top:26px;
+  border:1px solid var(--line);border-radius:3px;overflow:hidden}
+@media(max-width:760px){.split{grid-template-columns:1fr!important}}
+.split div{padding:22px;background:var(--granite);border-right:1px solid var(--line)}
+.split div:last-child{border-right:0}
+.split b{display:block;font-family:var(--display);font-variation-settings:"wdth" 114;font-weight:900;
+  font-style:italic;font-size:36px;color:var(--turf-lit)}
+.split span{font-family:var(--data);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ash)}
+.split i{display:block;margin-top:8px;font-style:normal;font-size:14.5px;color:#AEB6C1;
+  font-family:var(--body);line-height:1.5}
+
+/* ---------- entry cards ---------- */
+#signup{background:linear-gradient(180deg,var(--ink) 0%,#0A0F0B 100%)}
+.entry{margin-top:26px;border:1px solid var(--line);border-radius:3px;background:var(--granite);padding:24px 24px 26px}
+.entry+.entry{margin-top:20px}
+.entry-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:12px}
+.entry-title{
+  font-family:var(--display);font-variation-settings:"wdth" 116;font-weight:900;font-style:italic;
+  text-transform:uppercase;font-size:24px;letter-spacing:-0.01em;
+}
+.entry-price{
+  margin-left:auto;font-family:var(--data);font-size:13px;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;padding:6px 13px;border-radius:2px;
+  color:#9FE0AE;background:rgba(62,140,79,.22);border:1px solid var(--turf);
+}
+.entry-note{margin-top:14px;font-size:15.5px;color:#B3BBC6}
+
+/* ---------- forms ---------- */
+.form{margin-top:22px;display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+@media(max-width:760px){.form{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:7px}
+.field.full{grid-column:1/-1}
+label{
+  font-family:var(--data);font-size:12px;font-weight:600;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--ash);
+}
+input[type=text],input[type=email],input[type=tel],input[type=number],select{
+  background:var(--slab);border:1px solid var(--line);border-radius:2px;
+  padding:12px 13px;color:var(--bone);font-family:var(--body);font-size:16px;width:100%;
+}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--turf-lit);outline-offset:1px;border-color:transparent}
+.hint{font-family:var(--data);font-size:12.5px;color:var(--dim);letter-spacing:.03em}
+.opt{
+  position:relative;border:1px solid var(--line);border-radius:3px;padding:15px 16px;
+  background:var(--slab);cursor:pointer;transition:border-color .18s,background .18s;display:block;
+}
+.opt input{position:absolute;opacity:0;width:0;height:0}
+.opt:hover{border-color:var(--dim)}
+.opt:has(input:checked),.opt.on{border-color:var(--turf-lit);background:rgba(21,58,34,.34)}
+.opt:has(input:focus-visible){outline:2px solid var(--turf-lit);outline-offset:2px}
+.opt b{display:block;font-family:var(--display);font-variation-settings:"wdth" 112;font-weight:800;font-style:italic;text-transform:uppercase;font-size:16px}
+.opt span{font-family:var(--data);font-size:13px;letter-spacing:.06em;color:var(--ash)}
+.opt.locked{opacity:.45;pointer-events:none}
+.submit{
+  grid-column:1/-1;margin-top:4px;
+  font-family:var(--display);font-variation-settings:"wdth" 116;font-weight:900;font-style:italic;
+  text-transform:uppercase;font-size:19px;letter-spacing:.01em;
+  background:var(--turf-lit);color:#04120A;border:0;border-radius:2px;
+  padding:16px 22px;cursor:pointer;transition:filter .18s,transform .12s;
+}
+.submit:hover:not(:disabled){filter:brightness(1.12)}
+.submit:active{transform:translateY(1px)}
+.submit:disabled{opacity:.35;cursor:not-allowed;filter:none}
+.note{grid-column:1/-1;font-family:var(--data);font-size:12.5px;color:var(--dim);letter-spacing:.04em}
+.confirm{
+  grid-column:1/-1;margin-top:8px;border:1px solid var(--turf-lit);border-radius:3px;
+  padding:20px;background:rgba(21,58,34,.3);
+}
+.confirm h4{font-family:var(--display);font-variation-settings:"wdth" 112;font-weight:800;font-style:italic;text-transform:uppercase;font-size:17px;margin-bottom:8px}
+.confirm dl{display:grid;grid-template-columns:auto 1fr;gap:5px 16px;margin-top:12px;font-family:var(--data);font-size:14px}
+.confirm dt{color:var(--ash);letter-spacing:.1em;text-transform:uppercase;font-size:12px;align-self:center}
+.confirm dd{color:var(--bone)}
+.hidden{display:none!important}
+.picks{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:860px){.picks{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.picks{grid-template-columns:1fr}}
+
+/* ---------- scroll-to-accept ---------- */
+.acceptwrap{grid-column:1/-1;margin-top:6px}
+.acceptlabel{
+  font-family:var(--data);font-size:12px;font-weight:600;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--ash);display:block;margin-bottom:7px;
+}
+.rulesbox{
+  max-height:190px;overflow-y:auto;padding:16px 18px;
+  background:var(--slab);border:1px solid var(--line);border-radius:2px;
+  font-size:14px;line-height:1.6;color:#B3BBC6;
+}
+.rulesbox h5{
+  font-family:var(--display);font-variation-settings:"wdth" 110;font-weight:800;font-style:italic;
+  text-transform:uppercase;font-size:13px;color:var(--turf-lit);margin:14px 0 5px;
+}
+.rulesbox h5:first-child{margin-top:0}
+.rulesbox p{margin:0 0 8px;font-size:13.5px;color:#AAB2BD}
+.rulesbox strong{color:var(--chalk)}
+.rulesbox a{color:var(--turf-lit)}
+.scrollhint{
+  display:flex;align-items:center;gap:7px;margin-top:8px;
+  font-family:var(--data);font-size:12.5px;letter-spacing:.04em;color:var(--lights);
+}
+.scrollhint.done{color:var(--turf-lit)}
+
+.ruleslink{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+  margin-top:24px;padding:14px 18px;
+  border:1px solid var(--line);border-left:2px solid var(--turf-lit);
+  background:var(--granite);
+}
+.ruleslink a{
+  font-family:var(--display);font-variation-settings:"wdth" 110;font-weight:800;font-style:italic;
+  text-transform:uppercase;font-size:14px;color:var(--bone);text-decoration:none;
+  border-bottom:1px solid var(--turf-lit);padding-bottom:1px;
+}
+.ruleslink a:hover{color:var(--turf-lit)}
+.ruleslink span{font-family:var(--data);font-size:13px;letter-spacing:.04em;color:var(--ash)}
+
+/* ---------- contact ---------- */
+#follow{background:linear-gradient(180deg,#070C09 0%,var(--ink) 100%);border-bottom:0}
+.contact{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px}
+@media(max-width:760px){.contact{grid-template-columns:1fr}}
+.contact-block{
+  background:var(--granite);border:1px solid var(--line);border-radius:3px;
+  padding:18px 20px;display:flex;flex-direction:column;gap:9px;
+}
+.contact-label{font-family:var(--data);font-size:11.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--ash)}
+.ig{display:flex;align-items:center;gap:10px;color:var(--bone);text-decoration:none;transition:color .18s}
+.ig span{font-family:var(--display);font-variation-settings:"wdth" 110;font-weight:800;font-style:italic;font-size:16px}
+.ig:hover,.mail:hover{color:var(--turf-lit)}
+.mail{color:var(--bone);text-decoration:none;font-family:var(--display);
+  font-variation-settings:"wdth" 110;font-weight:800;font-style:italic;font-size:16px;transition:color .18s}
+
+footer{padding:44px 0 60px;color:var(--dim);font-family:var(--data);font-size:13px;letter-spacing:.05em}
+footer a{color:var(--ash)}
+
+.anim .reveal{opacity:0;transform:translateY(14px)}
+.anim .reveal.in{opacity:1;transform:none;transition:opacity .6s ease,transform .6s cubic-bezier(.22,.9,.3,1)}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .anim .reveal{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+
+/* ---------- badges ---------- */
+.live{font-family:var(--data);font-size:11.5px;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;padding:5px 11px;border-radius:2px;align-self:center;
+  color:#04120A;background:var(--turf-lit)}
+.entry-price.soon-tag{color:var(--ash);background:var(--slab);border:1px solid var(--line)}
+.choice{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(max-width:640px){.choice{grid-template-columns:1fr}}
+input[list]{background:var(--slab);border:1px solid var(--line);border-radius:2px;
+  padding:12px 13px;color:var(--bone);font-family:var(--body);font-size:16px;width:100%}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-in">
+    <div class="nav-links">
+      <a href="#road">Road to States</a>
+      <a href="#pickem">Class Championships</a>
+      <a href="#florida">Undisputed State Champs</a>
+      <a href="#draft">The Draft</a>
+      <a href="#volunteer">Student Volunteers</a>
+      <a href="rules.html">Rules</a>
+    </div>
+  </div>
+</nav>
+
+<div class="beta"><div class="wrap"><b>Beta season</b> &mdash; Florida only, and open to <strong>enrolled Florida students</strong>, public or private. <strong>Road to State Champs is live now.</strong> The other three open next season.</div></div>
+
+<header class="hero">
+  <div class="wrap">
+<!-- WORDMARK -->
+    <svg class="hero-mark" viewBox="0 0 900 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Florida Friday Night Lights Fantasy">
+      <defs>
+        <linearGradient id="turfGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#F0F2F5"/>
+          <stop offset="100%" stop-color="#9DB0A3"/>
+        </linearGradient>
+      </defs>
+      <text x="450" y="78" text-anchor="middle" font-family="Archivo, system-ui, sans-serif"
+            font-size="66" font-weight="900" font-style="italic" fill="url(#turfGrad)" letter-spacing="-1">FRIDAY NIGHT LIGHTS</text>
+      <text x="450" y="152" text-anchor="middle" font-family="Archivo, system-ui, sans-serif"
+            font-size="66" font-weight="900" font-style="italic" fill="#3E8C4F" letter-spacing="-1">FANTASY</text>
+      <line x1="150" y1="178" x2="750" y2="178" stroke="#242B35" stroke-width="2"/>
+      <text x="450" y="196" text-anchor="middle" font-family="Barlow Semi Condensed, system-ui, sans-serif"
+            font-size="15" font-weight="600" fill="#79828F" letter-spacing="7">FHSAA BRACKETS &#183; SIX CLASSIFICATIONS</text>
+    </svg>
+    <p class="hero-line">Four free games on the FHSAA brackets. <strong>Road to State Champs starts at district play and is open now</strong> &mdash; pick one team in every classification and follow them to State. <strong>Three statewide pots &mdash; $30,000 &mdash; and every student in Florida can win from all three.</strong> The fourth game is your own school's draft. Nobody pays a cent to enter. Students only, public or private, anywhere in Florida. Run by a registered 501(c)(3), staffed by student volunteers who earn certified service hours.</p>
+  </div>
+  <div class="hero-meta">
+    <div class="hero-stat"><b>4</b><span>Games</span></div>
+    <div class="hero-stat"><b>$35,000</b><span>Minimum in prizes</span></div>
+    <div class="hero-stat"><b>$0</b><span>To enter</span></div>
+    <div class="hero-stat"><b>501(c)(3)</b><span>Nonprofit run</span></div>
+  </div>
+</header>
+
+<!-- ============ GAME 1 — ROAD TO STATE CHAMPS ============ -->
+<section class="sec" id="road">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">GAME 1</span>
+      <h2 class="display">Road to State Champs</h2>
+    </div>
+    <p class="sec-tag">Free to enter <em>&middot;</em> Starts at districts <em>&middot;</em> $5,000</p>
+    <p class="sec-sub"><strong>One team in every classification. Follow them all the way.</strong> This is the only game that starts at district play, which is why it is the one running this season. Your six teams score every time they win something &mdash; a district, a playoff game, a region, a state title. No elimination, no knockout. You are never out; you are just behind.</p>
+
+    <div class="grid g2 reveal" style="margin-top:30px">
+      <div class="card">
+        <h3>How it scores</h3>
+        <table class="ptable">
+          <tr><td>Your team wins its <b>district</b></td><td class="pts">10</td></tr>
+          <tr><td>Your team wins a <b>playoff game</b></td><td class="pts">15</td></tr>
+          <tr><td>Your team wins a <b>regional title</b></td><td class="pts">25</td></tr>
+          <tr><td>Your team wins the <b>state championship</b></td><td class="pts">50</td></tr>
+        </table>
+        <p class="hint" style="line-height:1.5">These add up. A team that wins its district and runs the table takes 10 + 60 + 25 + 50 = <strong>145 points</strong>. Six of those on one sheet is the perfect entry, and nobody has ever had one.</p>
+      </div>
+      <div class="card">
+        <h3>Why there is always a winner</h3>
+        <p>Survivor pools are fun until half the field goes out in week one and the whole thing settles on a coin flip. This one cannot do that.</p>
+        <p style="margin-top:10px">Everybody's six teams keep scoring for as long as they keep winning, so the board separates on its own. <strong>Highest total takes it.</strong></p>
+        <p style="margin-top:10px">If two people tie: most state titles, then most regional titles, then most district titles, then the earliest confirmed entry. <strong>One winner, every year, guaranteed.</strong></p>
+      </div>
+    </div>
+
+
+    <div class="lb reveal">
+      <div class="lb-head">
+        <span class="lb-title">Road to State Champs standings</span>
+        <span class="pill">Opens with district play</span>
+      </div>
+      <table>
+        <tr><th style="width:60px">#</th><th>Entrant</th><th>Teams alive</th><th style="text-align:right">Points</th></tr>
+        <tr class="ghost"><td class="rank">1</td><td><span class="bar" style="width:150px"></span></td><td><span class="bar" style="width:34px"></span></td><td style="text-align:right"><span class="bar" style="width:52px"></span></td></tr>
+        <tr class="ghost"><td class="rank">2</td><td><span class="bar" style="width:126px"></span></td><td><span class="bar" style="width:34px"></span></td><td style="text-align:right"><span class="bar" style="width:52px"></span></td></tr>
+        <tr class="ghost"><td class="rank">3</td><td><span class="bar" style="width:164px"></span></td><td><span class="bar" style="width:34px"></span></td><td style="text-align:right"><span class="bar" style="width:52px"></span></td></tr>
+        <tr class="ghost"><td class="rank">4</td><td><span class="bar" style="width:138px"></span></td><td><span class="bar" style="width:34px"></span></td><td style="text-align:right"><span class="bar" style="width:52px"></span></td></tr>
+        <tr class="ghost"><td class="rank">5</td><td><span class="bar" style="width:112px"></span></td><td><span class="bar" style="width:34px"></span></td><td style="text-align:right"><span class="bar" style="width:52px"></span></td></tr>
+      </table>
+      <div class="lb-empty">Sheets lock at the first district kickoff. <b>Standings post the morning after each week of district play</b> and run to the state finals.</div>
+    </div>
+
+    <p class="ruleslink"><a href="rules.html">Read the rules</a><span>Free to enter. Florida students only. $2,500 to the winner, $2,500 to their school.</span></p>
+
+    <!-- ---------- ENTRY FORM: GAME 1 ---------- -->
+    <div class="entry" id="runEntry">
+      <div class="entry-head">
+        <span class="entry-title">Road to State Champs</span>
+        <span class="entry-price">Free &middot; Open now</span>
+      </div>
+      <p class="entry-note">One team in each of the six FHSAA classifications. Start typing a school name &mdash; every FHSAA school is in the list. Locks at the first district kickoff.</p>
+
+      <form class="form" id="runForm" novalidate>
+        <div class="field"><label for="rName">Full name</label><input type="text" id="rName" autocomplete="name" required></div>
+        <div class="field"><label for="rEmail">Email</label><input type="email" id="rEmail" autocomplete="email" required></div>
+        <div class="field"><label for="rWho">You are</label>
+          <select id="rWho" class="who" required>
+            <option value="">Choose&hellip;</option>
+            <option value="student-u18">Student, under 18</option>
+            <option value="student-18">Student, 18 or over</option>
+          </select></div>
+        <div class="field"><label for="rSchool">Your school</label>
+          <select id="rSchool" class="schoolPick" required></select>
+          <span class="hint">The school you attend. Your school receives half the prize if you win.</span></div>
+        <div class="field hidden" id="rSchoolOtherWrap"><label for="rSchoolOther">Type your school name</label>
+          <input type="text" id="rSchoolOther" placeholder="Full school name">
+          <span class="hint">Schools with no football programme are not on the FHSAA list. You can still play.</span></div>
+        <div class="field guardian hidden"><label for="rGName">Parent or guardian name</label><input type="text" id="rGName"></div>
+        <div class="field guardian hidden"><label for="rGEmail">Parent or guardian email</label><input type="email" id="rGEmail">
+          <span class="hint">They get a consent link and must approve before the entry is active.</span></div>
+
+        <div class="picks" id="runPicks"></div>
+
+        <div class="acceptwrap">
+          <span class="acceptlabel">Rules &mdash; please read</span>
+          <div class="rulesbox" id="rulesR" tabindex="0"><h5>Free to enter</h5>
+<p><strong>No purchase or payment of any kind is necessary to enter or to win.</strong> One entry per person.</p>
+<h5>Who can enter</h5>
+<p>Open to <strong>students currently enrolled at a Florida public, private or charter high school</strong>, who are legal residents of Florida. Parents, staff and community members cannot enter. Entrants under 18 must give a parent or guardian's email, and the entry is not active until that guardian approves it. <strong>Students on any football roster in these brackets may not enter</strong>, nor may their coaches or contest administrators. <strong>Students at an excluded school cannot enter</strong> &mdash; the list is in rule 2.4.</p>
+<h5>Your sheet</h5>
+<p>One FHSAA school in each of the six classifications, all six different. Sheets lock at the <strong>first kickoff of district play</strong> and cannot be changed afterwards for any reason, including a school withdrawing or being reclassified.</p>
+<h5>Scoring</h5>
+<p><strong>10</strong> for a district title, <strong>15</strong> for each playoff game won, <strong>25</strong> for a regional title, <strong>50</strong> for a state championship. These add together. Everything is read directly from the official FHSAA bracket; <strong>no individual student's statistics are used anywhere.</strong></p>
+<h5>One winner</h5>
+<p>Highest total wins. Ties break on most state titles, then regional titles, then district titles, then earliest confirmed entry. <strong>There is no shared prize.</strong></p>
+<h5>Prize</h5>
+<p><strong>$5,000: $2,500 to the winner and $2,500 to the winner's school.</strong> A winner under 18 is paid through their parent or guardian. <strong>Because the prize exceeds $600, a winner must supply a completed Form W-9 before payment; no tax information is collected from anyone else.</strong></p>
+<h5>Results and independence</h5>
+<p>Where our standings and the FHSAA's official bracket conflict, <strong>the official bracket governs</strong>. This contest is <strong>not operated, sponsored or endorsed by any school, district, or by the FHSAA</strong>.</p>
+<p style="margin-top:12px"><a href="rules.html">Read the full rules &rarr;</a></p></div>
+          <p class="scrollhint" id="hintR">Scroll to the end of the rules to continue</p>
+          <label class="opt locked" id="optwrapR" style="margin-top:8px">
+            <input type="checkbox" id="acceptR" disabled>
+            <b>I have read and accept the rules</b>
+            <span>Including eligibility and the prize terms above.</span>
+          </label>
+        </div>
+        <button class="submit" type="submit" id="subR" disabled>Lock in my six &mdash; free</button>
+        <div class="confirm hidden" id="runConfirm" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ GAME 2 — CLASS CHAMPIONSHIPS ============ -->
+<section class="sec" id="pickem">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">GAME 2</span>
+      <h2 class="display">Class Championships</h2>
+    </div>
+    <p class="sec-tag">Free to enter <em>&middot;</em> Two minutes to play <em>&middot;</em> $5,000</p>
+    <p class="sec-sub"><strong>One sheet, one shot, everyone at once.</strong> Name a state champion in every classification before the playoffs kick off, then sit on it for six weeks. Six picks, no strategy to learn, no board to watch.</p>
+
+    <div class="tiers reveal" id="tierGrid"></div>
+
+    <div class="grid g2 reveal" style="margin-top:32px">
+      <div class="card">
+        <h3>How it scores</h3>
+        <table class="ptable">
+          <tr><td>Your pick <b>wins the state title</b></td><td class="pts">100</td></tr>
+          <tr><td>Your pick <b>loses the final</b></td><td class="pts">40</td></tr>
+          <tr><td>Your pick <b>reaches the semifinal</b></td><td class="pts">15</td></tr>
+        </table>
+        <p class="hint" style="line-height:1.5">Only the furthest round counts &mdash; a champion scores 100, not 155.</p>
+      </div>
+      <div class="card">
+        <h3>The tiebreak decides it</h3>
+        <p>With six classifications and a large field, ties on raw points are the expected outcome, not an edge case.</p>
+        <p style="margin-top:10px">So every sheet carries one more number: <strong>combined points scored by both teams in the Class 6A state final.</strong> Closest without going over takes it, then the earliest verified entry.</p>
+      </div>
+    </div>
+
+    <p class="ruleslink"><a href="rules.html">Read the rules</a><span>Free to enter. Florida students only. $2,500 to the winner, $2,500 to their school.</span></p>
+  </div>
+</section>
+
+<!-- ============ GAME 3 — UNDISPUTED FLORIDA STATE CHAMPS ============ -->
+<section class="sec" id="florida">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">GAME 3</span>
+      <h2 class="display">Undisputed Florida State Champs</h2>
+    </div>
+    <p class="sec-tag">Free to enter <em>&middot;</em> One ballot <em>&middot;</em> $20,000</p>
+    <p class="sec-sub"><strong>Who is the best team in Florida, regardless of class?</strong> Name them, then rank the nine behind them. Class doesn't matter here &mdash; a 2A private school and a 6A public are on the same ballot, and arguing about that is the entire point. <strong>This is the big one: $20,000, and it pays three ways.</strong></p>
+
+    <div class="ballot reveal" id="flBallot"></div>
+
+    <div class="split reveal" style="grid-template-columns:repeat(3,1fr)">
+      <div><span>Cash to one winner</span><b>$10,000</b></div>
+      <div><span>Cash donation to winner's school</span><b>$5,000</b></div>
+      <div><span>Cash donation to Florida's No. 1 school</span><b>$5,000</b><i>Per MaxPreps rankings.</i></div>
+    </div>
+
+    <div class="grid g2 reveal" style="margin-top:32px">
+      <div class="card">
+        <h3>How it settles</h3>
+        <ul class="bul">
+          <li><b>Right at No. 1?</b> You advance. Nobody right &mdash; whoever's pick finished highest advances instead.</li>
+          <li><b>Most exact slots</b> in 2 through 10.</li>
+          <li><b>Then most right teams</b>, wrong slot included.</li>
+          <li><b>Then closest overall</b> &mdash; total places away from the truth across all ten.</li>
+          <li><b>Then earliest ballot.</b> Always one winner.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Settled on the MaxPreps rankings</h3>
+        <p>This game is decided by the <strong>final MaxPreps Florida rankings</strong>, captured on a stated date and published here at settlement.</p>
+        <p style="margin-top:10px">A statewide ranking is a published judgement, not a result. No game decides it, it gets revised, and you may think it's wrong. <strong>Entering means you accept the MaxPreps rankings as final.</strong></p>
+      </div>
+    </div>
+
+    <p class="ruleslink"><a href="rules.html">Read the rules</a><span>Free to enter. Florida students only. $20,000 in play across three recipients.</span></p>
+  </div>
+</section>
+
+<!-- ============ GAME 4 — THE DRAFT ============ -->
+<section class="sec" id="draft">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">GAME 4</span>
+      <h2 class="display">The Draft</h2>
+    </div>
+    <p class="sec-tag">Free to enter <em>&middot;</em> Your school, your prize</p>
+    <p class="sec-sub"><strong>This one is for people who actually follow Florida high school football.</strong> A live snake draft, six schools each, and a roster you cannot change once the playoffs start. If that sounds like work, the other three games take two minutes.<br><br>Every Group is <strong>exactly sixteen entrants</strong> with a sponsor committed for <strong>at least $2,500</strong>. <strong>Each school runs its own draft and settles its own prize</strong> &mdash; there is no statewide play-off and no overall champion. Win your room and you have won it. Half the sponsorship is yours, half stays with your school.</p>
+
+    <div class="grid g2 reveal" style="margin-top:30px">
+      <div class="card">
+        <h3>How the draft runs</h3>
+        <ul class="rulelist">
+          <li><strong>Sixteen entrants, exactly.</strong> A Group with fifteen does not run and cannot enter.</li>
+          <li><strong>A sponsor committed for at least $2,500.</strong> Below that the Group does not run either.</li>
+          <li><strong>At least two Groups must register</strong> for the Draft to run at all &mdash; that is what holds up the published prize floor for the season.</li>
+          <li><strong>Snake order.</strong> Draft position is random and published before you start.</li>
+          <li><strong>Six schools each</strong>, from any of the six FHSAA classifications. Once a school is taken it is off your Group's board.</li>
+          <li><strong>Florida schools only.</strong> Every pick comes off the FHSAA list. Sixteen people at six schools uses 96 of 439, so the board never runs thin.</li>
+        </ul>
+        <p class="hint" style="margin-top:12px;line-height:1.5">Your school brings its own sponsor and <strong>keeps half of what it raises</strong>, whatever happens in the draft. This is the only thing a school is asked to fund &mdash; the other three games are on the league.</p>
+      </div>
+      <div class="card">
+        <h3>Why sixteen</h3>
+        <p>It is a practical number, not a competitive one. A live snake draft runs about thirty seconds a pick, so sixteen people over six rounds is roughly forty-five minutes &mdash; one sitting, one room, done in an evening.</p>
+        <p style="margin-top:10px">It also keeps the board deep. Sixteen entrants taking six schools each uses 96 of the 439 in classes 1A-6A, so <strong>the last pick of the night is still a real team</strong> rather than whatever nobody wanted.</p>
+        <p style="margin-top:10px">Because Groups never compete against each other, room size carries no advantage either way.</p>
+      </div>
+    </div>
+
+    <div class="grid g2 reveal" style="margin-top:20px">
+      <div class="card">
+        <h3>Scoring</h3>
+        <table class="ptable">
+          <tr><td>Your team wins a <b>playoff game</b></td><td class="pts">10</td></tr>
+          <tr><td>Your team wins a <b>regional title</b></td><td class="pts">25</td></tr>
+          <tr><td>Your team wins the <b>state championship</b></td><td class="pts">50</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <h3>Where a Group's sponsorship goes</h3>
+        <table>
+          <tr><th>Award</th><th style="text-align:right">Share</th></tr>
+          <tr><td>The winner of your Group<br><span class="hint">Most points in your own room. One per Group.</span></td><td class="money" style="text-align:right">&frac12;<br><span class="hint">of what you raise</span></td></tr>
+          <tr><td>The school that ran it<br><span class="hint">Every year, whoever wins.</span></td><td class="money" style="text-align:right">&frac12;<br><span class="hint">of what you raise</span></td></tr>
+        </table>
+        <p class="hint" style="margin-top:12px;line-height:1.5">The minimum $2,500 sponsor pays <strong>$1,250 to your winner and $1,250 straight to your school</strong>. Nothing is pooled and nothing leaves the building. Raise more and both halves grow with it.</p>
+      </div>
+    </div>
+
+    <p class="ruleslink"><a href="rules.html">Read the rules</a><span>Free to enter. Florida students only. Groups of exactly 16, $2,500 sponsor minimum, split 50/50 winner and school.</span></p>
+
+    <!-- ---------- NEXT SEASON LIST ---------- -->
+    <div class="entry" id="listEntry">
+      <div class="entry-head">
+        <span class="entry-title">The other three games</span>
+        <span class="entry-price soon-tag">2027</span>
+      </div>
+      <p class="entry-note">Class Championships, Undisputed Florida State Champs and The Draft all start before the season does, so they open next year. Leave your school email and we'll tell you when entries go live.</p>
+
+      <form class="form" id="listForm" novalidate>
+        <div class="field"><label for="lName">Full name</label><input type="text" id="lName" autocomplete="name" required></div>
+        <div class="field"><label for="lEmail">Email</label><input type="email" id="lEmail" autocomplete="email" required></div>
+        <div class="field"><label for="lWho">You are</label>
+          <select id="lWho" class="who" required>
+            <option value="">Choose&hellip;</option>
+            <option value="student-u18">Student, under 18</option>
+            <option value="student-18">Student, 18 or over</option>
+          </select></div>
+        <div class="field"><label for="lSchool">Your school</label>
+          <select id="lSchool" class="schoolPick" required></select></div>
+        <div class="field hidden" id="lSchoolOtherWrap"><label for="lSchoolOther">Type your school name</label>
+          <input type="text" id="lSchoolOther" placeholder="Full school name"></div>
+        <div class="field guardian hidden"><label for="lGName">Parent or guardian name</label><input type="text" id="lGName"></div>
+        <div class="field guardian hidden"><label for="lGEmail">Parent or guardian email</label><input type="email" id="lGEmail"></div>
+        <div class="field full"><label>Tell me about</label>
+          <div class="choice" id="interest">
+            <label class="opt"><input type="checkbox" value="Undisputed Florida State Champs" checked><b>Undisputed State Champs</b><span>Rank the top ten in the state</span></label>
+            <label class="opt"><input type="checkbox" value="Class Championships" checked><b>Class Championships</b><span>One champion per class</span></label>
+            <label class="opt"><input type="checkbox" value="The Draft" checked><b>The Draft</b><span>Run a Group at your school</span></label>
+          </div>
+        </div>
+        <button class="submit" type="submit" id="subL">Add me to the list &mdash; free</button>
+        <div class="confirm hidden" id="listConfirm" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ VOLUNTEER ============ -->
+<section class="sec" id="volunteer">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">VOLUNTEER</span>
+      <h2 class="display">Student Volunteers Welcomed</h2>
+    </div>
+    <p class="sec-sub">Somebody has to run the drafts, read the brackets every Sunday, update the boards and go ask local businesses for sponsorship. <strong>Students do all of it</strong> &mdash; and because this league is a registered 501(c)(3), every hour is documented and certified.</p>
+
+    <div class="roles reveal">
+      <div class="role"><b>Draft night</b><div class="hrs">3&ndash;5<span>hours per Group</span></div><p>Set the room, run the board, keep the snake order straight.</p></div>
+      <div class="role"><b>Results</b><div class="hrs">2&ndash;3<span>hours per round</span></div><p>Read the FHSAA brackets, enter every result, post standings the morning after.</p></div>
+      <div class="role"><b>Sponsorship</b><div class="hrs">10&ndash;20<span>hours per sponsor</span></div><p>Build the list, write the ask, walk into local businesses. Counts the same whether it funds a statewide prize or your own Draft Group &mdash; it is fundraising either way.</p></div>
+      <div class="role"><b>Coordination</b><div class="hrs">15&ndash;30<span>hours a season</span></div><p>Recruit entrants, chase consent forms, keep four games moving.</p></div>
+    </div>
+
+    <div class="callout reveal">
+      <h4>How hours are certified</h4>
+      <p>Volunteers log hours as they go and a named officer signs them off. <strong>You get a letter on 501(c)(3) letterhead</strong> stating the dates, the work and the total.</p>
+      <p>Florida Bright Futures requires <strong>100 service hours</strong> for Academic Scholars and <strong>75</strong> for Medallion, completed through a nonprofit, government entity or school-sponsored programme. <strong>Check with your own school before you count on it</strong> &mdash; districts differ on what they accept.</p>
+    </div>
+
+    <div class="callout reveal">
+      <h4>One rule for volunteers</h4>
+      <p>You can volunteer and still play &mdash; but <strong>not in a game you help administer</strong>. If you handle entries, results or standings for a game, you can't be entered in it. Run results for Road to State Champs and play Class Championships.</p>
+    </div>
+
+    <div class="callout reveal">
+      <h4>Excluded schools</h4>
+      <p>The league reserves the right to exclude any school at its own discretion. <strong>Students at an excluded school cannot enter.</strong> The school itself stays fully selectable as a team in every game &mdash; it is still an FHSAA programme and still plays. <strong>Exclusion is not a finding of wrongdoing</strong> and no reason is published.</p>
+      <p>Currently excluded: <strong id="exList"></strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="sec" id="follow">
+  <div class="wrap">
+    <div class="contact" style="margin-top:0">
+      <div class="contact-block">
+        <span class="contact-label">Follow the league</span>
+        <a class="ig" href="#" aria-label="Follow on Instagram">
+          <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
+            <rect x="2.5" y="2.5" width="19" height="19" rx="5.4" fill="none" stroke="currentColor" stroke-width="1.7"/>
+            <circle cx="12" cy="12" r="4.7" fill="none" stroke="currentColor" stroke-width="1.7"/>
+            <circle cx="17.6" cy="6.4" r="1.35" fill="currentColor"/>
+          </svg>
+          <span>@YourHandle</span>
+        </a>
+      </div>
+      <div class="contact-block"><span class="contact-label">Questions</span><a class="mail" href="mailto:you@yourschool.org">you@yourschool.org</a></div>
+      <div class="contact-block"><span class="contact-label">Sponsor us</span><a class="mail" href="mailto:sponsors@yourschool.org">sponsors@yourschool.org</a></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Florida Friday Night Lights Fantasy &middot; A registered 501(c)(3) &middot; Beta season, Florida only &middot; Run by student volunteers, funded by local sponsors<br>
+    <span style="color:var(--dim)">Free to enter. Open to enrolled Florida students only. Not affiliated with any school, district, or with the FHSAA. <a href="rules.html">Rules</a></span>
+  </div>
+</footer>
+
+
+
+<script>
+/* FHSAA football schools, 2026-27 & 2027-28.
+   Source: FHSAA final classification release, 17 Dec 2025.
+   Rural and 1A merged into 1A per the FHSAA Board action of 29 Jan 2026.
+   Verify against the latest FHSAA file before each season. */
+const SCHOOLS = {
+"1A": ["Atlantic Christian (West Palm Beach)","Baker","Benjamin (Palm Beach Gardens)","Blountstown","Boca Raton Christian","BridgePrep Village Green (Miami)","Cambridge Christian (Tampa)","Carrollwood (Tampa)","Central (Milton)","Chiefland","Chipley","Community School (Naples)","Cushman (Miami)","Evangelical Christian (Fort Myers)","FAMU (Tallahassee)","Faith Christian (Orlando)","Father Lopez (Daytona Beach)","First Baptist (Naples)","Fort Meade","Fort White","Hamilton County (Jasper)","Hawthorne","Hilliard","Impact Christian (Jacksonville)","Indian Rocks Christian (Largo)","Jay","John Carroll (Fort Pierce)","Lafayette (Mayo)","Lakeland Christian","Maclay (Tallahassee)","Madison County (Madison)","Marathon","Marianna","McLaughlin (Lake Wales)","Melbourne Central Catholic","Moore Haven","North Florida Christian (Tallahassee)","North Florida Educational (Jacksonville)","Northside Christian (St. Petersburg)","Northview (Century)","Orlando Christian Prep","Pahokee","Palmer Trinity (Miami)","Port St. Joe","Posnack (Davie)","Providence (Jacksonville)","Sneads","Somerset Academy Charter South Homestead","Somerset Academy Key (Deerfield Beach)","Somerset Prep (North Lauderdale)","Southwest Florida Christian (Fort Myers)","St. John Neumann (Naples)","St. Petersburg Catholic","Taylor (Pierson)","Taylor County (Perry)","The Masters Academy (Oviedo)","Trinity Christian (Jacksonville)","True North (Miami)","University Christian (Jacksonville)","Victory Christian (Lakeland)","Westwood Christian (Miami)","Wildwood","Williston","Zephyrhills Christian"],
+
+"2A": ["Andrew Jackson (Jacksonville)","Archbishop Carroll (Miami)","Baldwin","Berkeley Prep (Tampa)","Boca Ciega (Gulfport)","Bolles (Jacksonville)","Bozeman (Panama City)","Bradford (Starke)","Calvary Christian (Clearwater)","Cardinal Newman (West Palm Beach)","Chaminade-Madonna (Hollywood)","Clearwater Central Catholic","Cocoa","Cocoa Beach","Destin","Discovery (Lake Alfred)","First Academy (Orlando)","Florida High (Tallahassee)","Freeport","Gadsden County (Havana)","Gulliver Prep (Pinecrest)","Hallandale","Immaculata-LaSalle (Miami)","Inlet Grove (Riviera Beach)","Keystone Heights","KIPP Bold City (Jacksonville)","Lakewood (St. Petersburg)","Miami Carol City","Miami Edison","Miami Killian","Monsignor Pace (Miami)","Newberry","North Bay Haven (Panama City)","Pensacola Catholic","Pinecrest Glades (Miami)","Ransom Everglades (Miami)","Rutherford (Panama City)","Somerset Charter (Silver Palms)","St. Andrews (Boca Raton)","St. John Paul II (Boca Raton)","Tampa Catholic","Tradition Preparatory (Port St. Lucie)","Trinity Catholic (Ocala)","Umatilla","Walton (DeFuniak Springs)","Washington (Miami)","Westminster Christian (Miami)"],
+
+"3A": ["Anclote (Holiday)","Astronaut (Titusville)","Avon Park","Baker County (Glen St. Mary)","Bay (Panama City)","Bayshore (Bradenton)","Belleview","Bishop Kenny (Jacksonville)","Bishop Verot (Fort Myers)","Booker (Sarasota)","Boynton Beach","Braden River (Bradenton)","Calvary Christian Academy (Fort Lauderdale)","Cardinal Gibbons (Fort Lauderdale)","Cardinal Mooney (Sarasota)","Central (Brooksville)","Chamberlain (Tampa)","Citrus (Inverness)","Countryside (Clearwater)","Crystal River","Cypress Lake (Fort Myers)","Dillard (Fort Lauderdale)","Dunedin","Dunnellon","Eastside (Gainesville)","Eau Gallie (Melbourne)","Eustis","Gibbs (St. Petersburg)","Glades Central (Belle Glade)","Godby (Tallahassee)","Hardee (Wauchula)","Hernando (Brooksville)","Island Coast (Cape Coral)","Jefferson (Tampa)","Key West","King (Tampa)","Lake Placid","Lely (Naples)","Liberty (Kissimmee)","Menendez (St. Augustine)","Merritt Island","Miami Central","Miami Jackson","Miami Springs","Morgan (Wimauma)","Mulberry","Nature Coast (Brooksville)","North Broward Prep (Coconut Creek)","North Marion (Citra)","North Miami Beach","Palatka","Palm Bay (Melbourne)","Pensacola","Pine Forest (Pensacola)","Raines (Jacksonville)","Robinson (Tampa)","Rockledge","Santa Fe (Alachua)","Seminole (Seminole)","South Sumter (Bushnell)","South Walton (Santa Rosa Beach)","Southeast (Bradenton)","St. Brendan (Miami)","Stranahan (Fort Lauderdale)","Suwannee (Live Oak)","Tarpon Springs","Tavares","Tenoroc (Lakeland)","Terry Parker (Jacksonville)","Titusville","Villages","Wakulla (Crawfordville)","Weeki Wachee","Wellen Park (North Port)","West Florida (Pensacola)","Westside (Jacksonville)","Wolfson (Jacksonville)"],
+
+"4A": ["American (Hialeah)","American Heritage (Plantation)","Arnold (Panama City Beach)","Atlantic (Delray Beach)","Aubrey Rogers (Naples)","Barron Collier (Naples)","Bishop Moore (Orlando)","Blake (Tampa)","Blanche Ely (Pompano Beach)","Brandon","Chiles (Tallahassee)","Choctawhatchee (Fort Walton Beach)","Clay (Green Cove Springs)","Clearwater","Columbia (Lake City)","Deltona","Dunbar (Fort Myers)","East Bay (Gibsonton)","Ed White (Jacksonville)","Englewood (Jacksonville)","Escambia (Pensacola)","Estero","Fivay (Hudson)","Fleming Island","Fort Myers","Fort Pierce Westwood","Fort Walton Beach","Freedom (Tampa)","Gainesville","Golden Gate (Naples)","Gulf (New Port Richey)","Gulf Breeze","Gulf Coast (Naples)","Heritage (Palm Bay)","Hialeah","Hillsborough (Tampa)","Hollins (St. Petersburg)","Hollywood Hills","Hudson","Jensen Beach","Jesuit (Tampa)","Jones (Orlando)","Kathleen (Lakeland)","Lake Region (Eagle Lake)","Lake Wales","Lake Weir (Ocala)","Lecanto","Leesburg","Legacy (Port St. Lucie)","Leon (Tallahassee)","Lincoln (Tallahassee)","Mariner (Cape Coral)","McArthur (Hollywood)","Middleburg","Middleton (Tampa)","Miami Norland","Miami Northwestern","Milton","Miramar","Mosley (Lynn Haven)","Mount Dora","Naples","New Smyrna Beach","North Miami","Northeast (Oakland Park)","Northeast (St. Petersburg)","Orange Park","Osceola (Seminole)","Pasco (Dade City)","Pinellas Park (Largo)","Plantation","Port Charlotte","Port St. Lucie","Ribault (Jacksonville)","Rickards (Tallahassee)","Ridgeview (Orange Park)","River Ridge (New Port Richey)","Riverside (Jacksonville)","Seabreeze (Daytona Beach)","Sebastian River (Sebastian)","South Fort Myers","Springstead (Spring Hill)","St. Augustine","St. Petersburg","Vanguard (Ocala)","Washington (Pensacola)","Winter Springs","Yulee","Zephyrhills"],
+
+"5A": ["Archbishop McCarthy (Southwest Ranches)","Armwood (Seffner)","Auburndale","Bartow","Bartram Trail (St. Johns)","Beachside (St. Johns)","Bloomingdale (Valrico)","Boyd Anderson (Lauderdale Lakes)","Buchholz (Gainesville)","Cape Coral","Charlotte (Punta Gorda)","Coconut Creek","Crestview","Cypress Creek (Wesley Chapel)","Deerfield Beach","Dwyer (Palm Beach Gardens)","East Lake (Tarpon Springs)","East Lee County (Lehigh Acres)","East River (Orlando)","Evans (Orlando)","Everglades (Miramar)","Flanagan (Pembroke Pines)","Fletcher (Neptune Beach)","Forest (Ocala)","Fort Lauderdale","Gaither (Tampa)","Immokalee","Lake Gibson (Lakeland)","Lake Howell (Winter Park)","Lake Minneola","Lakeland","Land O Lakes","Largo","Leto (Tampa)","Lyman (Longwood)","Manatee (Bradenton)","Mandarin (Jacksonville)","Martin County (Stuart)","Mater Academy (Hialeah Gardens)","Matanzas (Palm Coast)","Melbourne","Miami Beach","Miami Southridge","Mitchell (New Port Richey)","Monarch (Coconut Creek)","Navarre","Nease (Ponte Vedra)","Niceville","North Fort Myers","Oakleaf (Orange Park)","Olympic Heights (Boca Raton)","Osceola (Kissimmee)","Oviedo","Pace","Palm Beach Gardens","Palmetto","Parrish","Piper (Sunrise)","Plant (Tampa)","Ponte Vedra","Riverdale (Fort Myers)","Royal Palm Beach","Sebring","Seminole Ridge (Westlake)","Sickles (Tampa)","South Broward (Hollywood)","South Fork (Stuart)","South Lake (Groveland)","Spoto (Riverview)","St. Thomas Aquinas (Fort Lauderdale)","Sumner (Riverview)","Sunlake (Land O'Lakes)","Tampa Bay Tech","Tate (Cantonment)","Viera (Melbourne)","Wekiva (Apopka)","Wesley Chapel","West Boca Raton","West Port (Ocala)","Wharton (Tampa)","Wiregrass Ranch (Wesley Chapel)"],
+
+"6A": ["Alonso (Tampa)","Apopka","Atlantic Coast (Jacksonville)","Boca Raton","Boone (Orlando)","Celebration","Centennial (Port St. Lucie)","Columbus (Miami)","Coral Gables","Coral Glades (Coral Springs)","Creekside (St. Johns)","Cypress Bay (Weston)","Davenport","DeLand","Doral Academy","Dr. Joaquin Garcia (Lake Worth)","Dr. Phillips (Orlando)","Durant (Plant City)","East Ridge (Clermont)","Edgewater (Orlando)","First Coast (Jacksonville)","Flagler Palm Coast","Fort Pierce Central","Gateway (Kissimmee)","George Jenkins (Lakeland)","George Steinbrenner (Lutz)","Goleman (Miami)","Hagerty (Oviedo)","Haines City","Harmony","Homestead","Horizon (Winter Garden)","Jupiter","Lake Brantley","Lake Mary","Lake Nona (Orlando)","Lake Worth","Lakewood Ranch (Bradenton)","Lehigh (Lehigh Acres)","Lennard (Ruskin)","Mainland (Daytona Beach)","Miami","Miami Palmetto","Newsome (Lithia)","North Port","Nova (Davie)","Ocoee","Olympia (Orlando)","Palm Beach Central (Wellington)","Palm Beach Lakes (West Palm Beach)","Palm Harbor University","Park Vista (Lake Worth)","Plant City","Poinciana (Kissimmee)","Ridge Community (Davenport)","Riverview (Riverview)","Riverview (Sarasota)","Sandalwood (Jacksonville)","Santaluces (Lantana)","Sarasota","Seminole (Sanford)","South Dade (Homestead)","South Plantation","Southwest Miami","Spanish River (Boca Raton)","Spruce Creek (Port Orange)","St. Cloud","Strawberry Crest (Dover)","Timber Creek (Orlando)","Tocoi Creek (St. Augustine)","Tohopekaliga (Kissimmee)","Treasure Coast (Port St. Lucie)","University (Orange City)","Venice","Vero Beach","Wellington","West Broward (Pembroke Pines)","West Orange (Winter Garden)","Western (Davie)","Winter Haven","Winter Park"],
+
+"Independent": ["American Heritage (Delray Beach)","Atlantic (Port Orange)","Aucilla Christian (Monticello)","Avant Garde (Hollywood)","Belen Jesuit (Miami)","Bishop McLaughlin (Spring Hill)","Bishop Snyder (Jacksonville)","Bonita Springs","Braddock (Miami)","Branford","BridgePrep Academy (Riverview)","Calvary Chapel (West Melbourne)","Cedar Creek Christian (Jacksonville)","Central Florida Christian (Orlando)","Clewiston","Colonial (Orlando)","Cooper City","Coral Reef (Miami)","Coral Shores (Tavernier)","Coral Springs","Coral Springs Charter","Cornerstone Classical (Jacksonville)","Cottondale","Crescent City","Cypress Creek (Orlando)","DeSoto County (Arcadia)","Dixie County (Cross City)","Douglas (Parkland)","Dr. Krop (Miami)","Episcopal (Jacksonville)","Ferguson (Miami)","Fernandina Beach","Forest Hill (West Palm Beach)","Foundation Academy (Winter Garden)","Franklin County (Eastpoint)","Freedom (Orlando)","Gateway (Fort Myers)","Gateway Charter (Fort Myers)","Geneva (Casselberry)","Graceville","Halifax Academy (Daytona Beach)","Hialeah Gardens","Hialeah-Miami Lakes","Holmes County (Bonifay)","Holy Trinity (Melbourne)","Ida Baker (Cape Coral)","IMG Academy (Bradenton)","Innovation (Orlando)","Jefferson County (Monticello)","John I. Leonard (Greenacres)","Jupiter Christian","Kings Academy (West Palm Beach)","LaBelle","Lake Buena Vista (Orlando)","Lake Highland Prep (Orlando)","LEAD Academy (Pace)","Legacy (Ocoee)","Lemon Bay (Englewood)","Liberty County (Bristol)","Marco Island Academy","Miami Coral Park","Miami Country Day","Miami Sunset","Mount Dora Christian","NSU University School (Fort Lauderdale)","Oak Ridge (Orlando)","Oasis (Cape Coral)","Okeechobee","Orangewood Christian (Maitland)","P. K. Yonge (Gainesville)","Palm Beach Christian (Greenacres)","Palmetto Ridge (Naples)","Paxon (Jacksonville)","Pembroke Pines Charter","Pine Crest (Fort Lauderdale)","Pine Ridge (Deltona)","Pompano Beach","Reagan (Doral)","Santa Fe Catholic (Lakeland)","Seffner Christian","Somerset Academy (Pembroke Pines)","Somerset Canyons (Boynton Beach)","South Marion (Ocala)","South Miami","St. Cloud Christian","St. Joseph (St. Augustine)","Stanton (Jacksonville)","Success Preparatory (St. Cloud)","Suncoast (Riviera Beach)","Taravella (Coral Springs)","Trenton","Trinity Preparatory (Winter Park)","Union County (Lake Butler)","University (Orlando)","Varela (Miami)","Vernon","Westland Hialeah","Westminster Academy (Fort Lauderdale)","Wewahitchka","Windermere","Windermere Prep"]
+};
+
+/* ====================================================================
+   CONFIG — the only block most people need to edit
+   ==================================================================== */
+const CONFIG = {
+
+  /* FHSAA classifications, biggest first. The first entry is used for
+     the Pick 'Em tiebreak. Must match the keys in SCHOOLS below. */
+  CLASSES: ["6A", "5A", "4A", "3A", "2A", "1A"],
+
+  /* Shown on the Pick 'Em cards. */
+  CLASS_NOTES: {
+    "6A": {teams: "81 schools", k: "#4A7FC1", note: "The biggest schools and the one everyone picks. Worth the same as every other class."},
+    "5A": {teams: "81 schools", k: "#5588BB", note: "Deep and unpredictable most years."},
+    "4A": {teams: "89 schools", k: "#6091B4", note: "The largest class by school count."},
+    "3A": {teams: "77 schools", k: "#7FA694", note: "Where a good draw matters most."},
+    "2A": {teams: "47 schools", k: "#8FAF80", note: "Small enough to actually study."},
+    "1A": {teams: "64 schools", k: "#A0B96C", note: "Rural and small private. The locals know exactly who wins."}
+  },
+
+  DRAFT_TEAMS: 6,
+
+  /* Students at these schools cannot ENTER. The schools remain fully
+     selectable as teams in every game. */
+  EXCLUDED_SCHOOLS: [
+    "NSU University School (Fort Lauderdale)"
+  ],
+
+  /* Paste your Apps Script Web App /exec URL here when the back office
+     is deployed. Until then forms validate and confirm but store nothing. */
+  ENDPOINT: ""
+};
+/* ==================== end of CONFIG ==================== */
+
+const $ = id => document.getElementById(id);
+const setText = (id, val) => { const e = $(id); if (e) e.textContent = val; };
+
+/* Excluded schools bar their STUDENTS from entering. The schools
+   themselves stay fully selectable as teams in every game — they are
+   still FHSAA programmes and still play. */
+const EXCLUDED = new Set(CONFIG.EXCLUDED_SCHOOLS.map(s => s.toLowerCase()));
+const isExcluded = name => EXCLUDED.has((name || '').trim().toLowerCase());
+
+/* All FHSAA schools in classes 1A-6A, flattened and sorted. */
+const PLAYOFF_CLASSES = CONFIG.CLASSES;
+const ALL_SCHOOLS = PLAYOFF_CLASSES
+  .flatMap(c => SCHOOLS[c] || [])
+  .concat(SCHOOLS.Independent || [])
+  .sort((a, b) => a.localeCompare(b));
+
+const CLASSED_SCHOOLS = PLAYOFF_CLASSES.flatMap(c => SCHOOLS[c] || []);
+
+/* ---- excluded-school notice ---- */
+setText('exList', CONFIG.EXCLUDED_SCHOOLS.length ? CONFIG.EXCLUDED_SCHOOLS.join(' \u00b7 ') : 'none');
+
+/* ---- "your school" dropdown ----------------------------------------
+   Grouped by classification, excluded schools omitted entirely so an
+   excluded student cannot even select their own school. Ends with a
+   free-text option, because the FHSAA list only covers schools that
+   FIELD A FOOTBALL TEAM — a student at a school without one is still
+   eligible to play. */
+const OTHER = '__other__';
+function schoolOptions() {
+  const groups = CONFIG.CLASSES.map(c =>
+    `<optgroup label="Class ${c}">` +
+    (SCHOOLS[c] || []).filter(s => !isExcluded(s)).map(s => `<option value="${s}">${s}</option>`).join('') +
+    '</optgroup>').join('');
+  const indep = `<optgroup label="Independent">` +
+    (SCHOOLS.Independent || []).filter(s => !isExcluded(s)).map(s => `<option value="${s}">${s}</option>`).join('') +
+    '</optgroup>';
+  return '<option value="">Choose your school&hellip;</option>' + groups + indep +
+    `<optgroup label="Not listed"><option value="${OTHER}">My school isn't listed</option></optgroup>`;
+}
+
+document.querySelectorAll('select.schoolPick').forEach(sel => {
+  sel.innerHTML = schoolOptions();
+  sel.addEventListener('change', () => {
+    const wrap = $(sel.id + 'OtherWrap');
+    if (wrap) wrap.classList.toggle('hidden', sel.value !== OTHER);
+  });
+});
+
+/* Resolve a school field to its final value. */
+function schoolValue(prefix) {
+  const sel = $(prefix + 'School');
+  if (!sel) return '';
+  if (sel.value === OTHER) return (($(prefix + 'SchoolOther') || {}).value || '').trim();
+  return sel.value;
+}
+
+/* ---- Road to State Champs: one pick per classification ---- */
+$('runPicks').innerHTML = CONFIG.CLASSES.map((c, i) => `
+  <div class="field">
+    <label for="run${i}">Class ${c}</label>
+    <select id="run${i}" required>
+      <option value="">Choose a school&hellip;</option>
+      ${(SCHOOLS[c] || []).map(s => `<option value="${s}">${s}</option>`).join('')}
+    </select>
+    <span class="hint">${(SCHOOLS[c] || []).length} schools</span>
+  </div>`).join('');
+
+/* ---- Pick 'Em classification cards ---- */
+$('tierGrid').innerHTML = CONFIG.CLASSES.map(c => {
+  const n = CONFIG.CLASS_NOTES[c] || {};
+  return `<article class="tier" style="--k:${n.k || 'var(--turf-lit)'}">
+    <div class="tier-cls">Class ${c}</div>
+    <div class="tier-meta">${n.teams || ''}</div>
+    <p class="tier-note">${n.note || ''}</p>
+  </article>`;
+}).join('');
+
+/* ---- Undisputed Florida State Champs: ballot preview ---- */
+$('flBallot').innerHTML =
+  '<div class="slot one"><span class="slot-no">1</span><span class="slot-line"></span><span class="slot-tag">The pick</span></div>' +
+  Array.from({length: 9}, (_, i) => `<div class="slot"><span class="slot-no">${i + 2}</span><span class="slot-line" style="width:70%"></span><span class="slot-tag">Tiebreak</span></div>`).join('');
+
+/* ---- guardian fields ---- */
+document.querySelectorAll('select.who').forEach(sel => {
+  sel.addEventListener('change', () => {
+    const show = sel.value === 'student-u18';
+    sel.closest('form').querySelectorAll('.guardian').forEach(f => f.classList.toggle('hidden', !show));
+  });
+});
+
+/* ---- helpers ---- */
+const v = id => ($(id).value || '').trim();
+const emailOk = e => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e);
+const dl = rows => `<dl>${rows.map(r => `<dt>${r[0]}</dt><dd>${r[1]}</dd>`).join('')}</dl>`;
+function show(el, html) {
+  el.innerHTML = html;
+  el.classList.remove('hidden');
+  if (el.scrollIntoView) el.scrollIntoView({behavior: 'smooth', block: 'center'});
+}
+
+function baseFields(p) {
+  const name = v(p + 'Name'), email = v(p + 'Email'), who = v(p + 'Who'), school = schoolValue(p);
+  if (!name) { alert('Add your name.'); return null; }
+  if (!emailOk(email)) { alert('That email address does not look right.'); return null; }
+  if (!who) { alert('Tell us whether you are a student or an adult.'); return null; }
+  if (!school) { alert('Add the school you attend.'); return null; }
+  if (isExcluded(school)) {
+    alert('Students at ' + school + ' are not eligible to enter this league. See rule 2.4.\n\nThe school can still be picked as a team in any game.');
+    return null;
+  }
+  if (who !== 'student-u18' && who !== 'student-18') {
+    alert('This league is open to enrolled students only.');
+    return null;
+  }
+  let guardian = null;
+  if (who === 'student-u18') {
+    const gn = v(p + 'GName'), ge = v(p + 'GEmail');
+    if (!gn || !emailOk(ge)) { alert('Under 18 entries need a parent or guardian name and a valid email.'); return null; }
+    guardian = {name: gn, email: ge};
+  }
+  return {name, email, who, school, guardian};
+}
+
+function submitEntry(game, payload) {
+  if (!CONFIG.ENDPOINT) return;
+  fetch(CONFIG.ENDPOINT, {
+    method: 'POST',
+    headers: {'Content-Type': 'text/plain;charset=utf-8'},
+    body: JSON.stringify(Object.assign({game}, payload))
+  })
+  .then(r => r.json())
+  .then(res => { if (!res.ok) alert(res.message || 'We could not save that entry.'); })
+  .catch(() => alert('Could not reach the server. Your entry was not saved — please try again.'));
+}
+
+/* ---- Road to State Champs ---- */
+$('runForm').addEventListener('submit', e => {
+  e.preventDefault();
+  if (!$('acceptR').checked) return alert('Please read and accept the rules first.');
+  const f = baseFields('r');
+  if (!f) return;
+
+  const picks = {};
+  const chosen = [];
+  for (let i = 0; i < CONFIG.CLASSES.length; i++) {
+    const cls = CONFIG.CLASSES[i], val = v('run' + i);
+    if (!val) return alert('Pick a school in Class ' + cls + '.');
+    const list = SCHOOLS[cls] || [];
+    if (!list.includes(val)) {
+      const ok = confirm(`"${val}" is not on the FHSAA list for Class ${cls}.\n\nSubmit it anyway? We will check it and contact you if it needs correcting.`);
+      if (!ok) return;
+    }
+    picks[cls] = val;
+    chosen.push(val.toLowerCase());
+  }
+  if (new Set(chosen).size !== chosen.length) return alert('Six different schools — no repeats.');
+
+  submitEntry('run', Object.assign({}, f, {picks}));
+  show($('runConfirm'), `<h4>Sheet locked in — check your email</h4>
+    <p style="font-size:15px"><strong>Your entry isn't active yet.</strong> We've sent a confirmation link to ${f.email}.${
+      f.guardian ? ` A consent request has gone to ${f.guardian.email} too — the entry stays inactive until they approve it.` : ''
+    } Scoring starts with district play.</p>
+    ${dl(CONFIG.CLASSES.map(c => ['Class ' + c, picks[c]]).concat([['Playing for', f.school]]))}`);
+});
+
+/* ---- next-season list ---- */
+$('listForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const f = baseFields('l');
+  if (!f) return;
+  const games = [...$('interest').querySelectorAll('input:checked')].map(i => i.value);
+  if (!games.length) return alert('Pick at least one game you want to hear about.');
+  submitEntry('waitlist', Object.assign({}, f, {games}));
+  show($('listConfirm'), `<h4>You're on the list</h4>
+    <p style="font-size:15px">We'll email ${f.email} when entries open for next season.${
+      f.guardian ? ` A copy has gone to ${f.guardian.email}.` : ''
+    }</p>
+    ${dl([['Playing for', f.school], ['Interested in', games.join(', ')]])}`);
+});
+
+/* ---- scroll-to-accept gate ---- */
+function wireGate(id, subBtnId) {
+  const box = $('rules' + id), hint = $('hint' + id),
+        wrap = $('optwrap' + id), cb = $('accept' + id), btn = $(subBtnId);
+  if (!box || !cb || !btn) return;
+  let unlocked = false;
+  function unlock() {
+    if (unlocked) return;
+    unlocked = true;
+    cb.disabled = false;
+    wrap.classList.remove('locked');
+    hint.textContent = 'Rules read — tick the box to continue';
+    hint.classList.add('done');
+  }
+  const atEnd = () => box.scrollTop + box.clientHeight >= box.scrollHeight - 6;
+  const sync = () => { btn.disabled = !cb.checked; };
+  if (box.scrollHeight <= box.clientHeight + 6) unlock();
+  box.addEventListener('scroll', () => { if (atEnd()) unlock(); });
+  cb.addEventListener('change', sync);
+  sync();
+}
+wireGate('R', 'subR');
+
+/* ---- reveal ---- */
+try {
+  if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion:reduce)').matches) {
+    document.documentElement.classList.add('anim');
+    const io = new IntersectionObserver(es => es.forEach(en => {
+      if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+    }), {threshold: .08});
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    setTimeout(() => document.querySelectorAll('.reveal:not(.in)').forEach(el => el.classList.add('in')), 2200);
+  }
+} catch (e) { document.documentElement.classList.remove('anim'); }
+
+</script>
+</body>
+</html>

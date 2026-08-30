@@ -1,0 +1,169 @@
+FLORIDA FRIDAY NIGHT LIGHTS FANTASY
+====================================
+BETA SEASON - FLORIDA STUDENTS ONLY
+
+    index.html          the site (school database embedded)
+    rules.html          the rules
+    schools.js          the school database on its own
+    Program Guide.docx  15-page guide for schools, volunteers and boards
+
+Upload index.html and rules.html. That is the whole site.
+
+
+PAGE LAYOUT
+------------
+Toolbar (identical on both pages):
+    Road to States / Class Championships / Undisputed State Champs /
+    The Draft / Student Volunteers / Rules
+
+Section headers stack - small green label above the heading:
+
+    GAME 1
+    Road to State Champs
+
+  Beta band
+  Hero wordmark (FRIDAY NIGHT LIGHTS / FANTASY) + stat bar
+  GAME 1      Road to State Champs
+              ... ENTRY FORM INLINE
+  GAME 2      Class Championships
+  GAME 3      Undisputed Florida State Champs
+  GAME 4      The Draft
+              ... WAITING-LIST FORM INLINE
+  VOLUNTEER   Student Volunteers Welcomed
+  (no header) three contact blocks - Instagram, questions, sponsors
+  Footer
+
+Both forms sit with the games they belong to. There is no separate
+sign-up section and no contact heading - the three contact blocks run
+straight on after the volunteer section.
+
+Taglines:
+  Road to State Champs  Free to enter - Starts at districts - $5,000
+  Class Championships   Free to enter - Two minutes to play - $5,000
+  Undisputed            Free to enter - One ballot - $20,000
+  The Draft             Free to enter - Your school, your prize
+
+The three-pot summary is stated once, in the hero line at the top.
+
+
+PRIZES - MINIMUM $35,000
+-------------------------
+  ROAD TO STATE CHAMPS            $5,000   OPEN NOW
+      $2,500 winner + $2,500 winner's school
+  CLASS CHAMPIONSHIPS             $5,000   2027
+      $2,500 winner + $2,500 winner's school
+  UNDISPUTED FLORIDA STATE CHAMPS $20,000  2027
+      $10,000 cash to one winner
+       $5,000 cash donation to the winner's school
+       $5,000 cash donation to Florida's No.1 school (MaxPreps)
+  THE DRAFT              $2,500 min per Group, 2 Groups min   2027
+      50/50 - half to that Group's winner, half to the school
+
+Three of the four are statewide pots ANY Florida student can win
+from - $30,000, and entering one does not use up a chance at the
+others. The Draft is the exception: sixteen students at one school
+competing only against each other.
+
+Not on the site but in rule 5.5: if Florida's No.1 school is EXCLUDED
+from the league, its $5,000 goes to the winner's school instead, so
+that school receives $10,000. The winner's own $10,000 is never
+affected. Worth repeating in whatever you send winners.
+
+Arithmetic note: $10k + $5k + $5k is $20,000, not $25,000.
+
+
+TWO THINGS TO CLOSE BEFORE LAUNCH
+----------------------------------
+1. MAXPREPS. Rule 5.2 settles Undisputed on the final MaxPreps
+   Florida rankings, and MaxPreps is named in four places on the
+   site. Reading a published ranking is fine; making a third party's
+   editorial product the settlement mechanism for a $20,000 prize
+   and putting their name across your site is the part to clear.
+   ASK THEM BEFORE LAUNCH.
+
+   [NAMED ALTERNATE SOURCE] in rule 5.2 is still a placeholder. If
+   MaxPreps stops publishing a Florida top ten, that clause is the
+   only thing stopping the game voiding.
+
+2. TRADEMARK. Reg. No. 4005322, FRIDAY NIGHT LIGHTS, held by Orange
+   County Youth Sports Association, covers amateur youth sports
+   services and youth football programs. NBCUniversal owns the
+   entertainment side. Clear the name with a trademark attorney
+   before printing merch, filing an application, or signing a
+   franchisee.
+
+
+WHO CAN ENTER
+--------------
+Students enrolled at a Florida public, private or charter high school
+who are legal residents of Florida. No parents, staff, alumni or
+community members. Under-18 needs guardian approval before the entry
+activates. Rostered football players, coaches and administrators
+cannot enter.
+
+
+EXCLUDED SCHOOLS - TWO DIFFERENT THINGS
+----------------------------------------
+Currently excluded:  NSU University School (Fort Lauderdale)
+That is the school in Davie. "Nova (Davie)" in 6A is DIFFERENT and is
+not excluded.
+
+Excluding a school bars its STUDENTS from entering and stops it
+receiving a school share. It does NOT remove the school as a team -
+it stays fully selectable in every game.
+
+Add more to EXCLUDED_SCHOOLS in the CONFIG block of index.html.
+Leave rule 2.4's wording alone; it states exclusion is not a finding
+of wrongdoing and gives a school a route to ask for removal.
+
+
+SCHOOL DATA
+------------
+540 schools from the FHSAA final classification release of 17 Dec 2025
+for 2026-27 and 2027-28:
+    1A 64  2A 47  3A 77  4A 89  5A 81  6A 81  Independent 101
+    439 in classes 1A-6A
+
+Rural merged into 1A per the Board action of 29 Jan 2026. VERIFY
+AGAINST THE LATEST FHSAA FILE each season.
+
+Both school fields are dropdowns grouped by class, with excluded
+schools omitted. There is a "My school isn't listed" option - the
+FHSAA list only covers schools that field a football team, and a
+student at a school without one is still eligible.
+
+
+THE EQUITY ARGUMENT (Section 5 of the guide)
+---------------------------------------------
+The two $5,000 shares in Undisputed are INDEPENDENT:
+
+  team finishes No.1, no student wins ......... $5,000
+  a student wins, team nowhere near No.1 ...... $5,000
+  both ........................................ $10,000
+  student wins + No.1 school excluded ......... $10,000
+  school has no football programme at all ..... $5,000
+
+The line for a district or school board: a school with no football
+money and no team at all can still send $5,000 back to its building
+because one of its students read the state better than anyone else
+in Florida. Cost to the district is zero.
+
+
+EDIT BEFORE PUBLISHING
+-----------------------
+index.html CONFIG: CLASSES, CLASS_NOTES, EXCLUDED_SCHOOLS, ENDPOINT.
+Also search WORDMARK and CONTACT (the Instagram handle and the two
+email addresses are still placeholders).
+
+rules.html - replace every [BRACKETED] item:
+    [NAMED ALTERNATE SOURCE], [SETTLEMENT DATE], [KICKOFF...],
+    [10 DAYS], [60 DAYS], [30 DAYS], [YOUR ORGANISATION],
+    [YOUR SCHOOL], [YOUR EMAIL], [YOUR EIN], [DATE]
+
+
+STILL NOT BUILT
+----------------
+  - Back office. CONFIG.ENDPOINT is empty; forms validate and confirm
+    but store nothing. This is the next thing to build.
+  - Results entry screen for the FHSAA bracket.
+  - Draft board (2027).
