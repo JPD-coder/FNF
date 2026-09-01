@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rules — Florida Friday Night Lights Fantasy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,100..125,400..900;1,100..125,400..900&family=Barlow+Semi+Condensed:wght@400;500;600;700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#06070A;
+  --granite:#11151B;
+  --slab:#171C24;
+  --turf:#153A22;
+  --turf-lit:#3E8C4F;
+  --line:#242B35;
+  --bone:#F0F2F5;
+  --chalk:#D8DEE6;
+  --ash:#79828F;
+  --dim:#525B67;
+  --lights:#E8A93B;
+
+  --display:"Archivo",system-ui,sans-serif;
+  --body:"Barlow",system-ui,sans-serif;
+  --data:"Barlow Semi Condensed",system-ui,sans-serif;
+
+  --wrap:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ink);color:var(--bone);font-family:var(--body);
+  font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 26px}
+.display{
+  font-family:var(--display);font-variation-settings:"wdth" 118;
+  font-weight:900;font-style:italic;text-transform:uppercase;
+  letter-spacing:-0.012em;line-height:0.92;
+}
+h2.display{font-size:clamp(30px,5vw,52px)}
+h3{font-family:var(--display);font-variation-settings:"wdth" 112;
+  font-weight:800;font-style:italic;text-transform:uppercase;
+  font-size:20px;letter-spacing:0.01em;line-height:1.1}
+p{color:#C3CAD3}
+strong{color:var(--bone);font-weight:600}
+a{color:inherit}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:0;z-index:60;background:rgba(6,7,10,.86);
+  backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;gap:26px;height:60px;max-width:var(--wrap);margin:0 auto;padding:0 26px}
+.nav-links{margin:0 auto;display:flex;gap:22px;align-items:center;flex-wrap:wrap;justify-content:center}
+.nav-links a+a{margin-left:22px}
+@supports (gap:1px){.nav-links a+a{margin-left:0}}
+.nav-links a{font-family:var(--data);font-size:13px;font-weight:600;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ash);text-decoration:none;transition:color .18s}
+.nav-links a:hover,.nav-links a:focus-visible{color:var(--bone)}
+.nav-links a.active{color:var(--bone)}
+@media(max-width:820px){.nav-in{height:auto;padding:10px 26px}.nav-links{gap:14px}.nav-links a{font-size:12px}}
+
+/* ---------- rules page ---------- */
+.rules-head{padding:52px 0 34px;border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg,#070C09 0%,var(--ink) 100%)}
+.back{font-family:var(--data);font-size:12px;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--turf-lit);text-decoration:none}
+.back:hover{color:var(--bone)}
+.rules-head h1{font-size:clamp(30px,5vw,50px);margin-top:14px}
+.rules-sub{margin-top:10px;font-family:var(--data);font-size:14px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ash)}
+.rules-eff{margin-top:14px;max-width:660px;font-size:15px;color:#A9B2BD}
+
+.atglance{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:30px 0 8px}
+@media(max-width:760px){.atglance{grid-template-columns:1fr}}
+.glance-card{background:var(--granite);border:1px solid var(--line);border-radius:3px;padding:20px}
+.glance-tag{display:inline-block;font-family:var(--data);font-size:11px;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;padding:5px 11px;border-radius:2px;margin-bottom:12px;
+  color:#9FE0AE;background:rgba(62,140,79,.2);border:1px solid var(--turf)}
+.glance-card h3{font-size:19px}
+.glance-card p{margin-top:8px;font-size:14.5px}
+.glance-card ul{list-style:none;margin-top:12px}
+.glance-card li{position:relative;padding-left:16px;margin-bottom:5px;font-size:14px;color:#A9B2BD}
+.glance-card li::before{content:"";position:absolute;left:0;top:9px;width:7px;height:2px;background:var(--turf-lit)}
+
+.rsec{padding:34px 0;border-bottom:1px solid var(--line)}
+.rsec h2{font-size:clamp(22px,3.4vw,32px);margin-bottom:14px}
+.rsec h3{font-size:16px;margin:22px 0 8px;color:var(--bone)}
+.rsec p{margin-bottom:11px;font-size:15.5px;line-height:1.62}
+.rsec p.lead{font-size:17px;color:var(--chalk)}
+.rlist{list-style:none;margin:0 0 12px}
+.rlist li{position:relative;padding-left:20px;margin-bottom:7px;font-size:15px;color:#C3CAD3}
+.rlist li::before{content:"";position:absolute;left:0;top:11px;width:9px;height:2px;background:var(--turf-lit)}
+.defs{margin-top:14px}
+.defs dt{font-family:var(--display);font-variation-settings:"wdth" 110;font-weight:800;font-style:italic;
+  text-transform:uppercase;font-size:13.5px;color:var(--turf-lit);margin-top:13px}
+.defs dd{margin:3px 0 0;font-size:15px;color:#C3CAD3}
+.rtable{width:100%;border-collapse:collapse;margin:14px 0;font-family:var(--data);font-size:15px}
+.rtable th{text-align:left;background:var(--slab);color:var(--ash);font-size:11.5px;font-weight:700;
+  letter-spacing:.15em;text-transform:uppercase;padding:9px 12px;border:1px solid var(--line)}
+.rtable td{padding:9px 12px;border:1px solid var(--line);color:#C7CED7;background:var(--granite)}
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:760px){.twocol{grid-template-columns:1fr}}
+p.warn{background:rgba(232,169,59,.08);border-left:3px solid var(--lights);
+  padding:11px 14px;border-radius:2px;color:#EDDCB4}
+.legal h3{color:var(--turf-lit)}
+.legal p{font-size:14.5px;color:#AAB2BD}
+.legal-note{margin-top:24px;padding:15px 18px;border:1px solid var(--turf);border-radius:3px;
+  background:rgba(21,58,34,.3);font-size:14.5px;color:var(--chalk)}
+.ruleback{padding:26px 0 60px;font-family:var(--data);font-size:13.5px;letter-spacing:.06em;color:var(--dim)}
+.ruleback a{color:var(--turf-lit);text-decoration:none}
+.ruleback a:hover{color:var(--bone)}
+footer{padding:44px 0 20px;color:var(--dim);font-family:var(--data);font-size:13px;letter-spacing:.05em}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-in">
+    <div class="nav-links">
+      <a href="index.html#road">Road to States</a>
+      <a href="index.html#pickem">Class Championships</a>
+      <a href="index.html#florida">Undisputed State Champs</a>
+      <a href="index.html#draft">The Draft</a>
+      <a href="index.html#volunteer">Student Volunteers</a>
+      <a href="rules.html" class="active">Rules</a>
+    </div>
+  </div>
+</nav>
+
+<header class="rules-head">
+  <div class="wrap">
+    <a class="back" href="index.html">&larr; Back to the games</a>
+    <h1 class="display">Rules</h1>
+    <p class="rules-sub">Florida Friday Night Lights Fantasy &middot; A registered 501(c)(3) &middot; Beta season &middot; Florida students only</p>
+    <p class="rules-eff">Effective [DATE]. Read these before entering &mdash; entering any of the three contests means you accept them.</p>
+    <p class="warn" style="margin-top:16px;max-width:760px"><strong>Beta season.</strong> Year one runs in Florida only, under Florida law, on the FHSAA brackets. Entry is open to <strong>students enrolled at a Florida public, private or charter high school</strong> and to nobody else. Other states follow in later seasons and will run under their own rules.</p>
+    <p class="warn" style="margin-top:12px;max-width:760px"><strong>Before you publish:</strong> replace every [BRACKETED] item below, and have your athletic director or district activities office read this page. Some districts require prior approval for any contest that uses school teams or is run under a school's name.</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+<!-- quick reference -->
+<div class="atglance">
+  <div class="glance-card" style="border-top:2px solid var(--turf-lit)">
+    <span class="glance-tag">Game 1 &middot; Open now</span>
+    <h3>Road to State Champs</h3>
+    <p>One school in every classification. Follow them from districts to State.</p>
+    <ul>
+      <li>10 district / 15 per playoff win / 25 region / 50 state</li>
+      <li>Points add up &mdash; no elimination</li>
+      <li>Locks at the first district kickoff</li>
+    </ul>
+  </div>
+
+  <div class="glance-card">
+    <span class="glance-tag">Game 2</span>
+    <h3>Undisputed State Champs</h3>
+    <p>Rank the ten best teams in Florida, any class. $20,000 &mdash; the biggest prize in the league.</p>
+    <ul>
+      <li>Ten schools in order, one ballot</li>
+      <li>Settled on a published Florida ranking</li>
+      <li>Locks at the first kickoff of the season</li>
+    </ul>
+  </div>
+
+  <div class="glance-card">
+    <span class="glance-tag">Game 3</span>
+    <h3>Class Championships</h3>
+    <p>One state champion in each of the six classifications.</p>
+    <ul>
+      <li>100 title / 40 final / 15 semifinal</li>
+      <li>Furthest round only &mdash; no adding up</li>
+      <li>Tiebreak on the 6A final's combined score</li>
+    </ul>
+  </div>
+
+  <div class="glance-card">
+    <span class="glance-tag">Game 4</span>
+    <h3>The Draft</h3>
+    <p>Many parallel drafts. Win your room, then the state.</p>
+    <ul>
+      <li>Groups of exactly 16, $2,500 sponsor minimum</li>
+      <li>Half to the school, then &frac34; / &frac14; in prizes</li>
+      <li>50/50 winner and school, per Group</li>
+    </ul>
+  </div>
+
+  <div class="glance-card" style="border-top:2px solid var(--lights)">
+    <span class="glance-tag" style="color:#EDDCB4;background:rgba(232,169,59,.14);border-color:rgba(232,169,59,.4)">501(c)(3) &middot; Volunteers</span>
+    <h3>Service hours</h3>
+    <p>Students run every game and log certified hours for it.</p>
+    <ul>
+      <li>Draft night, results, sponsorship, coordination</li>
+      <li>Signed off on 501(c)(3) letterhead</li>
+      <li>You may not enter a game you administer</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ PART ONE ============ -->
+<section class="rsec">
+  <h2 class="display">Part One &mdash; Definitions</h2>
+  <p class="lead">These terms carry the same meaning throughout.</p>
+  <dl class="defs">
+    <dt>Bracket</dt>
+    <dd>The official state playoff bracket for a single classification, as published by the Florida High School Athletic Association (FHSAA).</dd>
+
+    <dt>Round</dt>
+    <dd>One stage of a bracket &mdash; first round, regional, quarterfinal, semifinal, state final. The rounds and their dates are listed on the games page and do not change once entries open.</dd>
+
+    <dt>Team</dt>
+    <dd>A whole school's football program appearing on a bracket. <strong>Individual students are never drafted, named, priced, ranked or scored in any of these contests.</strong></dd>
+
+    <dt>Regional title</dt>
+    <dd>[DEFINE FOR YOUR STATE &mdash; e.g. winning the fourth round of an eight-team regional bracket.] If your state does not use regionals, delete this scoring line from Game 1 and from the games page.</dd>
+
+    <dt>Entry</dt>
+    <dd>One submitted registration that has been confirmed by email and, for entrants under 18, approved by a parent or guardian.</dd>
+
+    <dt>Official Bracket</dt>
+    <dd>The bracket as published by the Florida High School Athletic Association (FHSAA). Where it conflicts with anything we publish, it governs.</dd>
+
+    <dt>Group</dt>
+    <dd>A Florida high school running its own Draft board with <strong>exactly 16 entrants</strong> and its own sponsor. Groups draft separately and do not share a board.</dd>
+
+    <dt>Champion School</dt>
+    <dd>The school ranked number one in the final Florida ranking used to settle Part Five. It is identified by that ranking alone and takes no part in any game.</dd>
+
+    <dt>Administrator</dt>
+    <dd>[YOUR ORGANISATION], the 501(c)(3) that runs all four games.</dd>
+  </dl>
+</section>
+
+<!-- ============ PART TWO ============ -->
+<section class="rsec">
+  <h2 class="display">Part Two &mdash; Who can enter</h2>
+  <p class="lead">These rules apply to all four games equally.</p>
+
+  <h3>2.1 Free to enter</h3>
+  <p><strong>No purchase or payment of any kind is necessary to enter or to win.</strong> There is no entry fee, no buy-in, and no donation is requested at signup. Nothing an entrant buys or donates improves their chance of winning, and no prize pool is funded by entrants.</p>
+
+  <h3>2.2 Open to</h3>
+  <p><strong>Students currently enrolled at a Florida public, private or charter high school</strong>, who are legal residents of the State of Florida. Enrolment is at the time of entry.</p>
+  <p><strong>Parents, staff, alumni and community members cannot enter.</strong> This league is played by students. Adults are welcome to sponsor a Group, help a school run one, or watch the standings, but they do not hold entries and cannot win a prize.</p>
+  <p><strong>Entry is limited to Florida for this beta season.</strong> Entries giving an address or a school outside Florida are void, and any prize awarded in error is forfeit. Residency and enrolment are determined at the time of entry and are not affected by moving or graduating afterwards.</p>
+  <p>A student who graduates or transfers out of Florida mid-season keeps any entry already confirmed, and the school named on that entry remains the school that receives the school half of any prize.</p>
+  <p>The Administrator intends to open further states in later seasons. Each will run under its own rules and its own registration; <strong>nothing in these rules applies outside Florida.</strong></p>
+  <p>Entrants under 18 must supply a parent or guardian's name and email. <strong>The entry is not active until that guardian approves it by clicking the link we send them.</strong> An under-18 entrant whose guardian does not approve is not entered and cannot win.</p>
+
+  <h3>2.3 Not eligible</h3>
+  <ul class="rlist">
+    <li><strong>Any student on a roster appearing in these brackets.</strong> This is absolute and applies whether or not the student's own team is picked.</li>
+    <li>Coaches, assistant coaches and athletic staff of any school appearing in these brackets.</li>
+    <li>Anyone with access to the entry database, and their immediate family.</li>
+    <li>Game officials assigned to any playoff game in these brackets.</li>
+  </ul>
+  <p class="warn">2.3 exists so that no person who can affect a result has anything riding on one. Enforce it before the brackets are released, not after.</p>
+
+  <h3>2.4 Excluded schools</h3>
+  <p>The Administrator may exclude any school from the league <strong>at its sole discretion</strong>. Where a school is excluded:</p>
+  <ul class="rlist">
+    <li>Students at that school <strong>cannot enter any game</strong>, and an entry submitted by one is void.</li>
+    <li>The school <strong>remains fully selectable as a team</strong> in every game. It is still an FHSAA programme, it still plays, and excluding its students has no bearing on that.</li>
+    <li>An excluded school <strong>cannot receive the school half</strong> of any prize. Where a winning entry would otherwise send it there, that half is donated instead in equal shares to the schools of the other entrants in that game.</li>
+  </ul>
+  <p class="warn"><strong>Exclusion is not a finding of wrongdoing.</strong> No reason is published, none should be inferred, and nothing in this rule is a statement about any school, its students, its staff or its programme. The list exists so that entrants know before they enter rather than after they win.</p>
+  <p>The current list of excluded schools is published on the entry page and forms part of these rules. It may be amended at any time before entries open for a game. <strong>A school added to the list after entries open for a game is not excluded from that game</strong> &mdash; entries already confirmed stand.</p>
+  <p>A school may ask to be removed from the list by writing to [YOUR EMAIL].</p>
+
+  <h3>2.5 One entry each</h3>
+  <p>One entry per person per contest. A person may enter all three. Duplicate entries are reduced to the first confirmed one. Entries submitted by script, bot or any automated means are void.</p>
+
+  <h3>2.6 Student volunteers and service hours</h3>
+  <p>These contests are run by student volunteers under a registered 501(c)(3). Volunteers <strong>are not paid</strong> and receive no share of any prize or sponsorship.</p>
+  <p>Hours are logged as worked and certified by a named officer of the organisation, who issues a letter on the organisation's letterhead stating the dates, the work performed and the total hours. Certification is issued <strong>only for hours actually worked and recorded at the time</strong>; the Administrator does not certify estimated or retrospective hours.</p>
+  <p class="warn"><strong>A volunteer may not enter a game they administer.</strong> Anyone who handles entries, results or standings for a contest &mdash; or for a particular Group within the Draft &mdash; is ineligible to enter that contest or Group under 2.3. Volunteering elsewhere in the league does not affect eligibility: a volunteer who runs results for one Group may draft in another, and may enter any contest they take no part in administering.</p>
+  <p>Whether certified hours satisfy a graduation requirement, an honour society, or a scholarship programme is determined by the school or programme concerned and not by the Administrator. Requirements differ by district and some distinguish community service from general volunteering. <strong>Volunteers should confirm with their own school before relying on these hours.</strong></p>
+
+  <h3>2.7 Data</h3>
+  <p>We collect a name, an email, a school, and for under-18 entrants a guardian's name and email. That is all. It is used to run the contests and contact winners, it is never sold or shared with sponsors, and it is deleted [WITHIN 90 DAYS OF THE STATE FINALS]. A guardian may ask us to delete their child's entry at any time by emailing [YOUR EMAIL].</p>
+  <p><strong>We do not publish full names of entrants under 18.</strong> Leaderboards show a first name and last initial unless a guardian tells us otherwise in writing.</p>
+</section>
+
+<!-- ============ PART THREE ============ -->
+<section class="rsec">
+  <h2 class="display">Part Three &mdash; Road to State Champs</h2>
+  <p class="lead">One school in every classification, followed from district play to the state final. <strong>This is the only game running in the beta season.</strong></p>
+
+  <h3>3.1 Your sheet</h3>
+  <p>Name <strong>one FHSAA school in each of the six classifications</strong> &mdash; 1A, 2A, 3A, 4A, 5A and 6A. All six must be different schools.</p>
+  <p>Sheets lock at the <strong>first kickoff of district play</strong> and cannot be changed afterwards for any reason, including a school withdrawing, forfeiting a season, or being reclassified.</p>
+  <p>Schools are selected from the FHSAA classification list published on the entry page. If a school is missing from that list an entrant may still name it; the Administrator verifies it and contacts the entrant if it needs correcting. <strong>A school named in the wrong classification is corrected to its actual classification</strong>, and if that leaves the entrant with two schools in one class the later of the two is void and scores nothing.</p>
+
+  <h3>3.2 Scoring</h3>
+  <table class="rtable">
+    <tr><th>Achievement</th><th>Points</th></tr>
+    <tr><td>Your school wins its district</td><td>10</td></tr>
+    <tr><td>Your school wins a playoff game</td><td>15</td></tr>
+    <tr><td>Your school wins a regional title</td><td>25</td></tr>
+    <tr><td>Your school wins the state championship</td><td>50</td></tr>
+  </table>
+  <p><strong>These accumulate.</strong> A school that takes its district and then wins four playoff games including the regional and the final scores 10 + 60 + 25 + 50 = <strong>145</strong>.</p>
+  <p>Every one of these is read directly from the official FHSAA bracket and district standings. <strong>No individual student's statistics are used anywhere in this game.</strong></p>
+
+  <h3>3.3 Districts, byes, forfeits and cancellations</h3>
+  <ul class="rlist">
+    <li>A <strong>shared district title</strong> scores the full 10 for every school credited with it by the FHSAA.</li>
+    <li>A school in a classification or series that <strong>does not play districts</strong> cannot score the district 10. Its other scoring is unaffected.</li>
+    <li>A <strong>bye</strong> is not a win and scores nothing.</li>
+    <li>A win by <strong>forfeit or walkover</strong> scores as a win.</li>
+    <li>A game <strong>cancelled with no advancing school named</strong> scores nothing for either school.</li>
+    <li>A school <strong>disqualified after advancing</strong> keeps points already scored; the reinstated opponent scores from that round forward.</li>
+  </ul>
+
+  <h3>3.4 One winner, always</h3>
+  <p>The highest total wins. Because every school keeps scoring for as long as it keeps winning, the board separates on its own &mdash; there is no elimination and no entrant is ever knocked out.</p>
+  <p>Ties break in this order: <strong>most state championships, then most regional titles, then most district titles, then the earliest confirmed entry.</strong> The timestamp guarantees a single winner, so this game never ends in a share.</p>
+
+  <h3>3.5 Prize</h3>
+  <p>As Part Seven: <strong>$2,500 to the winner and $2,500 to the winner's school.</strong> One winner. No runner-up prizes.</p>
+</section>
+
+<!-- ============ PART FOUR ============ -->
+<section class="rsec">
+  <h2 class="display">Part Four &mdash; Class Championships</h2>
+
+  <h3>4.1 Your sheet</h3>
+  <p>Name one projected state champion in <strong>every classification</strong>, plus one tiebreak number. A sheet missing any classification is not accepted.</p>
+  <p>Sheets lock at the <strong>first kickoff of round one</strong> and cannot be changed afterwards for any reason.</p>
+
+  <h3>4.2 Scoring</h3>
+  <table class="rtable">
+    <tr><th>Your pick's furthest round</th><th>Points</th></tr>
+    <tr><td>Wins the state championship</td><td>100</td></tr>
+    <tr><td>Loses the state final</td><td>40</td></tr>
+    <tr><td>Loses the semifinal</td><td>15</td></tr>
+    <tr><td>Eliminated before the semifinal</td><td>0</td></tr>
+  </table>
+  <p><strong>Only the furthest round reached counts.</strong> A champion scores 100, not 155 &mdash; the tiers do not add together.</p>
+
+  <h3>4.3 Tiebreak</h3>
+  <p>Every sheet carries one number: <strong>the combined points scored by both teams in the Class 6A state final.</strong> Closest without going over wins, then the <strong>earliest confirmed entry</strong>. The timestamp guarantees a single winner, so this contest never ends in a share.</p>
+  <p>With a large field, ties on raw points are the expected outcome rather than an edge case. The tiebreak is what actually decides this contest most years.</p>
+
+  <h3>4.4 Classification changes</h3>
+  <p>If the Florida High School Athletic Association (FHSAA) merges, splits or cancels a classification after sheets lock, that classification is <strong>removed from scoring for every entrant</strong>. Nobody scores it and nobody is penalised.</p>
+</section>
+
+<!-- ============ PART FIVE ============ -->
+<section class="rsec">
+  <h2 class="display">Part Five &mdash; Undisputed Florida State Champs</h2>
+  <p class="lead">One ballot, ten schools, no classifications. Who is the best team in the state?</p>
+
+  <h3>5.1 Your ballot</h3>
+  <p>Name <strong>ten FHSAA schools, in order, positions 1 through 10</strong> &mdash; the final Florida top ten. Classification is irrelevant: a 1A private school and a 6A public school may appear on the same ballot.</p>
+  <p>A ballot with fewer than ten schools, or with the same school twice, is not accepted. Ballots lock at <strong>[KICKOFF OF THE FIRST GAME OF THE REGULAR SEASON]</strong> and cannot be changed afterwards.</p>
+
+  <h3>5.2 The source, and its limits</h3>
+  <p>This game is settled against the <strong>final Florida statewide rankings published by MaxPreps</strong>, as they appear on <strong>[SETTLEMENT DATE]</strong>.</p>
+  <p class="warn"><strong>A statewide ranking is editorial opinion, not a result.</strong> No game decides it. It is one publisher's judgement, it is revised during and after the season, and reasonable people disagree with it. <strong>By entering you accept that ranking as final and agree not to dispute it</strong> &mdash; including where it conflicts with a head-to-head result or another publisher.</p>
+  <p>MaxPreps publishes its Florida football top ten weekly, and the Administrator posts each week's ranking and the standings that follow from it. <strong>Those weekly postings are for interest only and score nothing.</strong> The game is settled solely on the ranking published on the settlement date.</p>
+  <p>The Administrator captures and publishes a dated copy at the moment of settlement. <strong>Revisions published afterwards do not reopen the outcome</strong>, and no entrant may rely on having led the standings in any earlier week.</p>
+  <p>If MaxPreps does not publish a final Florida statewide ranking for the season, settlement falls to <strong>[NAMED ALTERNATE SOURCE]</strong>. If neither publishes, this game is void and its full $20,000 is donated to the participating schools in equal shares.</p>
+  <p><strong>MaxPreps is not affiliated with, does not sponsor and does not endorse this contest.</strong> It is named here only as the source whose published ranking the Administrator has chosen to settle against.</p>
+
+  <h3>5.3 How the winner is found</h3>
+  <p>Settlement runs in steps and stops at the first step that produces a single entrant.</p>
+  <ol class="rlist" style="list-style:decimal;padding-left:22px">
+    <li><strong>Position 1.</strong> Every entrant who named the actual number one school goes through. If nobody did, every entrant whose position 1 pick finished highest goes through instead.</li>
+    <li><strong>Exact positions.</strong> Whoever placed the most of positions 2 through 10 in exactly the right slot.</li>
+    <li><strong>Right school, wrong slot.</strong> Then whoever named the most schools appearing anywhere in the actual top ten.</li>
+    <li><strong>Closest overall.</strong> Then the smallest total displacement across all ten picks, counting a school outside the top ten as ten places away.</li>
+    <li><strong>Earliest ballot.</strong> If entrants remain level, the earliest confirmed entry wins.</li>
+  </ol>
+
+  <h3>5.4 Prize &mdash; $20,000, three ways</h3>
+  <p>This game carries <strong>$20,000, the largest in the league</strong>, funded by sponsors and divided as follows:</p>
+  <table class="rtable">
+    <tr><th>Share</th><th>Amount</th><th>Goes to</th></tr>
+    <tr><td>One half</td><td><strong>$10,000</strong></td><td>The winning entrant, in cash</td></tr>
+    <tr><td>One quarter</td><td>$5,000</td><td>The <strong>Champion School</strong> &mdash; the school ranked number one in Florida</td></tr>
+    <tr><td>One quarter</td><td>$5,000</td><td>The <strong>winner's own school</strong></td></tr>
+  </table>
+  <p><strong>Only the $10,000 is a prize.</strong> The two quarters are charitable donations made by the sponsor in the winner's name, paid directly to the schools. The entrant has no claim to either and cannot redirect them, decline on a school's behalf, or take them in cash.</p>
+
+  <h3>5.5 If the Champion School is excluded</h3>
+  <p>A school excluded under 2.4 <strong>cannot receive the Champion School quarter</strong>. Where the school ranked number one is an excluded school, that $5,000 is added to the winner's own school instead, which then receives <strong>$10,000 in total</strong>.</p>
+  <p>The winner's own $10,000 is unaffected either way. Exclusion never reduces what a student wins.</p>
+
+  <h3>5.6 If a school cannot accept</h3>
+  <p class="warn">Neither school is party to this game and neither has agreed in advance to receive anything. <strong>A school may decline.</strong> Some districts restrict outside donations, particularly where the donation follows from athletic performance &mdash; which is exactly what the Champion School quarter does.</p>
+  <p>Where a school declines, cannot accept, or does not respond within <strong>[60 DAYS]</strong>, that quarter is donated in equal shares to the schools of the other entrants in this game. <strong>The winner's $10,000 is never affected by a school's decision.</strong></p>
+
+  <h3>5.7 One winner</h3>
+  <p>One winner. No runner-up prizes, no share. The cascade in 5.3 runs to a single entrant and its final step guarantees it terminates.</p>
+</section>
+
+<!-- ============ PART SIX ============ -->
+<section class="rsec">
+  <h2 class="display">Part Six &mdash; The Draft</h2>
+
+  <h3>6.1 Groups</h3>
+  <p>The Draft runs as <strong>many separate drafts, not one competition</strong>. Each is held by a <strong>Group</strong> &mdash; a Florida high school that recruits its own entrants, brings its own sponsor, and settles its own prize. Groups do not compete against each other in any way.</p>
+  <ul class="rlist">
+    <li>A Group is <strong>exactly 16 entrants</strong>. Not 15, not 17.</li>
+    <li>A Group must have a sponsor <strong>committed for at least $2,500</strong>.</li>
+    <li><strong>A Group that fails either requirement at the registration deadline does not run and does not enter.</strong> Its sponsorship is returned or rolled to the following season at the sponsor's election, and its entrants remain eligible for every other game.</li>
+    <li><strong>Sixteen is a practical limit, not a competitive one.</strong> A live snake draft runs about thirty seconds a pick, so sixteen entrants over six rounds is roughly forty-five minutes &mdash; one sitting. It also keeps the board deep: sixteen entrants at six schools each uses 96 of the 439 schools in classes 1A-6A, so the last pick of the night is still a real team.</li>
+    <li>Each Group drafts on its own board. <strong>Groups do not share a board</strong>, so the same school may be drafted in several Groups.</li>
+    <li>Each Group has <strong>one sponsor</strong>, who funds that Group's prize. Sponsors differ, so Group prizes differ.</li>
+    <li>An entrant belongs to <strong>one Group only</strong> and may not enter the Draft twice.</li>
+  </ul>
+  <p>Every Group produces <strong>one winner</strong>, and that is where the game ends. There is no statewide play-off between Groups and no overall champion. <strong>Each school runs its own Draft, funds its own prize, and keeps its own half.</strong></p>
+  <p><strong>At least two Groups must register</strong> for the Draft to run at all. This is a prize-floor requirement, not a competitive one: the published minimum prize total for the season depends on it. If fewer than two Groups register, the Draft does not run that season, sponsorships are returned or rolled forward at each sponsor's election, and entrants remain eligible for every other game.</p>
+
+  <h3>6.2 Group registration closes early, and why</h3>
+  <p>A Group registers by naming its sponsor, <strong>the exact amount that sponsor has committed &mdash; at least $2,500</strong> &mdash; and <strong>sixteen confirmed entrants</strong>. Registration closes <strong>[10 DAYS] before the first kickoff of the regular season</strong>, and no Group may join, add entrants, or increase its sponsorship after that.</p>
+  <p class="warn"><strong>A Group short of sixteen entrants, or short of $2,500 in committed sponsorship, does not run.</strong> Its entrants are not entered in the Draft and are not placed in another Group. They remain eligible for every other game. This is stated plainly on the entry page so that no one finds out late.</p>
+  <p>This deadline is not administrative housekeeping. Prize registration and bonding require the Administrator to state a total prize value <em>before</em> entries open, and until every Group has committed its sponsor that total is unknown. Closing Group registration first fixes the number, so the promotion can be registered and bonded against a real figure rather than a cap.</p>
+  <p>Once the deadline passes the Administrator publishes, for every Group: the sponsor, the committed amount, and the two halves of the Group prize. <strong>Those figures are fixed for the season</strong> and are not revised if a sponsor later pays more, less, or nothing.</p>
+  <p class="warn"><strong>A sponsor who does not pay does not reduce a prize.</strong> The Administrator stands behind every published Group prize, whatever happens between a Group and its sponsor afterwards. Recovering from a defaulting sponsor is the Administrator's problem, never the entrant's.</p>
+
+  <h3>6.3 The draft</h3>
+  <ul class="rlist">
+    <li>Held before the first kickoff of round one, at a time announced by email.</li>
+    <li><strong>Snake order.</strong> Draft position is assigned at random and published before the draft begins.</li>
+    <li><strong>Six teams each.</strong> Any team on any bracket. Once a team is drafted it is off the board for everyone.</li>
+    <li>An entrant who does not attend is drafted for, in order, by best available seed.</li>
+  </ul>
+  <p>Rosters lock at the first kickoff of round one. <strong>No trades, no adds, no drops after that</strong>, for any reason, including a team withdrawing or being disqualified.</p>
+
+  <h3>6.4 Scoring</h3>
+  <table class="rtable">
+    <tr><th>Achievement</th><th>Points</th></tr>
+    <tr><td>Your team wins a playoff game</td><td>10</td></tr>
+    <tr><td>Your team wins a regional title</td><td>25</td></tr>
+    <tr><td>Your team wins the state championship</td><td>50</td></tr>
+  </table>
+  <p>These accumulate. A state champion in a five-round bracket scores 50 for its five wins, 25 for the regional and 50 for the title &mdash; <strong>125 in total.</strong></p>
+  <p>Every one of these is read directly from the Official Bracket. <strong>No individual statistics are used anywhere in this contest.</strong></p>
+
+  <h3>6.5 Byes, forfeits and cancellations</h3>
+  <ul class="rlist">
+    <li>A <strong>bye</strong> is not a win and scores nothing.</li>
+    <li>A win by <strong>forfeit or walkover</strong> scores as a win.</li>
+    <li>A game <strong>cancelled with no advancing team named</strong> scores nothing for either team.</li>
+    <li>A team <strong>disqualified after advancing</strong> keeps points already scored; the reinstated opponent scores from that round forward.</li>
+  </ul>
+
+  <h3>6.6 The winner</h3>
+  <p>The entrant with the most points in their own Group. Tiebreaks, in order: most state championships, then most total playoff wins, then most teams alive entering the final round, then the <strong>earliest confirmed entry</strong>. The timestamp guarantees a single winner, so no Group ends in a share.</p>
+
+  <h3>6.7 Prizes &mdash; how a Group's sponsorship divides</h3>
+  <p>A Group's sponsorship splits <strong>in half</strong>, on exactly the same terms as every other game: half to the winner, half to the school.</p>
+  <table class="rtable">
+    <tr><th>Share of sponsorship</th><th>Goes to</th><th>On the $2,500 minimum</th></tr>
+    <tr><td><strong>One half</strong></td><td>That Group's winner</td><td>$1,250</td></tr>
+    <tr><td><strong>One half</strong></td><td>The school that ran the Group</td><td>$1,250</td></tr>
+  </table>
+  <p>Nothing leaves the school. A Group's sponsorship is raised by that school, won by one of its students, and kept by that school. <strong>No share is pooled, held back, or paid to anyone outside the Group.</strong></p>
+  <p><strong>Every school that runs a Group keeps half of what it raises.</strong> A school that runs three Groups keeps half of three sponsorships &mdash; $3,750 at the minimum. Running more rooms is the single most direct way for a school to raise more. This is the fundraiser: the money follows the work of organising, not the luck of the draft.</p>
+  <p>Two Groups at the $2,500 minimum &mdash; the smallest Draft that can run &mdash; pays $1,250 to each of the two winners and $1,250 to each of the two schools. Ten Groups at the minimum pays $12,500 to ten winners and $12,500 to ten schools.</p>
+  <p>Every one of these figures is <strong>fixed and published when Group registration closes</strong> under 3.2. Nothing about the Draft prize is estimated once entries open.</p>
+  <p>Only the prize half is prize value for the purposes of 7.5. The school half is a donation to an institution and is never paid to an entrant.</p>
+</section>
+
+<!-- ============ PART SIX ============ -->
+<section class="rsec">
+  <h2 class="display">Part Seven &mdash; Prizes</h2>
+
+  <h3>7.1 The prize in each contest</h3>
+  <p>Prizes are funded entirely by sponsors. Road to State Champs and Class Championships carry $5,000 each and split in half between the winner and the winner's school. <strong>Undisputed Florida State Champs carries $20,000</strong> and splits three ways under 5.4. The Draft is funded per Group by that Group's own sponsor and follows 6.7:</p>
+  <table class="rtable">
+    <tr><th>Game</th><th>To the winner</th><th>To the winner's school</th><th>Total</th></tr>
+    <tr><td>Road to State Champs</td><td>$2,500</td><td>$2,500</td><td>$5,000</td></tr>
+    <tr><td><strong>Undisputed Florida State Champs</strong></td><td><strong>$10,000</strong></td><td><strong>$10,000</strong> (see 5.4)</td><td><strong>$20,000</strong></td></tr>
+    <tr><td>Class Championships</td><td>$2,500</td><td>$2,500</td><td>$5,000</td></tr>
+    <tr><td>The Draft</td><td colspan="3">Set per Group by that Group's own sponsor, split half to that Group's winner and half to the school that ran it. See 6.7.</td></tr>
+  </table>
+  <p><strong>One winner per game</strong>, with the Draft the single exception: it produces one winner per Group, each determined independently under Part Six. In Road to State Champs and Class Championships a single entrant takes $2,500 and a further $2,500 goes to the school named on that entrant's registration. In Undisputed Florida State Champs a single entrant takes $10,000 and a further $10,000 is donated to schools under 5.4.</p>
+  <p>The school half is paid directly to the school or its booster organisation, never to the winner, and the winner has no claim to it. An entrant who names no school, or whose named school declines the funds, forfeits only the school half &mdash; their own half is unaffected.</p>
+  <p>No entrant pays anything to compete and no prize money comes from entrants. Prizes are not transferable and no substitution is offered. Because entry is free, these contests involve no consideration and are promotions rather than wagers; cash prizes do not change that.</p>
+
+  <h3>7.2 Prizes for entrants under 18</h3>
+  <p><strong>Every entrant in this league is a student</strong>, so every prize is won by one. A prize won by an entrant under 18 is released to the parent or guardian named on the consent record, never directly to the entrant.</p>
+  <p><strong>Cash is paid to entrants under 18 in the same amount as to any other winner, unless the entrant's school district restricts or prohibits cash awards to students.</strong> Where a district does so, that winner receives instead a prize of <strong>equivalent value, chosen by the winner</strong> from a published list of options &mdash; merchandise, gift cards, equipment or experiences.</p>
+  <p>The value is identical either way. Only the form changes, and only where a district requires it. We confirm the district's position before a prize is released, and a winner is never asked to find that answer themselves.</p>
+  <p class="warn"><strong>Ask before you publish.</strong> Confirm your district's position on cash awards to students in advance, and list the alternative prize options on the entry page so the choice is visible before anyone enters, not after they win.</p>
+
+  <h3>7.3 Rostered students</h3>
+  <p>Students appearing on any roster in these brackets cannot enter at all under 2.3, so no prize of any kind &mdash; cash or otherwise &mdash; reaches a competing athlete. That exclusion, not the form of the prize, is what keeps these contests clear of state association award rules.</p>
+
+  <h3>7.4 Tax information is required before payment</h3>
+  <p><strong>No taxpayer identification is collected at entry.</strong> You do not provide a Social Security number, a taxpayer ID, or an address to play. Nothing beyond a name, an email and a school is requested from anyone who does not win.</p>
+  <p>Because every prize is at least $2,500, each exceeds the $600 reporting threshold. So at the point of payment, and only then, <strong>each winner must supply a completed IRS Form W-9</strong> &mdash; legal name, mailing address and taxpayer identification number &mdash; before any money is released. A Form 1099 is issued for the prize.</p>
+  <p class="warn"><strong>A prize cannot be paid without this information.</strong> A winner who does not return a completed W-9 within [30 DAYS] of being asked forfeits the prize, and both halves of that game's prize pass to the next-placed entrant and their school. This is stated here so that no winner is surprised by the request.</p>
+  <p>For a winner under 18, the Form W-9 is completed by the parent or guardian on the consent record, and the prize and the 1099 are handled through them.</p>
+  <p>Prize money is the recipient's income. <strong>All taxes on it are the recipient's responsibility.</strong> The Administrator does not withhold and gives no tax advice.</p>
+
+  <h3>7.5 Registration and bonding</h3>
+  <p>Prize value across Road to State Champs, Class Championships and Undisputed Florida State Champs is <strong>$15,000</strong> &mdash; two $2,500 winner prizes plus the $10,000 paid to the Undisputed Florida State Champs winner. <strong>The Draft adds half of all Group sponsorship</strong>, a figure fixed and published when Group registration closes under 6.2, which is why that deadline falls before entries open. The Administrator registers and bonds against the sum of the two. School halves are paid to institutions rather than awarded to entrants and are not prize value.</p>
+  <p>Where required, the Administrator registers the promotion and posts a surety bond before entries open. <strong>Entry is limited to enrolled Florida students under 2.2</strong>, so no other state's registration is required.</p>
+
+  <h3>7.6 Notification</h3>
+  <p>Winners are notified by email within [14 DAYS] of the state finals. A winner who does not respond within [30 DAYS], or who does not return the tax information required by 7.4, forfeits the prize, which passes to the next-placed entrant.</p>
+
+  <h3>7.7 Every contest has exactly one winner</h3>
+  <p>None of the four games can end in a shared or divided prize. Each tiebreak cascade ends in <strong>earliest confirmed entry</strong>, which is unique to the millisecond, so a single entrant is always identified.</p>
+  <p>This is deliberate. A cash prize split between an unknown number of people cannot be budgeted, cannot be bonded against, and turns a published headline into an amount nobody can state in advance. Sponsors are told what a winner receives, and entrants are shown the same figure &mdash; so the figure has to be certain.</p>
+  <p>The timestamp is the last step and never the first. In practice a substantive tiebreak resolves these contests; the timestamp exists so that the rules cannot fail to name someone.</p>
+
+  <h3>7.8 Sponsorship and the fundraiser</h3>
+  <p>Sponsorship funds $30,000 across Road to State Champs, Class Championships and Undisputed Florida State Champs &mdash; $15,000 to winners and $15,000 to schools &mdash; plus at least $5,000 more from the Draft Groups. <strong>The published minimum across all four games is $35,000.</strong> Anything raised beyond that goes to [YOUR SCHOOL]. <strong>The full amount raised and the full amount passed to the school are published at the end of the season.</strong> Sponsors have no influence over scoring, standings or the selection of winners.</p>
+</section>
+
+<!-- ============ PART SEVEN ============ -->
+<section class="rsec">
+  <h2 class="display">Part Eight &mdash; Results and corrections</h2>
+
+  <h3>8.1 Source of results</h3>
+  <p>Results come from the Official Bracket published by the Florida High School Athletic Association (FHSAA). <strong>Where our standings and the Official Bracket conflict, the Official Bracket governs.</strong></p>
+  <p>We do not use, publish or store any individual student's statistics.</p>
+
+  <h3>8.2 Timing</h3>
+  <p>Standings post the <strong>morning after a round completes</strong>. There is no live scoring and nothing updates during a game.</p>
+
+  <h3>8.3 Corrections</h3>
+  <p>We may correct published standings to fix an error in the bracket or in our processing. <strong>Corrections may be made up to 72 hours after a round closes</strong>, after which that round is final. A correction that changes a prize outcome is published with an explanation.</p>
+
+  <h3>8.4 Shortened or cancelled seasons</h3>
+  <p>If a round is cancelled it is simply not scored. If the playoffs are abandoned before the semifinals, standings are declared final as at the last completed round, in all three contests.</p>
+</section>
+
+<!-- ============ PART EIGHT ============ -->
+<section class="rsec legal">
+  <h2 class="display">Part Nine &mdash; General</h2>
+
+  <h3>9.1 Conduct</h3>
+  <p>Any attempt to manipulate a result, submit entries by automated means, enter under a false name or age, or interfere with another entrant voids all of that person's entries. Where an entrant is a student at [YOUR SCHOOL], this is also a matter for the school's own conduct policy.</p>
+
+  <h3>9.2 Changes to these rules</h3>
+  <p>These rules may be amended before entries open. <strong>After entries open, no amendment may change scoring, prizes or eligibility</strong> except where required by law, by the school or district, or to correct an obvious error.</p>
+
+  <h3>9.3 Suspension</h3>
+  <p>[YOUR SCHOOL] or [YOUR DISTRICT] may require these contests to be suspended or ended at any time. If that happens, all three are settled on results as played and no prize obligation survives beyond what has already been won.</p>
+
+  <h3>9.4 Independence</h3>
+  <p>These contests are run by [YOUR ORGANISATION], a nonprofit corporation exempt from federal income tax under section 501(c)(3) of the Internal Revenue Code, EIN [YOUR EIN]. They are <strong>not operated, sponsored, endorsed or administered by any school, school district, or by the Florida High School Athletic Association</strong>, which publishes brackets only. They are not associated with Instagram, Meta, or any social platform.</p>
+
+  <h3>9.5 Limitation</h3>
+  <p>The Administrator is not liable for email failures, bracket errors outside its control, or events preventing the playoffs from being completed as scheduled.</p>
+
+  <h3>9.6 Governing law</h3>
+  <p>The laws of the State of Florida govern these rules. <strong>Open to Florida residents only. Void where prohibited.</strong></p>
+
+  <div class="legal-note">
+    <strong>Before publishing:</strong> this page is a working draft written to be free of entry fees, free of any individual student's name or statistics, and capped below the tax and registration thresholds &mdash; the things that create the most risk in a contest built on high school sport. It is not legal advice. Have your athletic director, activities office or district counsel read it, and replace every [BRACKETED] item.
+  </div>
+</section>
+
+</div>
+
+<div class="ruleback">
+  <div class="wrap"><a href="index.html">&larr; Back to the games</a></div>
+</div>
+
+<footer>
+  <div class="wrap">
+    Florida Friday Night Lights Fantasy · A registered 501(c)(3) · Beta season · Florida students only · Not affiliated with any school, district, or with the FHSAA
+  </div>
+</footer>
+
+</body>
+</html>
